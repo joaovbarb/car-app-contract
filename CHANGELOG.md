@@ -1,5 +1,12 @@
 # Contract changelog
 
+## 2026-09-18 — v2 endpoint cutover; payload schema unchanged
+
+- Made `/api/public/v2` the sole consumer URL and removed `/api/public/v1`.
+- Preserved the existing response/error schemas and `apiVersion: "1"`; the URL change is not a payload-version change.
+- Documented that replacement IDs/data are independent and old links or IDs are not mapped, imported, redirected, or used as fallbacks.
+- Documented exact-origin CORS configuration and the separation between public read enablement and research execution.
+
 ## 2026-09-18 — model galleries and reported battery capacity (rollout pending)
 
 - Added canonical model-detail `data.photos`; kept model-card hero `photo`. The new field is optional during rollout so current deployed responses still parse. Absent differs from an explicitly empty gallery.

@@ -1,4 +1,4 @@
-# Consumer API v1: frontend integration
+# Consumer API v2 endpoint: frontend integration
 
 This is the frontend's read-only boundary. It does not perform discovery, extraction, refresh, storage fetches or population mutations. No database credentials, provider keys or research-table knowledge are needed by a frontend.
 
@@ -11,7 +11,9 @@ This is the frontend's read-only boundary. It does not perform discovery, extrac
 
 ## Routes
 
-All routes use GET under `/api/public/v1`. HEAD and OPTIONS are supported; other methods receive JSON 405. There is no public refresh endpoint.
+All routes use GET under `/api/public/v2`. HEAD and OPTIONS are supported; other methods receive JSON 405. There is no public refresh endpoint and `/api/public/v1` no longer exists.
+
+The endpoint version and payload version are deliberately distinct. The URL is v2, while successful and error envelopes retain `apiVersion: "1"`; this cleanup does not change response schemas. The replacement catalogue uses independent IDs and data. Old URLs and IDs have no redirects, mappings, imports, or fallback behavior, so clients must discover fresh IDs from the v2 browse routes.
 
 | Route | Result |
 | --- | --- |
@@ -38,17 +40,17 @@ Every successful response has `apiVersion: "1"`, `asOf` (UTC ISO timestamp), `ma
 | `preferences` | URL-encoded JSON array with at most 10 supported preferences, maximum 4000 characters |
 | `uncertainty` | `strict` (default) or `include`; controls preference filtering in browse/model-version lists |
 
-Unknown or repeated parameters are rejected. Requests are capped at 8192 URL characters. No implicit currency conversion is performed. Initial tax geography is the market's default fiscal region; region overrides are not exposed in v1. `all` removes the powertrain filter but still requires a resolved, recognized powertrain for version publication.
+Unknown or repeated parameters are rejected. Requests are capped at 8192 URL characters. No implicit currency conversion is performed. Initial tax geography is the market's default fiscal region; region overrides are not exposed in payload schema 1. `all` removes the powertrain filter but still requires a resolved, recognized powertrain for version publication.
 
 ## Examples
 
 ```
-GET /api/public/v1/makes?market=PT&powertrain=bev
-GET /api/public/v1/models?market=PT&powertrain=bev&q=Explorer&limit=12
-GET /api/public/v1/models/MODEL_UUID?limit=20
-GET /api/public/v1/versions/VERSION_UUID
-GET /api/public/v1/compare?ids=VERSION_UUID_1,VERSION_UUID_2
-GET /api/public/v1/definitions
+GET /api/public/v2/makes?market=PT&powertrain=bev
+GET /api/public/v2/models?market=PT&powertrain=bev&q=Explorer&limit=12
+GET /api/public/v2/models/MODEL_UUID?limit=20
+GET /api/public/v2/versions/VERSION_UUID
+GET /api/public/v2/compare?ids=VERSION_UUID_1,VERSION_UUID_2
+GET /api/public/v2/definitions
 ```
 
 Use real returned UUIDs; placeholders above are intentionally not valid requests. Fixture UUIDs work with a fixture-backed frontend, not the production database.
@@ -62,7 +64,7 @@ const params = new URLSearchParams({
     { kind: "price", maxAmountMinor: 4000000 },
   ]),
 });
-const response = await fetch(`${apiBase}/api/public/v1/models?${params}`);
+const response = await fetch(`${apiBase}/api/public/v2/models?${params}`);
 const payload = await response.json();
 if (!response.ok) throw new Error(payload.error.message);
 // Optionally validate responseSchema.parse(payload).
@@ -114,7 +116,7 @@ Display the principal label **Battery capacity**, with the source basis availabl
 
 The keys `battery_gross_kwh`, `battery_usable_kwh` and `battery_capacity_kwh` retain their previous exact meanings and evidence. `battery_capacity_kwh` still means unspecified basis: it is not repurposed as the selected value. The frontend must not calculate conversions or write selected values back to the API.
 
-During rollout, a missing comparison key means the old backend has not supplied the new selection. Treat it as unavailable for the new primary display/filter; do not silently relabel an old key. Wait until `/definitions` advertises the new key before sending preference filters using it. Existing basis-specific filters retain their original semantics. Selection logic, registry entries and public serialization must be implemented in the replacement backend; this package alone does not implement them.
+A missing comparison key means the response has not supplied that selection. Treat it as unavailable for the primary display/filter; do not silently relabel another key. Wait until `/definitions` advertises the key before sending preference filters using it. Existing basis-specific filters retain their original semantics.
 
 ## Errors, consistency and deployment
 
@@ -124,6 +126,8 @@ Publication, prices and galleries share a consistent snapshot within each respon
 
 Success responses permit 30 seconds of browser caching and 60 seconds of shared caching. The first implementation bounds a read to 1000 matching models, 4000 trims and 10000 related records per query; excessive scope returns 503 rather than a silently incomplete minimum or comparison. Narrow `q`/`makeId` or use detail routes if this deployment outgrows the initial bound.
 
-Same-origin frontend calls use an empty API base URL. For another deployment, configure the frontend with the public origin supplied by the backend operator (for example `https://catalogue.example.com`), without `/api/public/v1` or a trailing slash. The backend operator must allow your exact frontend origin. No admin credentials, cookies or credentials mode are required. Deployment protection can prevent access: ask the operator for a publicly accessible endpoint; never embed bypass secrets.
+Same-origin frontend calls use an empty API base URL. For another deployment, configure the frontend with the public origin supplied by the backend operator (for example `https://catalogue.example.com`), without `/api/public/v2` or a trailing slash. The backend operator must add your exact frontend origin to `V2_PUBLIC_ALLOWED_ORIGINS`. No admin credentials, cookies or credentials mode are required. Deployment protection can prevent access: ask the operator for a publicly accessible endpoint; never embed bypass secrets.
+
+`V2_PUBLIC_API_ENABLED=true` enables read-only consumer access. It does not authorize or enable research: `V2_LIVE_ENABLED`, budgets, events, and `V2_SCHEDULES_ENABLED` remain separate controls.
 
 The deployment initially supports PT. Ask the operator about market enablement, image availability or live data readiness. Empty galleries and zero published versions are valid states. Synthetic fixtures unblock development before live population is ready. Record missing capabilities or contract change requests in your frontend's `docs/api-requests.md`; do not inspect backend code or configure backend environments.

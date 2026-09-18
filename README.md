@@ -1,4 +1,4 @@
-# Consumer contract v1
+# Consumer contract (payload schema 1)
 
 This read-only API provides market-scoped vehicle browsing, published versions, comparisons, specifications, dynamic equipment features, qualified cash price estimates and curated photos. It supports frontend development even when live vehicles have incomplete evidence or no published versions.
 
@@ -6,11 +6,13 @@ Read [integration.md](integration.md) first for routes and rendering semantics, 
 
 Start with [synthetic fixtures](fixtures/synthetic-v1.json). The wrapper contains `synthetic: true`, successful `scenarios` and `errors`. Each entry's `response` is an HTTP body; names and error `httpStatus` are mock metadata. Successful bodies use status 200. Fixture IDs are synthetic, not production IDs. Example image/source URLs are placeholders, not usable assets; show image fallbacks. Examples cover all six routes, pagination, empty results, model-only coverage, all error codes and incomplete/disputed/stale data. No fixtures are production seed data.
 
-## 2026-09-18 contract revision: pending backend rollout
+## 2026-09-18 endpoint cutover
+
+The only consumer endpoint is `/api/public/v2`. This URL cutover does not change the JSON envelope: successful and error bodies continue to carry `apiVersion: "1"` and validate against the existing schemas. The replacement catalogue has independent IDs and data; old v1 URLs and IDs are not preserved, redirected, mapped, imported, or used as fallbacks.
 
 The canonical gallery is now `data.photos` on `/models/{modelId}`. Cards retain `model.photo` as a hero; `version.photos` is deprecated compatibility data. New frontend code should fetch the model detail using a version's `modelId`, not treat version pictures as a trim gallery.
 
-This package updates the contract, documentation and synthetic fixtures only; it does not deploy backend behaviour. `data.photos` is temporarily optional so existing live responses still parse. An absent property means this deployment has not supplied the model gallery; `[]` explicitly means no published model photos. Do not default absence to an empty gallery or present legacy version photos as a canonical model gallery.
+`data.photos` remains optional for payload compatibility. An absent property means the response has not supplied the model gallery; `[]` explicitly means no published model photos. Do not default absence to an empty gallery or present version photos as a canonical model gallery.
 
 Use `battery_comparison_kwh` for the main battery comparison and preference filter when the backend supplies it. It selects a reported value without conversion and includes `batteryBasis` when resolved. Existing nominal/usable/unspecified keys keep their original meanings. See the integration guide for the selection policy and rollout behaviour.
 
@@ -36,6 +38,6 @@ In frontend code, import `responseSchema`, `errorSchema` and exported types from
 
 ## Connect to live data
 
-Configure a public `apiBase` in your frontend: empty string for same-origin, or the backend-provided public origin without a trailing slash. Request `${apiBase}/api/public/v1/models`. Parse successful JSON with `responseSchema` and unsuccessful JSON with `errorSchema`; network, CORS or deployment-access failures may not have JSON bodies. Do not embed admin, database or provider credentials or send cookies. For cross-origin use, give the backend operator your exact frontend origin so they can allow it.
+Configure a public `apiBase` in your frontend: empty string for same-origin, or the backend-provided public origin without a trailing slash. Request `${apiBase}/api/public/v2/models`. Parse successful JSON with `responseSchema` and unsuccessful JSON with `errorSchema`; network, CORS or deployment-access failures may not have JSON bodies. Do not embed admin, database or provider credentials or send cookies. For cross-origin use, give the backend operator your exact frontend origin for `V2_PUBLIC_ALLOWED_ORIGINS`.
 
-Keep working with fixtures if the live catalogue is not ready. Record requests in your frontend's `docs/api-requests.md`: use case, current documented limitation, requested response/behavior and acceptance example. Send that request to the backend/coordinating agent; no backend inspection is necessary. The existing API remains the source of truth until an updated contract is delivered.
+Keep working with fixtures if the live catalogue is not ready. Record requests in your frontend's `docs/api-requests.md`: use case, current documented limitation, requested response/behavior and acceptance example. Send that request to the backend/coordinating agent; no backend inspection is necessary. Enabling public v2 reads is independent from enabling research, spending, events, or schedules.
