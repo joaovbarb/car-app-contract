@@ -5,6 +5,7 @@ export const specDefinitions = [
   { key: "boot_l_max", label: "Maximum boot capacity", type: "number", unit: "l", description: "Rear seats folded." },
   { key: "power_kw", label: "Power", type: "number", unit: "kW", description: "Engine or motor power." },
   { key: "displacement_cc", label: "Engine displacement", type: "number", unit: "cm³", description: "Not applicable to BEVs." },
+  {"key": "battery_comparison_kwh", "label": "Battery capacity", "type": "number", "unit": "kWh", "description": "Reported capacity selected for comparison: prefer explicit gross/nominal when both nominal and usable are reported; otherwise use the sole supported reported value. Never convert or estimate nominal from usable, or usable from nominal. Source basis is supplied as batteryBasis."},
   { key: "battery_capacity_kwh", label: "Battery capacity (unspecified basis)", type: "number", unit: "kWh", description: "Source does not distinguish gross from usable capacity." },
   { key: "battery_gross_kwh", label: "Gross battery capacity", type: "number", unit: "kWh", description: "Explicit gross, total or nominal energy; distinct from usable." },
   { key: "battery_usable_kwh", label: "Usable battery capacity", type: "number", unit: "kWh", description: "Explicit net or usable energy." },

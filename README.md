@@ -6,6 +6,14 @@ Read [integration.md](integration.md) first for routes and rendering semantics, 
 
 Start with [synthetic fixtures](fixtures/synthetic-v1.json). The wrapper contains `synthetic: true`, successful `scenarios` and `errors`. Each entry's `response` is an HTTP body; names and error `httpStatus` are mock metadata. Successful bodies use status 200. Fixture IDs are synthetic, not production IDs. Example image/source URLs are placeholders, not usable assets; show image fallbacks. Examples cover all six routes, pagination, empty results, model-only coverage, all error codes and incomplete/disputed/stale data. No fixtures are production seed data.
 
+## 2026-09-18 contract revision: pending backend rollout
+
+The canonical gallery is now `data.photos` on `/models/{modelId}`. Cards retain `model.photo` as a hero; `version.photos` is deprecated compatibility data. New frontend code should fetch the model detail using a version's `modelId`, not treat version pictures as a trim gallery.
+
+This package updates the contract, documentation and synthetic fixtures only; it does not deploy backend behaviour. `data.photos` is temporarily optional so existing live responses still parse. An absent property means this deployment has not supplied the model gallery; `[]` explicitly means no published model photos. Do not default absence to an empty gallery or present legacy version photos as a canonical model gallery.
+
+Use `battery_comparison_kwh` for the main battery comparison and preference filter when the backend supplies it. It selects a reported value without conversion and includes `batteryBasis` when resolved. Existing nominal/usable/unspecified keys keep their original meanings. See the integration guide for the selection policy and rollout behaviour.
+
 ## Independent frontend installation
 
 Runtime dependency: **Zod 4.6.1** (Zod 4 API). TypeScript **5.9.3** was used for independent verification. Neither module needs a server, environment variables or backend imports. Install dependencies in your frontend, not in this read-only directory. Importing these files directly from outside the frontend can make module resolution look for root dependencies; use a generated local copy instead.

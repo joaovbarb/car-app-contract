@@ -184,6 +184,12 @@
                   "status": "unknown",
                   "value": null,
                   "unit": "s"
+                },
+                "battery_comparison_kwh": {
+                  "status": "resolved",
+                  "value": 60,
+                  "unit": "kWh",
+                  "batteryBasis": "usable"
                 }
               },
               "features": [
@@ -265,19 +271,7 @@
                   "checkedAt": "2026-09-17T08:00:00.000Z"
                 }
               },
-              "photos": [
-                {
-                  "url": "https://example.com/photos/example-one.jpg",
-                  "width": 1600,
-                  "height": 900,
-                  "order": 0,
-                  "label": "Example One representative exterior",
-                  "attribution": "Synthetic example image",
-                  "representative": true,
-                  "scope": "model_wide",
-                  "equipmentDisclaimer": "Pictured equipment may differ from this version."
-                }
-              ],
+              "photos": [],
               "facts": [
                 {
                   "text": "Synthetic fact: rear seat backs fold independently.",
@@ -358,6 +352,12 @@
                   "status": "unknown",
                   "value": null,
                   "unit": "s"
+                },
+                "battery_comparison_kwh": {
+                  "status": "resolved",
+                  "value": 80,
+                  "unit": "kWh",
+                  "batteryBasis": "usable"
                 }
               },
               "features": [
@@ -439,19 +439,7 @@
                   "checkedAt": "2026-08-01T08:00:00.000Z"
                 }
               },
-              "photos": [
-                {
-                  "url": "https://example.com/photos/example-one.jpg",
-                  "width": 1600,
-                  "height": 900,
-                  "order": 0,
-                  "label": "Example One representative exterior",
-                  "attribution": "Synthetic example image",
-                  "representative": true,
-                  "scope": "model_wide",
-                  "equipmentDisclaimer": "Pictured equipment may differ from this version."
-                }
-              ],
+              "photos": [],
               "facts": [
                 {
                   "text": "Synthetic fact: rear seat backs fold independently.",
@@ -532,23 +520,16 @@
                   "status": "unknown",
                   "value": null,
                   "unit": "s"
+                },
+                "battery_comparison_kwh": {
+                  "status": "unknown",
+                  "value": null,
+                  "unit": "kWh"
                 }
               },
               "features": [],
               "price": null,
-              "photos": [
-                {
-                  "url": "https://example.com/photos/example-one.jpg",
-                  "width": 1600,
-                  "height": 900,
-                  "order": 0,
-                  "label": "Example One representative exterior",
-                  "attribution": "Synthetic example image",
-                  "representative": true,
-                  "scope": "model_wide",
-                  "equipmentDisclaimer": "Pictured equipment may differ from this version."
-                }
-              ],
+              "photos": [],
               "facts": []
             },
             {
@@ -619,6 +600,12 @@
                   "status": "unknown",
                   "value": null,
                   "unit": "s"
+                },
+                "battery_comparison_kwh": {
+                  "status": "resolved",
+                  "value": 60,
+                  "unit": "kWh",
+                  "batteryBasis": "usable"
                 }
               },
               "features": [
@@ -684,19 +671,7 @@
                 }
               ],
               "price": null,
-              "photos": [
-                {
-                  "url": "https://example.com/photos/example-one.jpg",
-                  "width": 1600,
-                  "height": 900,
-                  "order": 0,
-                  "label": "Example One representative exterior",
-                  "attribution": "Synthetic example image",
-                  "representative": true,
-                  "scope": "model_wide",
-                  "equipmentDisclaimer": "Pictured equipment may differ from this version."
-                }
-              ],
+              "photos": [],
               "facts": [
                 {
                   "text": "Synthetic fact: rear seat backs fold independently.",
@@ -710,7 +685,20 @@
               ]
             }
           ],
-          "nextOffset": null
+          "nextOffset": null,
+          "photos": [
+            {
+              "url": "https://example.com/photos/example-one.jpg",
+              "width": 1600,
+              "height": 900,
+              "order": 0,
+              "label": "Example One representative exterior",
+              "attribution": "Synthetic example image",
+              "representative": true,
+              "scope": "model_wide",
+              "equipmentDisclaimer": "Pictured equipment may differ from this version."
+            }
+          ]
         }
       }
     },
@@ -792,6 +780,12 @@
                   "status": "unknown",
                   "value": null,
                   "unit": "s"
+                },
+                "battery_comparison_kwh": {
+                  "status": "resolved",
+                  "value": 60,
+                  "unit": "kWh",
+                  "batteryBasis": "usable"
                 }
               },
               "features": [
@@ -873,19 +867,7 @@
                   "checkedAt": "2026-09-17T08:00:00.000Z"
                 }
               },
-              "photos": [
-                {
-                  "url": "https://example.com/photos/example-one.jpg",
-                  "width": 1600,
-                  "height": 900,
-                  "order": 0,
-                  "label": "Example One representative exterior",
-                  "attribution": "Synthetic example image",
-                  "representative": true,
-                  "scope": "model_wide",
-                  "equipmentDisclaimer": "Pictured equipment may differ from this version."
-                }
-              ],
+              "photos": [],
               "facts": [
                 {
                   "text": "Synthetic fact: rear seat backs fold independently.",
@@ -966,6 +948,12 @@
                   "status": "unknown",
                   "value": null,
                   "unit": "s"
+                },
+                "battery_comparison_kwh": {
+                  "status": "resolved",
+                  "value": 80,
+                  "unit": "kWh",
+                  "batteryBasis": "usable"
                 }
               },
               "features": [
@@ -1047,19 +1035,7 @@
                   "checkedAt": "2026-08-01T08:00:00.000Z"
                 }
               },
-              "photos": [
-                {
-                  "url": "https://example.com/photos/example-one.jpg",
-                  "width": 1600,
-                  "height": 900,
-                  "order": 0,
-                  "label": "Example One representative exterior",
-                  "attribution": "Synthetic example image",
-                  "representative": true,
-                  "scope": "model_wide",
-                  "equipmentDisclaimer": "Pictured equipment may differ from this version."
-                }
-              ],
+              "photos": [],
               "facts": [
                 {
                   "text": "Synthetic fact: rear seat backs fold independently.",
@@ -1140,23 +1116,16 @@
                   "status": "unknown",
                   "value": null,
                   "unit": "s"
+                },
+                "battery_comparison_kwh": {
+                  "status": "unknown",
+                  "value": null,
+                  "unit": "kWh"
                 }
               },
               "features": [],
               "price": null,
-              "photos": [
-                {
-                  "url": "https://example.com/photos/example-one.jpg",
-                  "width": 1600,
-                  "height": 900,
-                  "order": 0,
-                  "label": "Example One representative exterior",
-                  "attribution": "Synthetic example image",
-                  "representative": true,
-                  "scope": "model_wide",
-                  "equipmentDisclaimer": "Pictured equipment may differ from this version."
-                }
-              ],
+              "photos": [],
               "facts": []
             },
             {
@@ -1227,6 +1196,12 @@
                   "status": "unknown",
                   "value": null,
                   "unit": "s"
+                },
+                "battery_comparison_kwh": {
+                  "status": "resolved",
+                  "value": 60,
+                  "unit": "kWh",
+                  "batteryBasis": "usable"
                 }
               },
               "features": [
@@ -1292,19 +1267,7 @@
                 }
               ],
               "price": null,
-              "photos": [
-                {
-                  "url": "https://example.com/photos/example-one.jpg",
-                  "width": 1600,
-                  "height": 900,
-                  "order": 0,
-                  "label": "Example One representative exterior",
-                  "attribution": "Synthetic example image",
-                  "representative": true,
-                  "scope": "model_wide",
-                  "equipmentDisclaimer": "Pictured equipment may differ from this version."
-                }
-              ],
+              "photos": [],
               "facts": [
                 {
                   "text": "Synthetic fact: rear seat backs fold independently.",
@@ -1566,6 +1529,34 @@
                   "status": "unknown",
                   "value": null,
                   "unit": "s"
+                }
+              ]
+            },
+            {
+              "key": "battery_comparison_kwh",
+              "cells": [
+                {
+                  "status": "resolved",
+                  "value": 60,
+                  "unit": "kWh",
+                  "batteryBasis": "usable"
+                },
+                {
+                  "status": "resolved",
+                  "value": 80,
+                  "unit": "kWh",
+                  "batteryBasis": "usable"
+                },
+                {
+                  "status": "unknown",
+                  "value": null,
+                  "unit": "kWh"
+                },
+                {
+                  "status": "resolved",
+                  "value": 60,
+                  "unit": "kWh",
+                  "batteryBasis": "usable"
                 }
               ]
             }
@@ -1950,23 +1941,16 @@
                 "status": "unknown",
                 "value": null,
                 "unit": "s"
+              },
+              "battery_comparison_kwh": {
+                "status": "unknown",
+                "value": null,
+                "unit": "kWh"
               }
             },
             "features": [],
             "price": null,
-            "photos": [
-              {
-                "url": "https://example.com/photos/example-one.jpg",
-                "width": 1600,
-                "height": 900,
-                "order": 0,
-                "label": "Example One representative exterior",
-                "attribution": "Synthetic example image",
-                "representative": true,
-                "scope": "model_wide",
-                "equipmentDisclaimer": "Pictured equipment may differ from this version."
-              }
-            ],
+            "photos": [],
             "facts": []
           },
           "preferenceMatch": {
@@ -2055,6 +2039,12 @@
                 "status": "unknown",
                 "value": null,
                 "unit": "s"
+              },
+              "battery_comparison_kwh": {
+                "status": "resolved",
+                "value": 60,
+                "unit": "kWh",
+                "batteryBasis": "usable"
               }
             },
             "features": [
@@ -2120,19 +2110,7 @@
               }
             ],
             "price": null,
-            "photos": [
-              {
-                "url": "https://example.com/photos/example-one.jpg",
-                "width": 1600,
-                "height": 900,
-                "order": 0,
-                "label": "Example One representative exterior",
-                "attribution": "Synthetic example image",
-                "representative": true,
-                "scope": "model_wide",
-                "equipmentDisclaimer": "Pictured equipment may differ from this version."
-              }
-            ],
+            "photos": [],
             "facts": [
               {
                 "text": "Synthetic fact: rear seat backs fold independently.",
@@ -2250,6 +2228,13 @@
               "description": "Acceleration time from rest to 100 km/h.",
               "type": "number",
               "unit": "s"
+            },
+            {
+              "key": "battery_comparison_kwh",
+              "label": "Battery capacity",
+              "type": "number",
+              "unit": "kWh",
+              "description": "Reported capacity selected for comparison: prefer explicit gross/nominal when both nominal and usable are reported; otherwise use the sole supported reported value. Never convert or estimate nominal from usable, or usable from nominal. Source basis is supplied as batteryBasis."
             }
           ],
           "features": [
@@ -2385,6 +2370,13 @@
               "description": "Acceleration time from rest to 100 km/h.",
               "type": "number",
               "unit": "s"
+            },
+            {
+              "key": "battery_comparison_kwh",
+              "label": "Battery capacity",
+              "type": "number",
+              "unit": "kWh",
+              "description": "Reported capacity selected for comparison: prefer explicit gross/nominal when both nominal and usable are reported; otherwise use the sole supported reported value. Never convert or estimate nominal from usable, or usable from nominal. Source basis is supplied as batteryBasis."
             }
           ],
           "features": []
@@ -2414,7 +2406,8 @@
             "priceSummary": null
           },
           "versions": [],
-          "nextOffset": null
+          "nextOffset": null,
+          "photos": []
         }
       }
     },
@@ -2541,6 +2534,12 @@
                   "status": "unknown",
                   "value": null,
                   "unit": "s"
+                },
+                "battery_comparison_kwh": {
+                  "status": "resolved",
+                  "value": 60,
+                  "unit": "kWh",
+                  "batteryBasis": "usable"
                 }
               },
               "features": [
@@ -2622,19 +2621,7 @@
                   "checkedAt": "2026-09-17T08:00:00.000Z"
                 }
               },
-              "photos": [
-                {
-                  "url": "https://example.com/photos/example-one.jpg",
-                  "width": 1600,
-                  "height": 900,
-                  "order": 0,
-                  "label": "Example One representative exterior",
-                  "attribution": "Synthetic example image",
-                  "representative": true,
-                  "scope": "model_wide",
-                  "equipmentDisclaimer": "Pictured equipment may differ from this version."
-                }
-              ],
+              "photos": [],
               "facts": [
                 {
                   "text": "Synthetic fact: rear seat backs fold independently.",
@@ -2648,7 +2635,20 @@
               ]
             }
           ],
-          "nextOffset": 1
+          "nextOffset": 1,
+          "photos": [
+            {
+              "url": "https://example.com/photos/example-one.jpg",
+              "width": 1600,
+              "height": 900,
+              "order": 0,
+              "label": "Example One representative exterior",
+              "attribution": "Synthetic example image",
+              "representative": true,
+              "scope": "model_wide",
+              "equipmentDisclaimer": "Pictured equipment may differ from this version."
+            }
+          ]
         }
       }
     },
@@ -2729,6 +2729,12 @@
                 "status": "unknown",
                 "value": null,
                 "unit": "s"
+              },
+              "battery_comparison_kwh": {
+                "status": "resolved",
+                "value": 60,
+                "unit": "kWh",
+                "batteryBasis": "usable"
               }
             },
             "features": [
@@ -2810,19 +2816,7 @@
                 "checkedAt": "2026-09-17T08:00:00.000Z"
               }
             },
-            "photos": [
-              {
-                "url": "https://example.com/photos/example-one.jpg",
-                "width": 1600,
-                "height": 900,
-                "order": 0,
-                "label": "Example One representative exterior",
-                "attribution": "Synthetic example image",
-                "representative": true,
-                "scope": "model_wide",
-                "equipmentDisclaimer": "Pictured equipment may differ from this version."
-              }
-            ],
+            "photos": [],
             "facts": [
               {
                 "text": "Synthetic fact: rear seat backs fold independently.",
@@ -2921,6 +2915,12 @@
                 "status": "unknown",
                 "value": null,
                 "unit": "s"
+              },
+              "battery_comparison_kwh": {
+                "status": "resolved",
+                "value": 60,
+                "unit": "kWh",
+                "batteryBasis": "usable"
               }
             },
             "features": [
@@ -3015,6 +3015,353 @@
             "result": "unknown",
             "reasons": [
               "No fresh eligible comparison price."
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "Model gallery exists independently of zero published versions",
+      "response": {
+        "apiVersion": "1",
+        "asOf": "2026-09-17T12:00:00.000Z",
+        "market": "PT",
+        "powertrain": "bev",
+        "data": {
+          "kind": "model",
+          "model": {
+            "id": "00000000-0000-4000-8000-000000000101",
+            "makeId": "00000000-0000-4000-8000-000000000200",
+            "make": "Example Motors",
+            "name": "Example Two",
+            "aliases": [],
+            "market": "PT",
+            "availability": "unknown",
+            "publication": "model_only",
+            "publishedVersionCount": 0,
+            "photo": {
+              "url": "https://example.com/photos/model-only-exterior.jpg",
+              "width": 1600,
+              "height": 900,
+              "order": 0,
+              "label": "Synthetic model-only exterior",
+              "attribution": "Synthetic example image",
+              "representative": true,
+              "scope": "model_wide",
+              "equipmentDisclaimer": "Pictured equipment may differ from this version."
+            },
+            "priceSummary": null
+          },
+          "versions": [],
+          "nextOffset": null,
+          "photos": [
+            {
+              "url": "https://example.com/photos/model-only-exterior.jpg",
+              "width": 1600,
+              "height": 900,
+              "order": 0,
+              "label": "Synthetic model-only exterior",
+              "attribution": "Synthetic example image",
+              "representative": true,
+              "scope": "model_wide",
+              "equipmentDisclaimer": "Pictured equipment may differ from this version."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Battery: sole unspecified reported value is used",
+      "response": {
+        "apiVersion": "1",
+        "asOf": "2026-09-17T12:00:00.000Z",
+        "market": "PT",
+        "powertrain": "bev",
+        "data": {
+          "kind": "version",
+          "version": {
+            "id": "00000000-0000-4000-8000-000000000003",
+            "modelId": "00000000-0000-4000-8000-000000000100",
+            "market": "PT",
+            "name": "Essential 50",
+            "make": "Example Motors",
+            "model": "Example One",
+            "generation": "G1",
+            "modelYear": 2026,
+            "equipmentGrade": "Essential",
+            "technicalConfiguration": {
+              "batteryLabel": "50 kWh",
+              "motorLabel": null,
+              "drivetrain": null
+            },
+            "publication": "published",
+            "powertrain": "bev",
+            "availability": "confirmed_current",
+            "specs": {
+              "fuel_type": {
+                "status": "resolved",
+                "value": "electric",
+                "unit": null
+              },
+              "boot_l": {
+                "status": "unknown",
+                "value": null,
+                "unit": "l"
+              },
+              "boot_l_max": {
+                "status": "unknown",
+                "value": null,
+                "unit": "l"
+              },
+              "power_kw": {
+                "status": "unknown",
+                "value": null,
+                "unit": "kW"
+              },
+              "displacement_cc": {
+                "status": "unknown",
+                "value": null,
+                "unit": "cm³"
+              },
+              "battery_capacity_kwh": {
+                "status": "resolved",
+                "value": 60,
+                "unit": "kWh"
+              },
+              "battery_gross_kwh": {
+                "status": "unknown",
+                "value": null,
+                "unit": "kWh"
+              },
+              "battery_usable_kwh": {
+                "status": "unknown",
+                "value": null,
+                "unit": "kWh"
+              },
+              "drivetrain": {
+                "status": "unknown",
+                "value": null,
+                "unit": null
+              },
+              "zero_to_100_s": {
+                "status": "unknown",
+                "value": null,
+                "unit": "s"
+              },
+              "battery_comparison_kwh": {
+                "status": "resolved",
+                "value": 60,
+                "unit": "kWh",
+                "batteryBasis": "unspecified"
+              }
+            },
+            "features": [],
+            "price": null,
+            "photos": [],
+            "facts": []
+          },
+          "preferenceMatch": {
+            "result": "unknown",
+            "reasons": [
+              "Synthetic battery-selection example; no preferences evaluated."
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "Battery: nominal 60 and usable 57.5 are separately reported; select nominal 60",
+      "response": {
+        "apiVersion": "1",
+        "asOf": "2026-09-17T12:00:00.000Z",
+        "market": "PT",
+        "powertrain": "bev",
+        "data": {
+          "kind": "version",
+          "version": {
+            "id": "00000000-0000-4000-8000-000000000003",
+            "modelId": "00000000-0000-4000-8000-000000000100",
+            "market": "PT",
+            "name": "Essential 50",
+            "make": "Example Motors",
+            "model": "Example One",
+            "generation": "G1",
+            "modelYear": 2026,
+            "equipmentGrade": "Essential",
+            "technicalConfiguration": {
+              "batteryLabel": "50 kWh",
+              "motorLabel": null,
+              "drivetrain": null
+            },
+            "publication": "published",
+            "powertrain": "bev",
+            "availability": "confirmed_current",
+            "specs": {
+              "fuel_type": {
+                "status": "resolved",
+                "value": "electric",
+                "unit": null
+              },
+              "boot_l": {
+                "status": "unknown",
+                "value": null,
+                "unit": "l"
+              },
+              "boot_l_max": {
+                "status": "unknown",
+                "value": null,
+                "unit": "l"
+              },
+              "power_kw": {
+                "status": "unknown",
+                "value": null,
+                "unit": "kW"
+              },
+              "displacement_cc": {
+                "status": "unknown",
+                "value": null,
+                "unit": "cm³"
+              },
+              "battery_capacity_kwh": {
+                "status": "unknown",
+                "value": null,
+                "unit": "kWh"
+              },
+              "battery_gross_kwh": {
+                "status": "resolved",
+                "value": 60,
+                "unit": "kWh"
+              },
+              "battery_usable_kwh": {
+                "status": "resolved",
+                "value": 57.5,
+                "unit": "kWh"
+              },
+              "drivetrain": {
+                "status": "unknown",
+                "value": null,
+                "unit": null
+              },
+              "zero_to_100_s": {
+                "status": "unknown",
+                "value": null,
+                "unit": "s"
+              },
+              "battery_comparison_kwh": {
+                "status": "resolved",
+                "value": 60,
+                "unit": "kWh",
+                "batteryBasis": "nominal"
+              }
+            },
+            "features": [],
+            "price": null,
+            "photos": [],
+            "facts": []
+          },
+          "preferenceMatch": {
+            "result": "unknown",
+            "reasons": [
+              "Synthetic battery-selection example; no preferences evaluated."
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "Battery: sole usable 57.5 is used without conversion",
+      "response": {
+        "apiVersion": "1",
+        "asOf": "2026-09-17T12:00:00.000Z",
+        "market": "PT",
+        "powertrain": "bev",
+        "data": {
+          "kind": "version",
+          "version": {
+            "id": "00000000-0000-4000-8000-000000000003",
+            "modelId": "00000000-0000-4000-8000-000000000100",
+            "market": "PT",
+            "name": "Essential 50",
+            "make": "Example Motors",
+            "model": "Example One",
+            "generation": "G1",
+            "modelYear": 2026,
+            "equipmentGrade": "Essential",
+            "technicalConfiguration": {
+              "batteryLabel": "50 kWh",
+              "motorLabel": null,
+              "drivetrain": null
+            },
+            "publication": "published",
+            "powertrain": "bev",
+            "availability": "confirmed_current",
+            "specs": {
+              "fuel_type": {
+                "status": "resolved",
+                "value": "electric",
+                "unit": null
+              },
+              "boot_l": {
+                "status": "unknown",
+                "value": null,
+                "unit": "l"
+              },
+              "boot_l_max": {
+                "status": "unknown",
+                "value": null,
+                "unit": "l"
+              },
+              "power_kw": {
+                "status": "unknown",
+                "value": null,
+                "unit": "kW"
+              },
+              "displacement_cc": {
+                "status": "unknown",
+                "value": null,
+                "unit": "cm³"
+              },
+              "battery_capacity_kwh": {
+                "status": "unknown",
+                "value": null,
+                "unit": "kWh"
+              },
+              "battery_gross_kwh": {
+                "status": "unknown",
+                "value": null,
+                "unit": "kWh"
+              },
+              "battery_usable_kwh": {
+                "status": "resolved",
+                "value": 57.5,
+                "unit": "kWh"
+              },
+              "drivetrain": {
+                "status": "unknown",
+                "value": null,
+                "unit": null
+              },
+              "zero_to_100_s": {
+                "status": "unknown",
+                "value": null,
+                "unit": "s"
+              },
+              "battery_comparison_kwh": {
+                "status": "resolved",
+                "value": 57.5,
+                "unit": "kWh",
+                "batteryBasis": "usable"
+              }
+            },
+            "features": [],
+            "price": null,
+            "photos": [],
+            "facts": []
+          },
+          "preferenceMatch": {
+            "result": "unknown",
+            "reasons": [
+              "Synthetic battery-selection example; no preferences evaluated."
             ]
           }
         }

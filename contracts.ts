@@ -5,7 +5,10 @@ export const evidenceSchema = z.enum(["resolved", "unknown", "disputed", "not_ap
 export const fitmentSchema = z.enum(["standard", "optional", "pack_only", "unavailable", "unknown"]);
 export const powertrainSchema = z.enum(["bev", "phev", "hybrid", "mhev", "hydrogen", "petrol", "diesel", "all"]);
 const scalar = z.union([z.string(), z.number().finite(), z.boolean()]);
-export const valueSchema = z.object({ status: evidenceSchema, value: scalar.nullable(), unit: z.string().nullable() });
+export const batteryBasisSchema = z.enum(["nominal", "usable", "unspecified"]);
+export const valueSchema = z.object({ status: evidenceSchema, value: scalar.nullable(), unit: z.string().nullable(),
+  /** Source basis of battery_comparison_kwh; never an estimated conversion. */
+  batteryBasis: batteryBasisSchema.optional() });
 export const provenanceSchema = z.object({ title: z.string(), url: z.url(), checkedAt: z.iso.datetime().nullable() });
 export const photoSchema = z.object({ url: z.url(), width: z.number().int().positive().nullable(), height: z.number().int().positive().nullable(),
   order: z.number().int().nonnegative(), label: z.string(), attribution: z.string().nullable(), representative: z.boolean(),
@@ -22,7 +25,9 @@ export const versionSchema = z.object({ id: z.uuid(), modelId: z.uuid(), market:
   make: z.string(), model: z.string(), generation: z.string().nullable(), modelYear: z.number().int().nullable(),
   equipmentGrade: z.string(), technicalConfiguration: z.object({ batteryLabel: z.string().nullable(), motorLabel: z.string().nullable(), drivetrain: z.string().nullable() }),
   publication: z.literal("published"), powertrain: powertrainSchema.exclude(["all"]), availability: availabilitySchema,
-  specs: z.record(z.string(), valueSchema), features: z.array(featureSchema), price: priceSchema.nullable(), photos: z.array(photoSchema),
+  specs: z.record(z.string(), valueSchema), features: z.array(featureSchema), price: priceSchema.nullable(),
+  /** @deprecated Use data.photos from GET /models/{modelId}; retained for legacy clients only. */
+  photos: z.array(photoSchema),
   facts: z.array(z.object({ text: z.string(), scope: z.enum(["model", "generation", "trim"]), source: provenanceSchema })) });
 export const modelSchema = z.object({ id: z.uuid(), makeId: z.uuid(), make: z.string(), name: z.string(), aliases: z.array(z.string()),
   market: z.string(), availability: availabilitySchema, publication: z.enum(["model_only", "has_published_versions"]),
@@ -54,7 +59,10 @@ export const responseSchema = z.object({ apiVersion: z.literal("1"), asOf: z.iso
   data: z.discriminatedUnion("kind", [
     z.object({ kind: z.literal("makes"), items: z.array(z.object({ id: z.uuid(), name: z.string() })), nextOffset: z.number().int().nullable() }),
     z.object({ kind: z.literal("models"), items: z.array(modelSchema), nextOffset: z.number().int().nullable() }),
-    z.object({ kind: z.literal("model"), model: modelSchema, versions: z.array(versionSchema), nextOffset: z.number().int().nullable() }),
+    z.object({ kind: z.literal("model"), model: modelSchema,
+      /** Canonical model gallery. Optional only during rollout: absent is not an empty gallery. */
+      photos: z.array(photoSchema).optional(),
+      versions: z.array(versionSchema), nextOffset: z.number().int().nullable() }),
     z.object({ kind: z.literal("version"), version: versionSchema, preferenceMatch: matchSchema }),
     z.object({ kind: z.literal("comparison"), versions: z.array(versionSchema), specs: z.array(z.object({ key: z.string(), cells: z.array(valueSchema) })),
       features: z.array(z.object({ key: z.string(), cells: z.array(featureSchema) })), matches: z.array(z.object({ versionId: z.uuid(), match: matchSchema })) }),
@@ -67,3 +75,7 @@ export type Feature = z.infer<typeof featureSchema>;
 export type ModelCard = z.infer<typeof modelSchema>;
 export type Preference = z.infer<typeof preferenceSchema>;
 export type ResponseData = z.infer<typeof responseSchema>["data"];
+
+export type Photo = z.infer<typeof photoSchema>;
+export type BatteryBasis = z.infer<typeof batteryBasisSchema>;
+export type ModelDetail = Extract<ResponseData, { kind: "model" }>;
