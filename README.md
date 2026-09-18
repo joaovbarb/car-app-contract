@@ -38,6 +38,6 @@ In frontend code, import `responseSchema`, `errorSchema` and exported types from
 
 ## Connect to live data
 
-Configure a public `apiBase` in your frontend: empty string for same-origin, or the backend-provided public origin without a trailing slash. Request `${apiBase}/api/public/v2/models`. Parse successful JSON with `responseSchema` and unsuccessful JSON with `errorSchema`; network, CORS or deployment-access failures may not have JSON bodies. Do not embed admin, database or provider credentials or send cookies. For cross-origin use, give the backend operator your exact frontend origin for `V2_PUBLIC_ALLOWED_ORIGINS`.
+Configure a public `apiBase` in your frontend: empty string for same-origin, or the backend-provided public origin without a trailing slash. Request `${apiBase}/api/public/v2/models`. Parse successful JSON with `responseSchema` and unsuccessful JSON with `errorSchema`; network, CORS or deployment-access failures may not have JSON bodies. Do not embed admin, database or provider credentials or send cookies. For cross-origin use, give the backend operator your exact frontend origin to include in the backend’s central public API configuration.
 
 Keep working with fixtures if the live catalogue is not ready. Record requests in your frontend's `docs/api-requests.md`: use case, current documented limitation, requested response/behavior and acceptance example. Send that request to the backend/coordinating agent; no backend inspection is necessary. Enabling public v2 reads is independent from enabling research, spending, events, or schedules.

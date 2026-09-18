@@ -126,7 +126,7 @@ Publication, prices and galleries share a consistent snapshot within each respon
 
 Success responses permit 30 seconds of browser caching and 60 seconds of shared caching. The first implementation bounds a read to 1000 matching models, 4000 trims and 10000 related records per query; excessive scope returns 503 rather than a silently incomplete minimum or comparison. Narrow `q`/`makeId` or use detail routes if this deployment outgrows the initial bound.
 
-Same-origin frontend calls use an empty API base URL. For another deployment, configure the frontend with the public origin supplied by the backend operator (for example `https://catalogue.example.com`), without `/api/public/v2` or a trailing slash. The backend operator must add your exact frontend origin to `V2_PUBLIC_ALLOWED_ORIGINS`. No admin credentials, cookies or credentials mode are required. Deployment protection can prevent access: ask the operator for a publicly accessible endpoint; never embed bypass secrets.
+Same-origin frontend calls use an empty API base URL. For another deployment, configure the frontend with the public origin supplied by the backend operator (for example `https://catalogue.example.com`), without `/api/public/v2` or a trailing slash. The backend operator must add your exact frontend origin to the backend’s central public API configuration. No admin credentials, cookies or credentials mode are required. Deployment protection can prevent access: ask the operator for a publicly accessible endpoint; never embed bypass secrets.
 
 `V2_PUBLIC_API_ENABLED=true` enables read-only consumer access. It does not authorize or enable research: `V2_LIVE_ENABLED`, budgets, events, and `V2_SCHEDULES_ENABLED` remain separate controls.
 
