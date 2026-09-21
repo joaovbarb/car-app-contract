@@ -1,5 +1,19 @@
 # Contract changelog
 
+## 2026-09-21 — powertrain is binary
+
+- Replaced the seven engine-type values with two: `bev` (battery-electric only) and `not_bev`
+  (plug-in hybrid, hybrid, mild hybrid, hydrogen fuel-cell, petrol, diesel). A model is sold as
+  several engine types at once, so a single engine type was never a property of a model; an
+  electric car is always its own model here, so the binary value is permanently correct.
+- The `powertrain` query parameter now accepts `bev` (default) and `all` only. `phev`, `hybrid`,
+  `mhev`, `hydrogen`, `petrol` and `diesel` are rejected as `INVALID_REQUEST`; `not_bev` is a
+  classification, not a filter, and is rejected too.
+- `version.powertrain` is now `bev` or `not_bev`. No served version carried any of the removed
+  values, and the deployed frontend requests `bev` only, so no current response or request changes
+  shape. Regenerate `frontend/src/generated/contract/` before relying on the narrowed types.
+- `apiVersion` remains `"1"`: this narrows an enum whose other members were never emitted.
+
 ## 2026-09-18 — v2 endpoint cutover; payload schema unchanged
 
 - Made `/api/public/v2` the sole consumer URL and removed `/api/public/v1`.

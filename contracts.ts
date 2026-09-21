@@ -3,7 +3,14 @@ import { z } from "zod";
 
 export const evidenceSchema = z.enum(["resolved", "unknown", "disputed", "not_applicable"]);
 export const fitmentSchema = z.enum(["standard", "optional", "pack_only", "unavailable", "unknown"]);
-export const powertrainSchema = z.enum(["bev", "phev", "hybrid", "mhev", "hydrogen", "petrol", "diesel", "all"]);
+/**
+ * A powertrain is binary: `bev` is battery-electric only, `not_bev` is everything else (plug-in
+ * hybrid, hybrid, mild hybrid, hydrogen fuel-cell, petrol, diesel). `all` is the non-narrowing
+ * filter value and never appears as a published version's powertrain.
+ */
+export const powertrainSchema = z.enum(["bev", "not_bev", "all"]);
+/** The consumer's powertrain filter: narrow to battery-electric, or do not narrow. */
+export const powertrainFilterSchema = powertrainSchema.exclude(["not_bev"]);
 const scalar = z.union([z.string(), z.number().finite(), z.boolean()]);
 export const batteryBasisSchema = z.enum(["nominal", "usable", "unspecified"]);
 export const valueSchema = z.object({ status: evidenceSchema, value: scalar.nullable(), unit: z.string().nullable(),
@@ -39,7 +46,7 @@ export const preferenceSchema = z.discriminatedUnion("kind", [
   z.object({ kind: z.literal("price"), maxAmountMinor: z.number().int().positive().max(2_000_000_000) }).strict(),
 ]);
 export const matchSchema = z.object({ result: z.enum(["match", "mismatch", "unknown"]), reasons: z.array(z.string()) });
-export const querySchema = z.object({ market: z.string().regex(/^[A-Z]{2}$/).default("PT"), powertrain: powertrainSchema.default("bev"),
+export const querySchema = z.object({ market: z.string().regex(/^[A-Z]{2}$/).default("PT"), powertrain: powertrainFilterSchema.default("bev"),
   q: z.string().trim().max(100).default(""), makeId: z.uuid().optional(),
   limit: z.coerce.number().int().min(1).max(50).default(20), offset: z.coerce.number().int().min(0).max(10000).default(0),
   includeHistorical: z.enum(["true", "false"]).default("false").transform(v => v === "true"),
@@ -55,7 +62,7 @@ export const querySchema = z.object({ market: z.string().regex(/^[A-Z]{2}$/).def
     return result.data;
   }) }).strict();
 export const definitionSchema = z.object({ key: z.string(), label: z.string(), description: z.string(), type: z.enum(["number", "enum", "boolean", "string"]), unit: z.string().nullable() });
-export const responseSchema = z.object({ apiVersion: z.literal("1"), asOf: z.iso.datetime(), market: z.string(), powertrain: powertrainSchema,
+export const responseSchema = z.object({ apiVersion: z.literal("1"), asOf: z.iso.datetime(), market: z.string(), powertrain: powertrainFilterSchema,
   data: z.discriminatedUnion("kind", [
     z.object({ kind: z.literal("makes"), items: z.array(z.object({ id: z.uuid(), name: z.string() })), nextOffset: z.number().int().nullable() }),
     z.object({ kind: z.literal("models"), items: z.array(modelSchema), nextOffset: z.number().int().nullable() }),

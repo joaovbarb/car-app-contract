@@ -31,7 +31,7 @@ Every successful response has `apiVersion: "1"`, `asOf` (UTC ISO timestamp), `ma
 | Parameter | Meaning |
 | --- | --- |
 | `market` | Uppercase ISO country; default `PT`. Deployment allowlist defaults to PT; unavailable markets return 400 `MARKET_UNAVAILABLE` |
-| `powertrain` | `bev` (default), `phev`, `hybrid`, `mhev`, `hydrogen`, `petrol`, `diesel`, `all` |
+| `powertrain` | `bev` (default) or `all`. A powertrain is binary: `bev` is battery-electric only, and a published version's `powertrain` is `bev` or `not_bev` |
 | `q` | Literal case-insensitive substring, maximum 100 characters; `%` is not a wildcard |
 | `makeId` | Optional make UUID |
 | `limit`, `offset` | Default 20/0; limit 1–50, offset 0–10000; use returned `nextOffset`, null means end |
