@@ -62,6 +62,54 @@
       }
     },
     {
+      "name": "Browse: the lowest known price came from an unclassified source",
+      "response": {
+        "apiVersion": "1",
+        "asOf": "2026-09-17T12:00:00.000Z",
+        "market": "PT",
+        "powertrain": "bev",
+        "data": {
+          "kind": "models",
+          "items": [
+            {
+              "id": "00000000-0000-4000-8000-000000000102",
+              "makeId": "00000000-0000-4000-8000-000000000200",
+              "make": "Example Motors",
+              "name": "Example Three",
+              "aliases": [],
+              "market": "PT",
+              "availability": "confirmed_current",
+              "publication": "has_published_versions",
+              "publishedVersionCount": 1,
+              "photo": null,
+              "priceSummary": {
+                "label": "Lowest known trim price",
+                "coverage": "incomplete",
+                "price": {
+                  "versionId": "00000000-0000-4000-8000-000000000005",
+                  "amountMinor": 3190000,
+                  "currency": "EUR",
+                  "taxInclusive": true,
+                  "taxBasis": "explicit_included",
+                  "method": "unclassified",
+                  "lastSuccessfulCheck": "2026-09-17T08:00:00.000Z",
+                  "freshness": "fresh",
+                  "validUntil": null,
+                  "estimated": true,
+                  "source": {
+                    "title": "Synthetic unclassified price listing",
+                    "url": "https://example.com/listings/example-three",
+                    "checkedAt": "2026-09-17T08:00:00.000Z"
+                  }
+                }
+              }
+            }
+          ],
+          "nextOffset": null
+        }
+      }
+    },
+    {
       "name": "Model and its distinct versions",
       "response": {
         "apiVersion": "1",

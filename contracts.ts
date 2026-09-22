@@ -20,9 +20,15 @@ export const provenanceSchema = z.object({ title: z.string(), url: z.url(), chec
 export const photoSchema = z.object({ url: z.url(), width: z.number().int().positive().nullable(), height: z.number().int().positive().nullable(),
   order: z.number().int().nonnegative(), label: z.string(), attribution: z.string().nullable(), representative: z.boolean(),
   scope: z.enum(["model_wide", "generation_wide", "trim_specific"]), equipmentDisclaimer: z.string() });
+/**
+ * The kind of source a price came from. `official`: the manufacturer's own. `dealer_estimate`: a
+ * dealer's. `unclassified`: the source could not be classified as the manufacturer's own or a
+ * dealer's, so the price is reported without that claim.
+ */
+export const priceMethodSchema = z.enum(["official", "dealer_estimate", "unclassified"]);
 export const priceSchema = z.object({ versionId: z.uuid(), amountMinor: z.number().int().positive(), currency: z.string().length(3),
   taxInclusive: z.literal(true), taxBasis: z.enum(["explicit_included", "explicit_excluded_converted", "market_convention"]),
-  method: z.enum(["official", "dealer_estimate"]), lastSuccessfulCheck: z.iso.datetime().nullable(),
+  method: priceMethodSchema, lastSuccessfulCheck: z.iso.datetime().nullable(),
   freshness: z.enum(["fresh", "stale", "unverified"]), validUntil: z.iso.date().nullable(), estimated: z.literal(true),
   source: provenanceSchema.nullable() });
 export const featureSchema = z.object({ key: z.string(), featureKey: z.string(), label: z.string(), category: z.string().nullable(),
@@ -85,4 +91,5 @@ export type ResponseData = z.infer<typeof responseSchema>["data"];
 
 export type Photo = z.infer<typeof photoSchema>;
 export type BatteryBasis = z.infer<typeof batteryBasisSchema>;
+export type PriceMethod = z.infer<typeof priceMethodSchema>;
 export type ModelDetail = Extract<ResponseData, { kind: "model" }>;

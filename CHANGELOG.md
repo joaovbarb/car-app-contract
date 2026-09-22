@@ -1,5 +1,19 @@
 # Contract changelog
 
+## 2026-09-22 — a price's source may be unclassified
+
+- `price.method` (on `version.price` and on a model card's `priceSummary.price`) now admits a third
+  value, `unclassified`: the source could not be classified as the manufacturer's own or a
+  dealer's, so the price is reported without that claim. The schema is exported as
+  `priceMethodSchema`, with the type `PriceMethod`.
+- The catalogue has stored this value since prices began publishing, but the schema allowed only
+  `official` and `dealer_estimate`, so a model list whose page contained such a price failed
+  response validation and the route returned 503 instead of the list. Responses that never carried the value
+  are unchanged.
+- Added the fixture scenario "Browse: the lowest known price came from an unclassified source".
+- `apiVersion` remains `"1"`: this widens an enum to the value the server already emits.
+  Regenerate `frontend/src/generated/contract/` and handle all three values.
+
 ## 2026-09-21 — powertrain is binary
 
 - Replaced the seven engine-type values with two: `bev` (battery-electric only) and `not_bev`
