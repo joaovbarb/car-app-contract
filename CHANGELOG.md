@@ -1,5 +1,22 @@
 # Contract changelog
 
+## 2026-09-23 — definitions.ts mirrors the catalogues; nominal and usable battery capacity
+
+- `definitions.ts` now mirrors the architect's catalogues in `backend/interfaces/definitions.ts`
+  exactly: `specDefinitions` (`key`, `label`, `valueType`, `unit`, `values` for an enumerated
+  specification) and a new `featureDefinitions` (`key`, `label`, `type`, `levels` for a `level`
+  feature, `unit` for a numeric one). The old keys (`power_kw`, `boot_l`, `boot_l_max`,
+  `zero_to_100_s`, `fuel_type`, `displacement_cc`, `battery_comparison_kwh`,
+  `battery_capacity_kwh`, `battery_gross_kwh`, `battery_usable_kwh`) are gone, and entries no
+  longer carry `description`. A backend test fails whenever the two files differ.
+- A battery is two specifications: `battery_capacity_nominal` (gross) and `battery_capacity_usable`
+  (net), each when a source states it; a single unqualified figure is nominal. Where one figure is
+  needed, use the nominal capacity when known, otherwise the usable one. Never convert one into the
+  other.
+- The fixtures use the new specification keys. Feature fixtures are unchanged.
+- The response schemas in `contracts.ts` are unchanged; `apiVersion` remains `"1"`. Regenerate
+  `frontend/src/generated/contract/`.
+
 ## 2026-09-23 — fixed specification and feature definitions (additive)
 
 - Each feature in the `definitions` response may carry `type` (`boolean`, `level`, `number`,

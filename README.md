@@ -14,7 +14,7 @@ The canonical gallery is now `data.photos` on `/models/{modelId}`. Cards retain 
 
 `data.photos` remains optional for payload compatibility. An absent property means the response has not supplied the model gallery; `[]` explicitly means no published model photos. Do not default absence to an empty gallery or present version photos as a canonical model gallery.
 
-Use `battery_comparison_kwh` for the main battery comparison and preference filter when the backend supplies it. It selects a reported value without conversion and includes `batteryBasis` when resolved. Existing nominal/usable/unspecified keys keep their original meanings. See the integration guide for the selection policy and rollout behaviour.
+A battery is two specifications, `battery_capacity_nominal` and `battery_capacity_usable`. Where one figure is needed, show the nominal capacity when known, otherwise the usable one. See the integration guide for the battery policy.
 
 ## Independent frontend installation
 

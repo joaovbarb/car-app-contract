@@ -183,61 +183,40 @@
               "powertrain": "bev",
               "availability": "confirmed_current",
               "specs": {
-                "fuel_type": {
-                  "status": "resolved",
-                  "value": "electric",
-                  "unit": null
-                },
-                "boot_l": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "l"
-                },
-                "boot_l_max": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "l"
-                },
-                "power_kw": {
-                  "status": "resolved",
-                  "value": 150,
-                  "unit": "kW"
-                },
-                "displacement_cc": {
-                  "status": "not_applicable",
-                  "value": null,
-                  "unit": "cm³"
-                },
-                "battery_capacity_kwh": {
+                "battery_capacity_nominal": {
                   "status": "unknown",
                   "value": null,
                   "unit": "kWh"
                 },
-                "battery_gross_kwh": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "kWh"
-                },
-                "battery_usable_kwh": {
+                "battery_capacity_usable": {
                   "status": "resolved",
                   "value": 60,
                   "unit": "kWh"
+                },
+                "boot_volume": {
+                  "status": "unknown",
+                  "value": null,
+                  "unit": "l"
+                },
+                "boot_volume_max": {
+                  "status": "unknown",
+                  "value": null,
+                  "unit": "l"
+                },
+                "power": {
+                  "status": "resolved",
+                  "value": 150,
+                  "unit": "kW"
                 },
                 "drivetrain": {
                   "status": "unknown",
                   "value": null,
                   "unit": null
                 },
-                "zero_to_100_s": {
+                "acceleration_0_100": {
                   "status": "unknown",
                   "value": null,
                   "unit": "s"
-                },
-                "battery_comparison_kwh": {
-                  "status": "resolved",
-                  "value": 60,
-                  "unit": "kWh",
-                  "batteryBasis": "usable"
                 }
               },
               "features": [
@@ -351,61 +330,40 @@
               "powertrain": "bev",
               "availability": "confirmed_current",
               "specs": {
-                "fuel_type": {
-                  "status": "resolved",
-                  "value": "electric",
-                  "unit": null
+                "battery_capacity_nominal": {
+                  "status": "unknown",
+                  "value": null,
+                  "unit": "kWh"
                 },
-                "boot_l": {
+                "battery_capacity_usable": {
+                  "status": "resolved",
+                  "value": 80,
+                  "unit": "kWh"
+                },
+                "boot_volume": {
                   "status": "disputed",
                   "value": null,
                   "unit": "l"
                 },
-                "boot_l_max": {
+                "boot_volume_max": {
                   "status": "unknown",
                   "value": null,
                   "unit": "l"
                 },
-                "power_kw": {
+                "power": {
                   "status": "resolved",
                   "value": 150,
                   "unit": "kW"
-                },
-                "displacement_cc": {
-                  "status": "not_applicable",
-                  "value": null,
-                  "unit": "cm³"
-                },
-                "battery_capacity_kwh": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "kWh"
-                },
-                "battery_gross_kwh": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "kWh"
-                },
-                "battery_usable_kwh": {
-                  "status": "resolved",
-                  "value": 80,
-                  "unit": "kWh"
                 },
                 "drivetrain": {
                   "status": "unknown",
                   "value": null,
                   "unit": null
                 },
-                "zero_to_100_s": {
+                "acceleration_0_100": {
                   "status": "unknown",
                   "value": null,
                   "unit": "s"
-                },
-                "battery_comparison_kwh": {
-                  "status": "resolved",
-                  "value": 80,
-                  "unit": "kWh",
-                  "batteryBasis": "usable"
                 }
               },
               "features": [
@@ -519,60 +477,40 @@
               "powertrain": "bev",
               "availability": "confirmed_current",
               "specs": {
-                "fuel_type": {
-                  "status": "resolved",
-                  "value": "electric",
-                  "unit": null
+                "battery_capacity_nominal": {
+                  "status": "unknown",
+                  "value": null,
+                  "unit": "kWh"
                 },
-                "boot_l": {
+                "battery_capacity_usable": {
+                  "status": "unknown",
+                  "value": null,
+                  "unit": "kWh"
+                },
+                "boot_volume": {
                   "status": "unknown",
                   "value": null,
                   "unit": "l"
                 },
-                "boot_l_max": {
+                "boot_volume_max": {
                   "status": "unknown",
                   "value": null,
                   "unit": "l"
                 },
-                "power_kw": {
+                "power": {
                   "status": "unknown",
                   "value": null,
                   "unit": "kW"
-                },
-                "displacement_cc": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "cm³"
-                },
-                "battery_capacity_kwh": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "kWh"
-                },
-                "battery_gross_kwh": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "kWh"
-                },
-                "battery_usable_kwh": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "kWh"
                 },
                 "drivetrain": {
                   "status": "unknown",
                   "value": null,
                   "unit": null
                 },
-                "zero_to_100_s": {
+                "acceleration_0_100": {
                   "status": "unknown",
                   "value": null,
                   "unit": "s"
-                },
-                "battery_comparison_kwh": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "kWh"
                 }
               },
               "features": [],
@@ -599,61 +537,40 @@
               "powertrain": "bev",
               "availability": "confirmed_current",
               "specs": {
-                "fuel_type": {
-                  "status": "resolved",
-                  "value": "electric",
-                  "unit": null
-                },
-                "boot_l": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "l"
-                },
-                "boot_l_max": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "l"
-                },
-                "power_kw": {
-                  "status": "resolved",
-                  "value": 150,
-                  "unit": "kW"
-                },
-                "displacement_cc": {
-                  "status": "not_applicable",
-                  "value": null,
-                  "unit": "cm³"
-                },
-                "battery_capacity_kwh": {
+                "battery_capacity_nominal": {
                   "status": "unknown",
                   "value": null,
                   "unit": "kWh"
                 },
-                "battery_gross_kwh": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "kWh"
-                },
-                "battery_usable_kwh": {
+                "battery_capacity_usable": {
                   "status": "resolved",
                   "value": 60,
                   "unit": "kWh"
+                },
+                "boot_volume": {
+                  "status": "unknown",
+                  "value": null,
+                  "unit": "l"
+                },
+                "boot_volume_max": {
+                  "status": "unknown",
+                  "value": null,
+                  "unit": "l"
+                },
+                "power": {
+                  "status": "resolved",
+                  "value": 150,
+                  "unit": "kW"
                 },
                 "drivetrain": {
                   "status": "unknown",
                   "value": null,
                   "unit": null
                 },
-                "zero_to_100_s": {
+                "acceleration_0_100": {
                   "status": "unknown",
                   "value": null,
                   "unit": "s"
-                },
-                "battery_comparison_kwh": {
-                  "status": "resolved",
-                  "value": 60,
-                  "unit": "kWh",
-                  "batteryBasis": "usable"
                 }
               },
               "features": [
@@ -779,61 +696,40 @@
               "powertrain": "bev",
               "availability": "confirmed_current",
               "specs": {
-                "fuel_type": {
-                  "status": "resolved",
-                  "value": "electric",
-                  "unit": null
-                },
-                "boot_l": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "l"
-                },
-                "boot_l_max": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "l"
-                },
-                "power_kw": {
-                  "status": "resolved",
-                  "value": 150,
-                  "unit": "kW"
-                },
-                "displacement_cc": {
-                  "status": "not_applicable",
-                  "value": null,
-                  "unit": "cm³"
-                },
-                "battery_capacity_kwh": {
+                "battery_capacity_nominal": {
                   "status": "unknown",
                   "value": null,
                   "unit": "kWh"
                 },
-                "battery_gross_kwh": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "kWh"
-                },
-                "battery_usable_kwh": {
+                "battery_capacity_usable": {
                   "status": "resolved",
                   "value": 60,
                   "unit": "kWh"
+                },
+                "boot_volume": {
+                  "status": "unknown",
+                  "value": null,
+                  "unit": "l"
+                },
+                "boot_volume_max": {
+                  "status": "unknown",
+                  "value": null,
+                  "unit": "l"
+                },
+                "power": {
+                  "status": "resolved",
+                  "value": 150,
+                  "unit": "kW"
                 },
                 "drivetrain": {
                   "status": "unknown",
                   "value": null,
                   "unit": null
                 },
-                "zero_to_100_s": {
+                "acceleration_0_100": {
                   "status": "unknown",
                   "value": null,
                   "unit": "s"
-                },
-                "battery_comparison_kwh": {
-                  "status": "resolved",
-                  "value": 60,
-                  "unit": "kWh",
-                  "batteryBasis": "usable"
                 }
               },
               "features": [
@@ -947,61 +843,40 @@
               "powertrain": "bev",
               "availability": "confirmed_current",
               "specs": {
-                "fuel_type": {
-                  "status": "resolved",
-                  "value": "electric",
-                  "unit": null
+                "battery_capacity_nominal": {
+                  "status": "unknown",
+                  "value": null,
+                  "unit": "kWh"
                 },
-                "boot_l": {
+                "battery_capacity_usable": {
+                  "status": "resolved",
+                  "value": 80,
+                  "unit": "kWh"
+                },
+                "boot_volume": {
                   "status": "disputed",
                   "value": null,
                   "unit": "l"
                 },
-                "boot_l_max": {
+                "boot_volume_max": {
                   "status": "unknown",
                   "value": null,
                   "unit": "l"
                 },
-                "power_kw": {
+                "power": {
                   "status": "resolved",
                   "value": 150,
                   "unit": "kW"
-                },
-                "displacement_cc": {
-                  "status": "not_applicable",
-                  "value": null,
-                  "unit": "cm³"
-                },
-                "battery_capacity_kwh": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "kWh"
-                },
-                "battery_gross_kwh": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "kWh"
-                },
-                "battery_usable_kwh": {
-                  "status": "resolved",
-                  "value": 80,
-                  "unit": "kWh"
                 },
                 "drivetrain": {
                   "status": "unknown",
                   "value": null,
                   "unit": null
                 },
-                "zero_to_100_s": {
+                "acceleration_0_100": {
                   "status": "unknown",
                   "value": null,
                   "unit": "s"
-                },
-                "battery_comparison_kwh": {
-                  "status": "resolved",
-                  "value": 80,
-                  "unit": "kWh",
-                  "batteryBasis": "usable"
                 }
               },
               "features": [
@@ -1115,60 +990,40 @@
               "powertrain": "bev",
               "availability": "confirmed_current",
               "specs": {
-                "fuel_type": {
-                  "status": "resolved",
-                  "value": "electric",
-                  "unit": null
+                "battery_capacity_nominal": {
+                  "status": "unknown",
+                  "value": null,
+                  "unit": "kWh"
                 },
-                "boot_l": {
+                "battery_capacity_usable": {
+                  "status": "unknown",
+                  "value": null,
+                  "unit": "kWh"
+                },
+                "boot_volume": {
                   "status": "unknown",
                   "value": null,
                   "unit": "l"
                 },
-                "boot_l_max": {
+                "boot_volume_max": {
                   "status": "unknown",
                   "value": null,
                   "unit": "l"
                 },
-                "power_kw": {
+                "power": {
                   "status": "unknown",
                   "value": null,
                   "unit": "kW"
-                },
-                "displacement_cc": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "cm³"
-                },
-                "battery_capacity_kwh": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "kWh"
-                },
-                "battery_gross_kwh": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "kWh"
-                },
-                "battery_usable_kwh": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "kWh"
                 },
                 "drivetrain": {
                   "status": "unknown",
                   "value": null,
                   "unit": null
                 },
-                "zero_to_100_s": {
+                "acceleration_0_100": {
                   "status": "unknown",
                   "value": null,
                   "unit": "s"
-                },
-                "battery_comparison_kwh": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "kWh"
                 }
               },
               "features": [],
@@ -1195,61 +1050,40 @@
               "powertrain": "bev",
               "availability": "confirmed_current",
               "specs": {
-                "fuel_type": {
-                  "status": "resolved",
-                  "value": "electric",
-                  "unit": null
-                },
-                "boot_l": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "l"
-                },
-                "boot_l_max": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "l"
-                },
-                "power_kw": {
-                  "status": "resolved",
-                  "value": 150,
-                  "unit": "kW"
-                },
-                "displacement_cc": {
-                  "status": "not_applicable",
-                  "value": null,
-                  "unit": "cm³"
-                },
-                "battery_capacity_kwh": {
+                "battery_capacity_nominal": {
                   "status": "unknown",
                   "value": null,
                   "unit": "kWh"
                 },
-                "battery_gross_kwh": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "kWh"
-                },
-                "battery_usable_kwh": {
+                "battery_capacity_usable": {
                   "status": "resolved",
                   "value": 60,
                   "unit": "kWh"
+                },
+                "boot_volume": {
+                  "status": "unknown",
+                  "value": null,
+                  "unit": "l"
+                },
+                "boot_volume_max": {
+                  "status": "unknown",
+                  "value": null,
+                  "unit": "l"
+                },
+                "power": {
+                  "status": "resolved",
+                  "value": 150,
+                  "unit": "kW"
                 },
                 "drivetrain": {
                   "status": "unknown",
                   "value": null,
                   "unit": null
                 },
-                "zero_to_100_s": {
+                "acceleration_0_100": {
                   "status": "unknown",
                   "value": null,
                   "unit": "s"
-                },
-                "battery_comparison_kwh": {
-                  "status": "resolved",
-                  "value": 60,
-                  "unit": "kWh",
-                  "batteryBasis": "usable"
                 }
               },
               "features": [
@@ -1331,32 +1165,57 @@
           ],
           "specs": [
             {
-              "key": "fuel_type",
+              "key": "battery_capacity_nominal",
               "cells": [
                 {
-                  "status": "resolved",
-                  "value": "electric",
-                  "unit": null
+                  "status": "unknown",
+                  "value": null,
+                  "unit": "kWh"
                 },
                 {
-                  "status": "resolved",
-                  "value": "electric",
-                  "unit": null
+                  "status": "unknown",
+                  "value": null,
+                  "unit": "kWh"
                 },
                 {
-                  "status": "resolved",
-                  "value": "electric",
-                  "unit": null
+                  "status": "unknown",
+                  "value": null,
+                  "unit": "kWh"
                 },
                 {
-                  "status": "resolved",
-                  "value": "electric",
-                  "unit": null
+                  "status": "unknown",
+                  "value": null,
+                  "unit": "kWh"
                 }
               ]
             },
             {
-              "key": "boot_l",
+              "key": "battery_capacity_usable",
+              "cells": [
+                {
+                  "status": "resolved",
+                  "value": 60,
+                  "unit": "kWh"
+                },
+                {
+                  "status": "resolved",
+                  "value": 80,
+                  "unit": "kWh"
+                },
+                {
+                  "status": "unknown",
+                  "value": null,
+                  "unit": "kWh"
+                },
+                {
+                  "status": "resolved",
+                  "value": 60,
+                  "unit": "kWh"
+                }
+              ]
+            },
+            {
+              "key": "boot_volume",
               "cells": [
                 {
                   "status": "unknown",
@@ -1381,7 +1240,7 @@
               ]
             },
             {
-              "key": "boot_l_max",
+              "key": "boot_volume_max",
               "cells": [
                 {
                   "status": "unknown",
@@ -1406,7 +1265,7 @@
               ]
             },
             {
-              "key": "power_kw",
+              "key": "power",
               "cells": [
                 {
                   "status": "resolved",
@@ -1427,106 +1286,6 @@
                   "status": "resolved",
                   "value": 150,
                   "unit": "kW"
-                }
-              ]
-            },
-            {
-              "key": "displacement_cc",
-              "cells": [
-                {
-                  "status": "not_applicable",
-                  "value": null,
-                  "unit": "cm³"
-                },
-                {
-                  "status": "not_applicable",
-                  "value": null,
-                  "unit": "cm³"
-                },
-                {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "cm³"
-                },
-                {
-                  "status": "not_applicable",
-                  "value": null,
-                  "unit": "cm³"
-                }
-              ]
-            },
-            {
-              "key": "battery_capacity_kwh",
-              "cells": [
-                {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "kWh"
-                },
-                {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "kWh"
-                },
-                {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "kWh"
-                },
-                {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "kWh"
-                }
-              ]
-            },
-            {
-              "key": "battery_gross_kwh",
-              "cells": [
-                {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "kWh"
-                },
-                {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "kWh"
-                },
-                {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "kWh"
-                },
-                {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "kWh"
-                }
-              ]
-            },
-            {
-              "key": "battery_usable_kwh",
-              "cells": [
-                {
-                  "status": "resolved",
-                  "value": 60,
-                  "unit": "kWh"
-                },
-                {
-                  "status": "resolved",
-                  "value": 80,
-                  "unit": "kWh"
-                },
-                {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "kWh"
-                },
-                {
-                  "status": "resolved",
-                  "value": 60,
-                  "unit": "kWh"
                 }
               ]
             },
@@ -1556,7 +1315,7 @@
               ]
             },
             {
-              "key": "zero_to_100_s",
+              "key": "acceleration_0_100",
               "cells": [
                 {
                   "status": "unknown",
@@ -1577,34 +1336,6 @@
                   "status": "unknown",
                   "value": null,
                   "unit": "s"
-                }
-              ]
-            },
-            {
-              "key": "battery_comparison_kwh",
-              "cells": [
-                {
-                  "status": "resolved",
-                  "value": 60,
-                  "unit": "kWh",
-                  "batteryBasis": "usable"
-                },
-                {
-                  "status": "resolved",
-                  "value": 80,
-                  "unit": "kWh",
-                  "batteryBasis": "usable"
-                },
-                {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "kWh"
-                },
-                {
-                  "status": "resolved",
-                  "value": 60,
-                  "unit": "kWh",
-                  "batteryBasis": "usable"
                 }
               ]
             }
@@ -1877,7 +1608,7 @@
               "match": {
                 "result": "unknown",
                 "reasons": [
-                  "boot_l: unknown."
+                  "boot_volume: unknown."
                 ]
               }
             },
@@ -1886,7 +1617,7 @@
               "match": {
                 "result": "unknown",
                 "reasons": [
-                  "boot_l: disputed."
+                  "boot_volume: disputed."
                 ]
               }
             },
@@ -1895,7 +1626,7 @@
               "match": {
                 "result": "unknown",
                 "reasons": [
-                  "boot_l: unknown."
+                  "boot_volume: unknown."
                 ]
               }
             },
@@ -1904,7 +1635,7 @@
               "match": {
                 "result": "unknown",
                 "reasons": [
-                  "boot_l: unknown."
+                  "boot_volume: unknown."
                 ]
               }
             }
@@ -1940,60 +1671,40 @@
             "powertrain": "bev",
             "availability": "confirmed_current",
             "specs": {
-              "fuel_type": {
-                "status": "resolved",
-                "value": "electric",
-                "unit": null
+              "battery_capacity_nominal": {
+                "status": "unknown",
+                "value": null,
+                "unit": "kWh"
               },
-              "boot_l": {
+              "battery_capacity_usable": {
+                "status": "unknown",
+                "value": null,
+                "unit": "kWh"
+              },
+              "boot_volume": {
                 "status": "unknown",
                 "value": null,
                 "unit": "l"
               },
-              "boot_l_max": {
+              "boot_volume_max": {
                 "status": "unknown",
                 "value": null,
                 "unit": "l"
               },
-              "power_kw": {
+              "power": {
                 "status": "unknown",
                 "value": null,
                 "unit": "kW"
-              },
-              "displacement_cc": {
-                "status": "unknown",
-                "value": null,
-                "unit": "cm³"
-              },
-              "battery_capacity_kwh": {
-                "status": "unknown",
-                "value": null,
-                "unit": "kWh"
-              },
-              "battery_gross_kwh": {
-                "status": "unknown",
-                "value": null,
-                "unit": "kWh"
-              },
-              "battery_usable_kwh": {
-                "status": "unknown",
-                "value": null,
-                "unit": "kWh"
               },
               "drivetrain": {
                 "status": "unknown",
                 "value": null,
                 "unit": null
               },
-              "zero_to_100_s": {
+              "acceleration_0_100": {
                 "status": "unknown",
                 "value": null,
                 "unit": "s"
-              },
-              "battery_comparison_kwh": {
-                "status": "unknown",
-                "value": null,
-                "unit": "kWh"
               }
             },
             "features": [],
@@ -2038,61 +1749,40 @@
             "powertrain": "bev",
             "availability": "confirmed_current",
             "specs": {
-              "fuel_type": {
-                "status": "resolved",
-                "value": "electric",
-                "unit": null
-              },
-              "boot_l": {
-                "status": "unknown",
-                "value": null,
-                "unit": "l"
-              },
-              "boot_l_max": {
-                "status": "unknown",
-                "value": null,
-                "unit": "l"
-              },
-              "power_kw": {
-                "status": "resolved",
-                "value": 150,
-                "unit": "kW"
-              },
-              "displacement_cc": {
-                "status": "not_applicable",
-                "value": null,
-                "unit": "cm³"
-              },
-              "battery_capacity_kwh": {
+              "battery_capacity_nominal": {
                 "status": "unknown",
                 "value": null,
                 "unit": "kWh"
               },
-              "battery_gross_kwh": {
-                "status": "unknown",
-                "value": null,
-                "unit": "kWh"
-              },
-              "battery_usable_kwh": {
+              "battery_capacity_usable": {
                 "status": "resolved",
                 "value": 60,
                 "unit": "kWh"
+              },
+              "boot_volume": {
+                "status": "unknown",
+                "value": null,
+                "unit": "l"
+              },
+              "boot_volume_max": {
+                "status": "unknown",
+                "value": null,
+                "unit": "l"
+              },
+              "power": {
+                "status": "resolved",
+                "value": 150,
+                "unit": "kW"
               },
               "drivetrain": {
                 "status": "unknown",
                 "value": null,
                 "unit": null
               },
-              "zero_to_100_s": {
+              "acceleration_0_100": {
                 "status": "unknown",
                 "value": null,
                 "unit": "s"
-              },
-              "battery_comparison_kwh": {
-                "status": "resolved",
-                "value": 60,
-                "unit": "kWh",
-                "batteryBasis": "usable"
               }
             },
             "features": [
@@ -2208,81 +1898,123 @@
           "kind": "definitions",
           "specs": [
             {
-              "key": "fuel_type",
-              "label": "Powertrain",
-              "description": "Resolved fuel or powertrain type.",
-              "type": "enum",
-              "unit": null
-            },
-            {
-              "key": "boot_l",
-              "label": "Boot capacity",
-              "description": "Rear seats upright; excludes frunk.",
+              "key": "battery_capacity_nominal",
+              "label": "Battery, nominal capacity",
+              "description": "Published catalogue specification.",
               "type": "number",
-              "unit": "l"
+              "unit": "kWh"
             },
             {
-              "key": "boot_l_max",
-              "label": "Maximum boot capacity",
-              "description": "Rear seats folded.",
+              "key": "battery_capacity_usable",
+              "label": "Battery, usable capacity",
+              "description": "Published catalogue specification.",
               "type": "number",
-              "unit": "l"
+              "unit": "kWh"
             },
             {
-              "key": "power_kw",
+              "key": "range_wltp",
+              "label": "Range (WLTP)",
+              "description": "Published catalogue specification.",
+              "type": "number",
+              "unit": "km"
+            },
+            {
+              "key": "consumption_wltp",
+              "label": "Consumption (WLTP)",
+              "description": "Published catalogue specification.",
+              "type": "number",
+              "unit": "kWh/100 km"
+            },
+            {
+              "key": "power",
               "label": "Power",
-              "description": "Engine or motor power.",
+              "description": "Published catalogue specification.",
               "type": "number",
               "unit": "kW"
             },
             {
-              "key": "displacement_cc",
-              "label": "Engine displacement",
-              "description": "Not applicable to BEVs.",
+              "key": "torque",
+              "label": "Torque",
+              "description": "Published catalogue specification.",
               "type": "number",
-              "unit": "cm³"
+              "unit": "Nm"
             },
             {
-              "key": "battery_capacity_kwh",
-              "label": "Battery capacity (unspecified basis)",
-              "description": "Source does not distinguish gross from usable capacity.",
+              "key": "dc_charging_power_max",
+              "label": "Maximum DC charging power",
+              "description": "Published catalogue specification.",
               "type": "number",
-              "unit": "kWh"
+              "unit": "kW"
             },
             {
-              "key": "battery_gross_kwh",
-              "label": "Gross battery capacity",
-              "description": "Explicit gross, total or nominal energy; distinct from usable.",
+              "key": "ac_charging_power_max",
+              "label": "Maximum AC charging power",
+              "description": "Published catalogue specification.",
               "type": "number",
-              "unit": "kWh"
+              "unit": "kW"
             },
             {
-              "key": "battery_usable_kwh",
-              "label": "Usable battery capacity",
-              "description": "Explicit net or usable energy.",
-              "type": "number",
-              "unit": "kWh"
-            },
-            {
-              "key": "drivetrain",
-              "label": "Driven wheels",
-              "description": "FWD, RWD, AWD or other resolved layout.",
-              "type": "enum",
-              "unit": null
-            },
-            {
-              "key": "zero_to_100_s",
-              "label": "0–100 km/h",
-              "description": "Acceleration time from rest to 100 km/h.",
+              "key": "acceleration_0_100",
+              "label": "0-100 km/h",
+              "description": "Published catalogue specification.",
               "type": "number",
               "unit": "s"
             },
             {
-              "key": "battery_comparison_kwh",
-              "label": "Battery capacity",
+              "key": "top_speed",
+              "label": "Top speed",
+              "description": "Published catalogue specification.",
               "type": "number",
-              "unit": "kWh",
-              "description": "Reported capacity selected for comparison: prefer explicit gross/nominal when both nominal and usable are reported; otherwise use the sole supported reported value. Never convert or estimate nominal from usable, or usable from nominal. Source basis is supplied as batteryBasis."
+              "unit": "km/h"
+            },
+            {
+              "key": "drivetrain",
+              "label": "Drivetrain",
+              "description": "Published catalogue specification.",
+              "type": "enum",
+              "unit": null
+            },
+            {
+              "key": "length",
+              "label": "Length",
+              "description": "Published catalogue specification.",
+              "type": "number",
+              "unit": "mm"
+            },
+            {
+              "key": "width",
+              "label": "Width",
+              "description": "Published catalogue specification.",
+              "type": "number",
+              "unit": "mm"
+            },
+            {
+              "key": "height",
+              "label": "Height",
+              "description": "Published catalogue specification.",
+              "type": "number",
+              "unit": "mm"
+            },
+            {
+              "key": "boot_volume",
+              "label": "Boot, seats up",
+              "description": "Published catalogue specification.",
+              "type": "number",
+              "unit": "l"
+            },
+            {
+              "key": "boot_volume_max",
+              "label": "Boot, maximum",
+              "description": "Published catalogue specification.",
+              "type": "number",
+              "unit": "l"
+            },
+            {
+              "key": "empty_weight",
+              "label": "Empty weight",
+              "description": "Published catalogue specification.",
+              "type": "number",
+              "unit": "kg"
             }
           ],
           "features": [
@@ -2350,81 +2082,123 @@
           "kind": "definitions",
           "specs": [
             {
-              "key": "fuel_type",
-              "label": "Powertrain",
-              "description": "Resolved fuel or powertrain type.",
-              "type": "enum",
-              "unit": null
-            },
-            {
-              "key": "boot_l",
-              "label": "Boot capacity",
-              "description": "Rear seats upright; excludes frunk.",
+              "key": "battery_capacity_nominal",
+              "label": "Battery, nominal capacity",
+              "description": "Published catalogue specification.",
               "type": "number",
-              "unit": "l"
+              "unit": "kWh"
             },
             {
-              "key": "boot_l_max",
-              "label": "Maximum boot capacity",
-              "description": "Rear seats folded.",
+              "key": "battery_capacity_usable",
+              "label": "Battery, usable capacity",
+              "description": "Published catalogue specification.",
               "type": "number",
-              "unit": "l"
+              "unit": "kWh"
             },
             {
-              "key": "power_kw",
+              "key": "range_wltp",
+              "label": "Range (WLTP)",
+              "description": "Published catalogue specification.",
+              "type": "number",
+              "unit": "km"
+            },
+            {
+              "key": "consumption_wltp",
+              "label": "Consumption (WLTP)",
+              "description": "Published catalogue specification.",
+              "type": "number",
+              "unit": "kWh/100 km"
+            },
+            {
+              "key": "power",
               "label": "Power",
-              "description": "Engine or motor power.",
+              "description": "Published catalogue specification.",
               "type": "number",
               "unit": "kW"
             },
             {
-              "key": "displacement_cc",
-              "label": "Engine displacement",
-              "description": "Not applicable to BEVs.",
+              "key": "torque",
+              "label": "Torque",
+              "description": "Published catalogue specification.",
               "type": "number",
-              "unit": "cm³"
+              "unit": "Nm"
             },
             {
-              "key": "battery_capacity_kwh",
-              "label": "Battery capacity (unspecified basis)",
-              "description": "Source does not distinguish gross from usable capacity.",
+              "key": "dc_charging_power_max",
+              "label": "Maximum DC charging power",
+              "description": "Published catalogue specification.",
               "type": "number",
-              "unit": "kWh"
+              "unit": "kW"
             },
             {
-              "key": "battery_gross_kwh",
-              "label": "Gross battery capacity",
-              "description": "Explicit gross, total or nominal energy; distinct from usable.",
+              "key": "ac_charging_power_max",
+              "label": "Maximum AC charging power",
+              "description": "Published catalogue specification.",
               "type": "number",
-              "unit": "kWh"
+              "unit": "kW"
             },
             {
-              "key": "battery_usable_kwh",
-              "label": "Usable battery capacity",
-              "description": "Explicit net or usable energy.",
-              "type": "number",
-              "unit": "kWh"
-            },
-            {
-              "key": "drivetrain",
-              "label": "Driven wheels",
-              "description": "FWD, RWD, AWD or other resolved layout.",
-              "type": "enum",
-              "unit": null
-            },
-            {
-              "key": "zero_to_100_s",
-              "label": "0–100 km/h",
-              "description": "Acceleration time from rest to 100 km/h.",
+              "key": "acceleration_0_100",
+              "label": "0-100 km/h",
+              "description": "Published catalogue specification.",
               "type": "number",
               "unit": "s"
             },
             {
-              "key": "battery_comparison_kwh",
-              "label": "Battery capacity",
+              "key": "top_speed",
+              "label": "Top speed",
+              "description": "Published catalogue specification.",
               "type": "number",
-              "unit": "kWh",
-              "description": "Reported capacity selected for comparison: prefer explicit gross/nominal when both nominal and usable are reported; otherwise use the sole supported reported value. Never convert or estimate nominal from usable, or usable from nominal. Source basis is supplied as batteryBasis."
+              "unit": "km/h"
+            },
+            {
+              "key": "drivetrain",
+              "label": "Drivetrain",
+              "description": "Published catalogue specification.",
+              "type": "enum",
+              "unit": null
+            },
+            {
+              "key": "length",
+              "label": "Length",
+              "description": "Published catalogue specification.",
+              "type": "number",
+              "unit": "mm"
+            },
+            {
+              "key": "width",
+              "label": "Width",
+              "description": "Published catalogue specification.",
+              "type": "number",
+              "unit": "mm"
+            },
+            {
+              "key": "height",
+              "label": "Height",
+              "description": "Published catalogue specification.",
+              "type": "number",
+              "unit": "mm"
+            },
+            {
+              "key": "boot_volume",
+              "label": "Boot, seats up",
+              "description": "Published catalogue specification.",
+              "type": "number",
+              "unit": "l"
+            },
+            {
+              "key": "boot_volume_max",
+              "label": "Boot, maximum",
+              "description": "Published catalogue specification.",
+              "type": "number",
+              "unit": "l"
+            },
+            {
+              "key": "empty_weight",
+              "label": "Empty weight",
+              "description": "Published catalogue specification.",
+              "type": "number",
+              "unit": "kg"
             }
           ],
           "features": []
@@ -2533,61 +2307,40 @@
               "powertrain": "bev",
               "availability": "confirmed_current",
               "specs": {
-                "fuel_type": {
-                  "status": "resolved",
-                  "value": "electric",
-                  "unit": null
-                },
-                "boot_l": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "l"
-                },
-                "boot_l_max": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "l"
-                },
-                "power_kw": {
-                  "status": "resolved",
-                  "value": 150,
-                  "unit": "kW"
-                },
-                "displacement_cc": {
-                  "status": "not_applicable",
-                  "value": null,
-                  "unit": "cm³"
-                },
-                "battery_capacity_kwh": {
+                "battery_capacity_nominal": {
                   "status": "unknown",
                   "value": null,
                   "unit": "kWh"
                 },
-                "battery_gross_kwh": {
-                  "status": "unknown",
-                  "value": null,
-                  "unit": "kWh"
-                },
-                "battery_usable_kwh": {
+                "battery_capacity_usable": {
                   "status": "resolved",
                   "value": 60,
                   "unit": "kWh"
+                },
+                "boot_volume": {
+                  "status": "unknown",
+                  "value": null,
+                  "unit": "l"
+                },
+                "boot_volume_max": {
+                  "status": "unknown",
+                  "value": null,
+                  "unit": "l"
+                },
+                "power": {
+                  "status": "resolved",
+                  "value": 150,
+                  "unit": "kW"
                 },
                 "drivetrain": {
                   "status": "unknown",
                   "value": null,
                   "unit": null
                 },
-                "zero_to_100_s": {
+                "acceleration_0_100": {
                   "status": "unknown",
                   "value": null,
                   "unit": "s"
-                },
-                "battery_comparison_kwh": {
-                  "status": "resolved",
-                  "value": 60,
-                  "unit": "kWh",
-                  "batteryBasis": "usable"
                 }
               },
               "features": [
@@ -2728,61 +2481,40 @@
             "powertrain": "bev",
             "availability": "confirmed_current",
             "specs": {
-              "fuel_type": {
-                "status": "resolved",
-                "value": "electric",
-                "unit": null
-              },
-              "boot_l": {
-                "status": "unknown",
-                "value": null,
-                "unit": "l"
-              },
-              "boot_l_max": {
-                "status": "unknown",
-                "value": null,
-                "unit": "l"
-              },
-              "power_kw": {
-                "status": "resolved",
-                "value": 150,
-                "unit": "kW"
-              },
-              "displacement_cc": {
-                "status": "not_applicable",
-                "value": null,
-                "unit": "cm³"
-              },
-              "battery_capacity_kwh": {
+              "battery_capacity_nominal": {
                 "status": "unknown",
                 "value": null,
                 "unit": "kWh"
               },
-              "battery_gross_kwh": {
-                "status": "unknown",
-                "value": null,
-                "unit": "kWh"
-              },
-              "battery_usable_kwh": {
+              "battery_capacity_usable": {
                 "status": "resolved",
                 "value": 60,
                 "unit": "kWh"
+              },
+              "boot_volume": {
+                "status": "unknown",
+                "value": null,
+                "unit": "l"
+              },
+              "boot_volume_max": {
+                "status": "unknown",
+                "value": null,
+                "unit": "l"
+              },
+              "power": {
+                "status": "resolved",
+                "value": 150,
+                "unit": "kW"
               },
               "drivetrain": {
                 "status": "unknown",
                 "value": null,
                 "unit": null
               },
-              "zero_to_100_s": {
+              "acceleration_0_100": {
                 "status": "unknown",
                 "value": null,
                 "unit": "s"
-              },
-              "battery_comparison_kwh": {
-                "status": "resolved",
-                "value": 60,
-                "unit": "kWh",
-                "batteryBasis": "usable"
               }
             },
             "features": [
@@ -2880,7 +2612,7 @@
           "preferenceMatch": {
             "result": "mismatch",
             "reasons": [
-              "battery_usable_kwh does not meet the requested value."
+              "battery_capacity_usable does not meet the requested value."
             ]
           }
         }
@@ -2914,61 +2646,40 @@
             "powertrain": "bev",
             "availability": "historical",
             "specs": {
-              "fuel_type": {
-                "status": "resolved",
-                "value": "electric",
-                "unit": null
-              },
-              "boot_l": {
-                "status": "unknown",
-                "value": null,
-                "unit": "l"
-              },
-              "boot_l_max": {
-                "status": "unknown",
-                "value": null,
-                "unit": "l"
-              },
-              "power_kw": {
-                "status": "resolved",
-                "value": 150,
-                "unit": "kW"
-              },
-              "displacement_cc": {
-                "status": "not_applicable",
-                "value": null,
-                "unit": "cm³"
-              },
-              "battery_capacity_kwh": {
+              "battery_capacity_nominal": {
                 "status": "unknown",
                 "value": null,
                 "unit": "kWh"
               },
-              "battery_gross_kwh": {
-                "status": "unknown",
-                "value": null,
-                "unit": "kWh"
-              },
-              "battery_usable_kwh": {
+              "battery_capacity_usable": {
                 "status": "resolved",
                 "value": 60,
                 "unit": "kWh"
+              },
+              "boot_volume": {
+                "status": "unknown",
+                "value": null,
+                "unit": "l"
+              },
+              "boot_volume_max": {
+                "status": "unknown",
+                "value": null,
+                "unit": "l"
+              },
+              "power": {
+                "status": "resolved",
+                "value": 150,
+                "unit": "kW"
               },
               "drivetrain": {
                 "status": "unknown",
                 "value": null,
                 "unit": null
               },
-              "zero_to_100_s": {
+              "acceleration_0_100": {
                 "status": "unknown",
                 "value": null,
                 "unit": "s"
-              },
-              "battery_comparison_kwh": {
-                "status": "resolved",
-                "value": 60,
-                "unit": "kWh",
-                "batteryBasis": "usable"
               }
             },
             "features": [
@@ -3146,61 +2857,40 @@
             "powertrain": "bev",
             "availability": "confirmed_current",
             "specs": {
-              "fuel_type": {
-                "status": "resolved",
-                "value": "electric",
-                "unit": null
-              },
-              "boot_l": {
-                "status": "unknown",
-                "value": null,
-                "unit": "l"
-              },
-              "boot_l_max": {
-                "status": "unknown",
-                "value": null,
-                "unit": "l"
-              },
-              "power_kw": {
-                "status": "unknown",
-                "value": null,
-                "unit": "kW"
-              },
-              "displacement_cc": {
-                "status": "unknown",
-                "value": null,
-                "unit": "cm³"
-              },
-              "battery_capacity_kwh": {
+              "battery_capacity_nominal": {
                 "status": "resolved",
                 "value": 60,
                 "unit": "kWh"
               },
-              "battery_gross_kwh": {
+              "battery_capacity_usable": {
                 "status": "unknown",
                 "value": null,
                 "unit": "kWh"
               },
-              "battery_usable_kwh": {
+              "boot_volume": {
                 "status": "unknown",
                 "value": null,
-                "unit": "kWh"
+                "unit": "l"
+              },
+              "boot_volume_max": {
+                "status": "unknown",
+                "value": null,
+                "unit": "l"
+              },
+              "power": {
+                "status": "unknown",
+                "value": null,
+                "unit": "kW"
               },
               "drivetrain": {
                 "status": "unknown",
                 "value": null,
                 "unit": null
               },
-              "zero_to_100_s": {
+              "acceleration_0_100": {
                 "status": "unknown",
                 "value": null,
                 "unit": "s"
-              },
-              "battery_comparison_kwh": {
-                "status": "resolved",
-                "value": 60,
-                "unit": "kWh",
-                "batteryBasis": "unspecified"
               }
             },
             "features": [],
@@ -3245,61 +2935,40 @@
             "powertrain": "bev",
             "availability": "confirmed_current",
             "specs": {
-              "fuel_type": {
-                "status": "resolved",
-                "value": "electric",
-                "unit": null
-              },
-              "boot_l": {
-                "status": "unknown",
-                "value": null,
-                "unit": "l"
-              },
-              "boot_l_max": {
-                "status": "unknown",
-                "value": null,
-                "unit": "l"
-              },
-              "power_kw": {
-                "status": "unknown",
-                "value": null,
-                "unit": "kW"
-              },
-              "displacement_cc": {
-                "status": "unknown",
-                "value": null,
-                "unit": "cm³"
-              },
-              "battery_capacity_kwh": {
-                "status": "unknown",
-                "value": null,
-                "unit": "kWh"
-              },
-              "battery_gross_kwh": {
+              "battery_capacity_nominal": {
                 "status": "resolved",
                 "value": 60,
                 "unit": "kWh"
               },
-              "battery_usable_kwh": {
+              "battery_capacity_usable": {
                 "status": "resolved",
                 "value": 57.5,
                 "unit": "kWh"
+              },
+              "boot_volume": {
+                "status": "unknown",
+                "value": null,
+                "unit": "l"
+              },
+              "boot_volume_max": {
+                "status": "unknown",
+                "value": null,
+                "unit": "l"
+              },
+              "power": {
+                "status": "unknown",
+                "value": null,
+                "unit": "kW"
               },
               "drivetrain": {
                 "status": "unknown",
                 "value": null,
                 "unit": null
               },
-              "zero_to_100_s": {
+              "acceleration_0_100": {
                 "status": "unknown",
                 "value": null,
                 "unit": "s"
-              },
-              "battery_comparison_kwh": {
-                "status": "resolved",
-                "value": 60,
-                "unit": "kWh",
-                "batteryBasis": "nominal"
               }
             },
             "features": [],
@@ -3344,61 +3013,40 @@
             "powertrain": "bev",
             "availability": "confirmed_current",
             "specs": {
-              "fuel_type": {
-                "status": "resolved",
-                "value": "electric",
-                "unit": null
-              },
-              "boot_l": {
-                "status": "unknown",
-                "value": null,
-                "unit": "l"
-              },
-              "boot_l_max": {
-                "status": "unknown",
-                "value": null,
-                "unit": "l"
-              },
-              "power_kw": {
-                "status": "unknown",
-                "value": null,
-                "unit": "kW"
-              },
-              "displacement_cc": {
-                "status": "unknown",
-                "value": null,
-                "unit": "cm³"
-              },
-              "battery_capacity_kwh": {
+              "battery_capacity_nominal": {
                 "status": "unknown",
                 "value": null,
                 "unit": "kWh"
               },
-              "battery_gross_kwh": {
-                "status": "unknown",
-                "value": null,
-                "unit": "kWh"
-              },
-              "battery_usable_kwh": {
+              "battery_capacity_usable": {
                 "status": "resolved",
                 "value": 57.5,
                 "unit": "kWh"
+              },
+              "boot_volume": {
+                "status": "unknown",
+                "value": null,
+                "unit": "l"
+              },
+              "boot_volume_max": {
+                "status": "unknown",
+                "value": null,
+                "unit": "l"
+              },
+              "power": {
+                "status": "unknown",
+                "value": null,
+                "unit": "kW"
               },
               "drivetrain": {
                 "status": "unknown",
                 "value": null,
                 "unit": null
               },
-              "zero_to_100_s": {
+              "acceleration_0_100": {
                 "status": "unknown",
                 "value": null,
                 "unit": "s"
-              },
-              "battery_comparison_kwh": {
-                "status": "resolved",
-                "value": 57.5,
-                "unit": "kWh",
-                "batteryBasis": "usable"
               }
             },
             "features": [],
