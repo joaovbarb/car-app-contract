@@ -14,7 +14,11 @@ export const powertrainFilterSchema = powertrainSchema.exclude(["not_bev"]);
 const scalar = z.union([z.string(), z.number().finite(), z.boolean()]);
 export const batteryBasisSchema = z.enum(["nominal", "usable", "unspecified"]);
 export const valueSchema = z.object({ status: evidenceSchema, value: scalar.nullable(), unit: z.string().nullable(),
-  /** Source basis of battery_comparison_kwh; never an estimated conversion. */
+  /**
+   * Not emitted: a battery is two specifications, battery_capacity_nominal and battery_capacity_usable
+   * (an unqualified single figure is nominal), so a value's key already says its basis. Kept optional
+   * for compatibility; never an estimated conversion.
+   */
   batteryBasis: batteryBasisSchema.optional() });
 export const provenanceSchema = z.object({ title: z.string(), url: z.url(), checkedAt: z.iso.datetime().nullable() });
 export const photoSchema = z.object({ url: z.url(), width: z.number().int().positive().nullable(), height: z.number().int().positive().nullable(),
