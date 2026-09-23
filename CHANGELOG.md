@@ -1,5 +1,19 @@
 # Contract changelog
 
+## 2026-09-23 — fixed specification and feature definitions (additive)
+
+- Each feature in the `definitions` response may carry `type` (`boolean`, `level`, `number`,
+  `number_with_window`) and `levels` (the ladder, least to most, for a `level` feature; null
+  otherwise). Both are optional so responses served before them still parse. The schemas are
+  exported as `featureTypeSchema` and `featureDefinitionSchema`.
+- A published feature keeps its shape: `fitment` is the equipment status; `numeric` carries the
+  number of a `number` or `number_with_window` feature; `attributes` carries `level` for a `level`
+  feature, `note` (the source's own wording, shown and never compared) when there is one, and
+  `fromPercent` and `toPercent` for a charge window.
+- Specification definitions are unchanged in shape; the backend now serves exactly the architect's
+  fixed list (`backend/interfaces/definitions.ts`), so the keys differ from earlier responses.
+- `apiVersion` remains `"1"`. Regenerate `frontend/src/generated/contract/`.
+
 ## 2026-09-22 — a price's source may be unclassified
 
 - `price.method` (on `version.price` and on a model card's `priceSummary.price`) now admits a third

@@ -31,6 +31,12 @@ export const priceSchema = z.object({ versionId: z.uuid(), amountMinor: z.number
   method: priceMethodSchema, lastSuccessfulCheck: z.iso.datetime().nullable(),
   freshness: z.enum(["fresh", "stale", "unverified"]), validUntil: z.iso.date().nullable(), estimated: z.literal(true),
   source: provenanceSchema.nullable() });
+/**
+ * A published feature. `fitment` is its equipment status; `numeric` carries the number of a `number`
+ * or `number_with_window` feature. `attributes` carries `level` for a `level` feature, `note` (the
+ * source's own wording, shown and never compared) when there is one, and `fromPercent` and
+ * `toPercent` for a charge window.
+ */
 export const featureSchema = z.object({ key: z.string(), featureKey: z.string(), label: z.string(), category: z.string().nullable(),
   attributes: z.record(z.string(), scalar), evidence: evidenceSchema, fitment: fitmentSchema, numeric: valueSchema });
 export const availabilitySchema = z.enum(["confirmed_current", "unknown", "historical", "not_yet_available"]);
@@ -67,6 +73,19 @@ export const querySchema = z.object({ market: z.string().regex(/^[A-Z]{2}$/).def
     if (!result.success) { ctx.addIssue({ code: "custom", message: "Compare requires 2–4 distinct UUIDs" }); return z.NEVER; }
     return result.data;
   }) }).strict();
+/**
+ * How a feature is compared. `boolean`: has it or not. `level`: one step of its `levels`, ordered from
+ * least to most. `number`: a measurement in `numericUnit`. `number_with_window`: a measurement in
+ * `numericUnit`, comparable only between equal charge windows.
+ */
+export const featureTypeSchema = z.enum(["boolean", "level", "number", "number_with_window"]);
+/**
+ * A feature definition. `type` and `levels` (the ladder, least to most, for a `level` feature; null
+ * otherwise) are optional only so responses served before they existed still parse.
+ */
+export const featureDefinitionSchema = z.object({ key: z.string(), label: z.string(), description: z.string().nullable(),
+  category: z.string().nullable(), numericUnit: z.string().nullable(), type: featureTypeSchema.optional(),
+  levels: z.array(z.string()).nullable().optional() });
 export const definitionSchema = z.object({ key: z.string(), label: z.string(), description: z.string(), type: z.enum(["number", "enum", "boolean", "string"]), unit: z.string().nullable() });
 export const responseSchema = z.object({ apiVersion: z.literal("1"), asOf: z.iso.datetime(), market: z.string(), powertrain: powertrainFilterSchema,
   data: z.discriminatedUnion("kind", [
@@ -79,7 +98,7 @@ export const responseSchema = z.object({ apiVersion: z.literal("1"), asOf: z.iso
     z.object({ kind: z.literal("version"), version: versionSchema, preferenceMatch: matchSchema }),
     z.object({ kind: z.literal("comparison"), versions: z.array(versionSchema), specs: z.array(z.object({ key: z.string(), cells: z.array(valueSchema) })),
       features: z.array(z.object({ key: z.string(), cells: z.array(featureSchema) })), matches: z.array(z.object({ versionId: z.uuid(), match: matchSchema })) }),
-    z.object({ kind: z.literal("definitions"), specs: z.array(definitionSchema), features: z.array(z.object({ key: z.string(), label: z.string(), description: z.string().nullable(), category: z.string().nullable(), numericUnit: z.string().nullable() })) }),
+    z.object({ kind: z.literal("definitions"), specs: z.array(definitionSchema), features: z.array(featureDefinitionSchema) }),
   ]) });
 export const errorSchema = z.object({ apiVersion: z.literal("1"), error: z.object({ code: z.enum(["INVALID_REQUEST", "MARKET_UNAVAILABLE", "NOT_FOUND", "METHOD_NOT_ALLOWED", "TEMPORARILY_UNAVAILABLE"]), message: z.string() }) });
 export type Query = z.infer<typeof querySchema>;
