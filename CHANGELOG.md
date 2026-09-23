@@ -1,5 +1,14 @@
 # Contract changelog
 
+## 2026-09-24 — round 31 (breaking)
+
+- Availability values are the backend's own (`current`, `upcoming`, `discontinued`, `unknown`);
+  `includeHistorical` is now `includeDiscontinued`; `definitions.ts` uses the `/definitions`
+  field names and gains `category` and `description`; ladders lose `none`; each version gains
+  `battery`; `batteryBasis` is removed; fixtures use only current keys. Each change and its reason
+  is listed in the changelog at the top of [integration.md](integration.md), which is where new
+  entries go from now on.
+
 ## 2026-09-23 — definitions.ts mirrors the catalogues; nominal and usable battery capacity
 
 - `definitions.ts` now mirrors the architect's catalogues in `backend/interfaces/definitions.ts`

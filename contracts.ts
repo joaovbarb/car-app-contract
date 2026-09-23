@@ -12,14 +12,15 @@ export const powertrainSchema = z.enum(["bev", "not_bev", "all"]);
 /** The consumer's powertrain filter: narrow to battery-electric, or do not narrow. */
 export const powertrainFilterSchema = powertrainSchema.exclude(["not_bev"]);
 const scalar = z.union([z.string(), z.number().finite(), z.boolean()]);
-export const batteryBasisSchema = z.enum(["nominal", "usable", "unspecified"]);
-export const valueSchema = z.object({ status: evidenceSchema, value: scalar.nullable(), unit: z.string().nullable(),
-  /**
-   * Not emitted: a battery is two specifications, battery_capacity_nominal and battery_capacity_usable
-   * (an unqualified single figure is nominal), so a value's key already says its basis. Kept optional
-   * for compatibility; never an estimated conversion.
-   */
-  batteryBasis: batteryBasisSchema.optional() });
+export const valueSchema = z.object({ status: evidenceSchema, value: scalar.nullable(), unit: z.string().nullable() });
+/** Which capacity a version's `battery` figure is: nominal (gross) or usable (net). */
+export const batteryBasisSchema = z.enum(["nominal", "usable"]);
+/**
+ * A version's battery as one figure: the nominal capacity when known, otherwise the usable one, never
+ * converted from the other. Null when neither is known. Both figures stay in `specs`
+ * (`battery_capacity_nominal`, `battery_capacity_usable`).
+ */
+export const batterySchema = z.object({ capacityKwh: z.number().positive(), basis: batteryBasisSchema });
 export const provenanceSchema = z.object({ title: z.string(), url: z.url(), checkedAt: z.iso.datetime().nullable() });
 export const photoSchema = z.object({ url: z.url(), width: z.number().int().positive().nullable(), height: z.number().int().positive().nullable(),
   order: z.number().int().nonnegative(), label: z.string(), attribution: z.string().nullable(), representative: z.boolean(),
@@ -43,12 +44,18 @@ export const priceSchema = z.object({ versionId: z.uuid(), amountMinor: z.number
  */
 export const featureSchema = z.object({ key: z.string(), featureKey: z.string(), label: z.string(), category: z.string().nullable(),
   attributes: z.record(z.string(), scalar), evidence: evidenceSchema, fitment: fitmentSchema, numeric: valueSchema });
-export const availabilitySchema = z.enum(["confirmed_current", "unknown", "historical", "not_yet_available"]);
+/**
+ * The backend's own availability values. `current`: on sale. `upcoming`: announced, not yet on sale.
+ * `discontinued`: no longer sold; served only with `includeDiscontinued=true`. `unknown`: not
+ * established either way, which is not confirmation of sale.
+ */
+export const availabilitySchema = z.enum(["current", "upcoming", "discontinued", "unknown"]);
 export const versionSchema = z.object({ id: z.uuid(), modelId: z.uuid(), market: z.string().length(2), name: z.string(),
   make: z.string(), model: z.string(), generation: z.string().nullable(), modelYear: z.number().int().nullable(),
   equipmentGrade: z.string(), technicalConfiguration: z.object({ batteryLabel: z.string().nullable(), motorLabel: z.string().nullable(), drivetrain: z.string().nullable() }),
   publication: z.literal("published"), powertrain: powertrainSchema.exclude(["all"]), availability: availabilitySchema,
-  specs: z.record(z.string(), valueSchema), features: z.array(featureSchema), price: priceSchema.nullable(),
+  specs: z.record(z.string(), valueSchema), battery: batterySchema.nullable(), features: z.array(featureSchema),
+  price: priceSchema.nullable(),
   /** @deprecated Use data.photos from GET /models/{modelId}; retained for legacy clients only. */
   photos: z.array(photoSchema),
   facts: z.array(z.object({ text: z.string(), scope: z.enum(["model", "generation", "trim"]), source: provenanceSchema })) });
@@ -65,7 +72,7 @@ export const matchSchema = z.object({ result: z.enum(["match", "mismatch", "unkn
 export const querySchema = z.object({ market: z.string().regex(/^[A-Z]{2}$/).default("PT"), powertrain: powertrainFilterSchema.default("bev"),
   q: z.string().trim().max(100).default(""), makeId: z.uuid().optional(),
   limit: z.coerce.number().int().min(1).max(50).default(20), offset: z.coerce.number().int().min(0).max(10000).default(0),
-  includeHistorical: z.enum(["true", "false"]).default("false").transform(v => v === "true"),
+  includeDiscontinued: z.enum(["true", "false"]).default("false").transform(v => v === "true"),
   uncertainty: z.enum(["strict", "include"]).default("strict"),
   preferences: z.string().max(4000).optional().transform((v, ctx) => {
     if (!v) return [];
@@ -84,13 +91,20 @@ export const querySchema = z.object({ market: z.string().regex(/^[A-Z]{2}$/).def
  */
 export const featureTypeSchema = z.enum(["boolean", "level", "number", "number_with_window"]);
 /**
- * A feature definition. `type` and `levels` (the ladder, least to most, for a `level` feature; null
- * otherwise) are optional only so responses served before they existed still parse.
+ * A feature definition, exactly as `featureDefinitions` in contract/definitions.ts. `levels` is the
+ * ladder, least to most, of a `level` feature, and is absent otherwise; `numericUnit` is the unit of a
+ * `number` or `number_with_window` feature, and null otherwise.
  */
-export const featureDefinitionSchema = z.object({ key: z.string(), label: z.string(), description: z.string().nullable(),
-  category: z.string().nullable(), numericUnit: z.string().nullable(), type: featureTypeSchema.optional(),
-  levels: z.array(z.string()).nullable().optional() });
-export const definitionSchema = z.object({ key: z.string(), label: z.string(), description: z.string(), type: z.enum(["number", "enum", "boolean", "string"]), unit: z.string().nullable() });
+export const featureDefinitionSchema = z.object({ key: z.string(), label: z.string(), category: z.string(),
+  description: z.string(), type: featureTypeSchema, numericUnit: z.string().nullable(),
+  levels: z.array(z.string()).optional() });
+/**
+ * A specification definition, exactly as `specDefinitions` in contract/definitions.ts. A `number`
+ * specification is a measurement in `numericUnit`; an `enum` one is one of `values` (absent otherwise).
+ */
+export const definitionSchema = z.object({ key: z.string(), label: z.string(), category: z.string(),
+  description: z.string(), type: z.enum(["number", "enum"]), numericUnit: z.string().nullable(),
+  values: z.array(z.string()).optional() });
 export const responseSchema = z.object({ apiVersion: z.literal("1"), asOf: z.iso.datetime(), market: z.string(), powertrain: powertrainFilterSchema,
   data: z.discriminatedUnion("kind", [
     z.object({ kind: z.literal("makes"), items: z.array(z.object({ id: z.uuid(), name: z.string() })), nextOffset: z.number().int().nullable() }),
@@ -114,5 +128,7 @@ export type ResponseData = z.infer<typeof responseSchema>["data"];
 
 export type Photo = z.infer<typeof photoSchema>;
 export type BatteryBasis = z.infer<typeof batteryBasisSchema>;
+export type Battery = z.infer<typeof batterySchema>;
+export type Availability = z.infer<typeof availabilitySchema>;
 export type PriceMethod = z.infer<typeof priceMethodSchema>;
 export type ModelDetail = Extract<ResponseData, { kind: "model" }>;

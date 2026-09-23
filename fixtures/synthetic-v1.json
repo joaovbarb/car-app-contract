@@ -20,7 +20,7 @@
                 "Example E1"
               ],
               "market": "PT",
-              "availability": "confirmed_current",
+              "availability": "current",
               "publication": "has_published_versions",
               "publishedVersionCount": 4,
               "photo": {
@@ -78,7 +78,7 @@
               "name": "Example Three",
               "aliases": [],
               "market": "PT",
-              "availability": "confirmed_current",
+              "availability": "current",
               "publication": "has_published_versions",
               "publishedVersionCount": 1,
               "photo": null,
@@ -127,7 +127,7 @@
               "Example E1"
             ],
             "market": "PT",
-            "availability": "confirmed_current",
+            "availability": "current",
             "publication": "has_published_versions",
             "publishedVersionCount": 4,
             "photo": {
@@ -181,7 +181,7 @@
               },
               "publication": "published",
               "powertrain": "bev",
-              "availability": "confirmed_current",
+              "availability": "current",
               "specs": {
                 "battery_capacity_nominal": {
                   "status": "unknown",
@@ -219,14 +219,18 @@
                   "unit": "s"
                 }
               },
+              "battery": {
+                "capacityKwh": 60,
+                "basis": "usable"
+              },
               "features": [
                 {
-                  "key": "seat_massage:position=driver",
-                  "featureKey": "seat_massage",
-                  "label": "Seat massage",
+                  "key": "heated_seats",
+                  "featureKey": "heated_seats",
+                  "label": "Heated seats",
                   "category": "comfort",
                   "attributes": {
-                    "position": "driver"
+                    "level": "front"
                   },
                   "evidence": "resolved",
                   "fitment": "standard",
@@ -237,12 +241,12 @@
                   }
                 },
                 {
-                  "key": "seat_massage:position=front_passenger",
-                  "featureKey": "seat_massage",
-                  "label": "Seat massage",
+                  "key": "ventilated_seats",
+                  "featureKey": "ventilated_seats",
+                  "label": "Ventilated seats",
                   "category": "comfort",
                   "attributes": {
-                    "position": "front_passenger"
+                    "level": "front"
                   },
                   "evidence": "resolved",
                   "fitment": "optional",
@@ -253,11 +257,13 @@
                   }
                 },
                 {
-                  "key": "glass_roof",
-                  "featureKey": "glass_roof",
-                  "label": "Glass roof",
+                  "key": "panoramic_roof",
+                  "featureKey": "panoramic_roof",
+                  "label": "Panoramic roof",
                   "category": "comfort",
-                  "attributes": {},
+                  "attributes": {
+                    "level": "fixed"
+                  },
                   "evidence": "resolved",
                   "fitment": "pack_only",
                   "numeric": {
@@ -267,17 +273,17 @@
                   }
                 },
                 {
-                  "key": "frunk",
-                  "featureKey": "frunk",
-                  "label": "Front storage",
-                  "category": "practicality",
+                  "key": "wheel_size",
+                  "featureKey": "wheel_size",
+                  "label": "Wheel size",
+                  "category": "exterior",
                   "attributes": {},
                   "evidence": "unknown",
                   "fitment": "unknown",
                   "numeric": {
                     "status": "resolved",
-                    "value": 35,
-                    "unit": "l"
+                    "value": 19,
+                    "unit": "in"
                   }
                 }
               ],
@@ -328,7 +334,7 @@
               },
               "publication": "published",
               "powertrain": "bev",
-              "availability": "confirmed_current",
+              "availability": "current",
               "specs": {
                 "battery_capacity_nominal": {
                   "status": "unknown",
@@ -366,14 +372,18 @@
                   "unit": "s"
                 }
               },
+              "battery": {
+                "capacityKwh": 80,
+                "basis": "usable"
+              },
               "features": [
                 {
-                  "key": "seat_massage:position=driver",
-                  "featureKey": "seat_massage",
-                  "label": "Seat massage",
+                  "key": "heated_seats",
+                  "featureKey": "heated_seats",
+                  "label": "Heated seats",
                   "category": "comfort",
                   "attributes": {
-                    "position": "driver"
+                    "level": "front"
                   },
                   "evidence": "resolved",
                   "fitment": "standard",
@@ -384,12 +394,12 @@
                   }
                 },
                 {
-                  "key": "seat_massage:position=front_passenger",
-                  "featureKey": "seat_massage",
-                  "label": "Seat massage",
+                  "key": "ventilated_seats",
+                  "featureKey": "ventilated_seats",
+                  "label": "Ventilated seats",
                   "category": "comfort",
                   "attributes": {
-                    "position": "front_passenger"
+                    "level": "front"
                   },
                   "evidence": "resolved",
                   "fitment": "optional",
@@ -400,11 +410,13 @@
                   }
                 },
                 {
-                  "key": "glass_roof",
-                  "featureKey": "glass_roof",
-                  "label": "Glass roof",
+                  "key": "panoramic_roof",
+                  "featureKey": "panoramic_roof",
+                  "label": "Panoramic roof",
                   "category": "comfort",
-                  "attributes": {},
+                  "attributes": {
+                    "level": "fixed"
+                  },
                   "evidence": "resolved",
                   "fitment": "pack_only",
                   "numeric": {
@@ -414,17 +426,17 @@
                   }
                 },
                 {
-                  "key": "frunk",
-                  "featureKey": "frunk",
-                  "label": "Front storage",
-                  "category": "practicality",
+                  "key": "wheel_size",
+                  "featureKey": "wheel_size",
+                  "label": "Wheel size",
+                  "category": "exterior",
                   "attributes": {},
                   "evidence": "unknown",
                   "fitment": "unknown",
                   "numeric": {
                     "status": "resolved",
-                    "value": 35,
-                    "unit": "l"
+                    "value": 19,
+                    "unit": "in"
                   }
                 }
               ],
@@ -475,7 +487,7 @@
               },
               "publication": "published",
               "powertrain": "bev",
-              "availability": "confirmed_current",
+              "availability": "current",
               "specs": {
                 "battery_capacity_nominal": {
                   "status": "unknown",
@@ -513,6 +525,7 @@
                   "unit": "s"
                 }
               },
+              "battery": null,
               "features": [],
               "price": null,
               "photos": [],
@@ -535,7 +548,7 @@
               },
               "publication": "published",
               "powertrain": "bev",
-              "availability": "confirmed_current",
+              "availability": "current",
               "specs": {
                 "battery_capacity_nominal": {
                   "status": "unknown",
@@ -573,14 +586,18 @@
                   "unit": "s"
                 }
               },
+              "battery": {
+                "capacityKwh": 60,
+                "basis": "usable"
+              },
               "features": [
                 {
-                  "key": "seat_massage:position=driver",
-                  "featureKey": "seat_massage",
-                  "label": "Seat massage",
+                  "key": "heated_seats",
+                  "featureKey": "heated_seats",
+                  "label": "Heated seats",
                   "category": "comfort",
                   "attributes": {
-                    "position": "driver"
+                    "level": "front"
                   },
                   "evidence": "resolved",
                   "fitment": "standard",
@@ -591,12 +608,12 @@
                   }
                 },
                 {
-                  "key": "seat_massage:position=front_passenger",
-                  "featureKey": "seat_massage",
-                  "label": "Seat massage",
+                  "key": "ventilated_seats",
+                  "featureKey": "ventilated_seats",
+                  "label": "Ventilated seats",
                   "category": "comfort",
                   "attributes": {
-                    "position": "front_passenger"
+                    "level": "front"
                   },
                   "evidence": "resolved",
                   "fitment": "optional",
@@ -607,11 +624,13 @@
                   }
                 },
                 {
-                  "key": "glass_roof",
-                  "featureKey": "glass_roof",
-                  "label": "Glass roof",
+                  "key": "panoramic_roof",
+                  "featureKey": "panoramic_roof",
+                  "label": "Panoramic roof",
                   "category": "comfort",
-                  "attributes": {},
+                  "attributes": {
+                    "level": "fixed"
+                  },
                   "evidence": "resolved",
                   "fitment": "pack_only",
                   "numeric": {
@@ -621,17 +640,17 @@
                   }
                 },
                 {
-                  "key": "frunk",
-                  "featureKey": "frunk",
-                  "label": "Front storage",
-                  "category": "practicality",
+                  "key": "wheel_size",
+                  "featureKey": "wheel_size",
+                  "label": "Wheel size",
+                  "category": "exterior",
                   "attributes": {},
                   "evidence": "unknown",
                   "fitment": "unknown",
                   "numeric": {
                     "status": "resolved",
-                    "value": 35,
-                    "unit": "l"
+                    "value": 19,
+                    "unit": "in"
                   }
                 }
               ],
@@ -668,7 +687,7 @@
       }
     },
     {
-      "name": "Comparison: driver/passenger, optional/pack-only, disputed, missing and stale information",
+      "name": "Comparison: level features, optional/pack-only, disputed, missing and stale information",
       "response": {
         "apiVersion": "1",
         "asOf": "2026-09-17T12:00:00.000Z",
@@ -694,7 +713,7 @@
               },
               "publication": "published",
               "powertrain": "bev",
-              "availability": "confirmed_current",
+              "availability": "current",
               "specs": {
                 "battery_capacity_nominal": {
                   "status": "unknown",
@@ -732,14 +751,18 @@
                   "unit": "s"
                 }
               },
+              "battery": {
+                "capacityKwh": 60,
+                "basis": "usable"
+              },
               "features": [
                 {
-                  "key": "seat_massage:position=driver",
-                  "featureKey": "seat_massage",
-                  "label": "Seat massage",
+                  "key": "heated_seats",
+                  "featureKey": "heated_seats",
+                  "label": "Heated seats",
                   "category": "comfort",
                   "attributes": {
-                    "position": "driver"
+                    "level": "front"
                   },
                   "evidence": "resolved",
                   "fitment": "standard",
@@ -750,12 +773,12 @@
                   }
                 },
                 {
-                  "key": "seat_massage:position=front_passenger",
-                  "featureKey": "seat_massage",
-                  "label": "Seat massage",
+                  "key": "ventilated_seats",
+                  "featureKey": "ventilated_seats",
+                  "label": "Ventilated seats",
                   "category": "comfort",
                   "attributes": {
-                    "position": "front_passenger"
+                    "level": "front"
                   },
                   "evidence": "resolved",
                   "fitment": "optional",
@@ -766,11 +789,13 @@
                   }
                 },
                 {
-                  "key": "glass_roof",
-                  "featureKey": "glass_roof",
-                  "label": "Glass roof",
+                  "key": "panoramic_roof",
+                  "featureKey": "panoramic_roof",
+                  "label": "Panoramic roof",
                   "category": "comfort",
-                  "attributes": {},
+                  "attributes": {
+                    "level": "fixed"
+                  },
                   "evidence": "resolved",
                   "fitment": "pack_only",
                   "numeric": {
@@ -780,17 +805,17 @@
                   }
                 },
                 {
-                  "key": "frunk",
-                  "featureKey": "frunk",
-                  "label": "Front storage",
-                  "category": "practicality",
+                  "key": "wheel_size",
+                  "featureKey": "wheel_size",
+                  "label": "Wheel size",
+                  "category": "exterior",
                   "attributes": {},
                   "evidence": "unknown",
                   "fitment": "unknown",
                   "numeric": {
                     "status": "resolved",
-                    "value": 35,
-                    "unit": "l"
+                    "value": 19,
+                    "unit": "in"
                   }
                 }
               ],
@@ -841,7 +866,7 @@
               },
               "publication": "published",
               "powertrain": "bev",
-              "availability": "confirmed_current",
+              "availability": "current",
               "specs": {
                 "battery_capacity_nominal": {
                   "status": "unknown",
@@ -879,14 +904,18 @@
                   "unit": "s"
                 }
               },
+              "battery": {
+                "capacityKwh": 80,
+                "basis": "usable"
+              },
               "features": [
                 {
-                  "key": "seat_massage:position=driver",
-                  "featureKey": "seat_massage",
-                  "label": "Seat massage",
+                  "key": "heated_seats",
+                  "featureKey": "heated_seats",
+                  "label": "Heated seats",
                   "category": "comfort",
                   "attributes": {
-                    "position": "driver"
+                    "level": "front"
                   },
                   "evidence": "resolved",
                   "fitment": "standard",
@@ -897,12 +926,12 @@
                   }
                 },
                 {
-                  "key": "seat_massage:position=front_passenger",
-                  "featureKey": "seat_massage",
-                  "label": "Seat massage",
+                  "key": "ventilated_seats",
+                  "featureKey": "ventilated_seats",
+                  "label": "Ventilated seats",
                   "category": "comfort",
                   "attributes": {
-                    "position": "front_passenger"
+                    "level": "front"
                   },
                   "evidence": "resolved",
                   "fitment": "optional",
@@ -913,11 +942,13 @@
                   }
                 },
                 {
-                  "key": "glass_roof",
-                  "featureKey": "glass_roof",
-                  "label": "Glass roof",
+                  "key": "panoramic_roof",
+                  "featureKey": "panoramic_roof",
+                  "label": "Panoramic roof",
                   "category": "comfort",
-                  "attributes": {},
+                  "attributes": {
+                    "level": "fixed"
+                  },
                   "evidence": "resolved",
                   "fitment": "pack_only",
                   "numeric": {
@@ -927,17 +958,17 @@
                   }
                 },
                 {
-                  "key": "frunk",
-                  "featureKey": "frunk",
-                  "label": "Front storage",
-                  "category": "practicality",
+                  "key": "wheel_size",
+                  "featureKey": "wheel_size",
+                  "label": "Wheel size",
+                  "category": "exterior",
                   "attributes": {},
                   "evidence": "unknown",
                   "fitment": "unknown",
                   "numeric": {
                     "status": "resolved",
-                    "value": 35,
-                    "unit": "l"
+                    "value": 19,
+                    "unit": "in"
                   }
                 }
               ],
@@ -988,7 +1019,7 @@
               },
               "publication": "published",
               "powertrain": "bev",
-              "availability": "confirmed_current",
+              "availability": "current",
               "specs": {
                 "battery_capacity_nominal": {
                   "status": "unknown",
@@ -1026,6 +1057,7 @@
                   "unit": "s"
                 }
               },
+              "battery": null,
               "features": [],
               "price": null,
               "photos": [],
@@ -1048,7 +1080,7 @@
               },
               "publication": "published",
               "powertrain": "bev",
-              "availability": "confirmed_current",
+              "availability": "current",
               "specs": {
                 "battery_capacity_nominal": {
                   "status": "unknown",
@@ -1086,14 +1118,18 @@
                   "unit": "s"
                 }
               },
+              "battery": {
+                "capacityKwh": 60,
+                "basis": "usable"
+              },
               "features": [
                 {
-                  "key": "seat_massage:position=driver",
-                  "featureKey": "seat_massage",
-                  "label": "Seat massage",
+                  "key": "heated_seats",
+                  "featureKey": "heated_seats",
+                  "label": "Heated seats",
                   "category": "comfort",
                   "attributes": {
-                    "position": "driver"
+                    "level": "front"
                   },
                   "evidence": "resolved",
                   "fitment": "standard",
@@ -1104,12 +1140,12 @@
                   }
                 },
                 {
-                  "key": "seat_massage:position=front_passenger",
-                  "featureKey": "seat_massage",
-                  "label": "Seat massage",
+                  "key": "ventilated_seats",
+                  "featureKey": "ventilated_seats",
+                  "label": "Ventilated seats",
                   "category": "comfort",
                   "attributes": {
-                    "position": "front_passenger"
+                    "level": "front"
                   },
                   "evidence": "resolved",
                   "fitment": "optional",
@@ -1120,11 +1156,13 @@
                   }
                 },
                 {
-                  "key": "glass_roof",
-                  "featureKey": "glass_roof",
-                  "label": "Glass roof",
+                  "key": "panoramic_roof",
+                  "featureKey": "panoramic_roof",
+                  "label": "Panoramic roof",
                   "category": "comfort",
-                  "attributes": {},
+                  "attributes": {
+                    "level": "fixed"
+                  },
                   "evidence": "resolved",
                   "fitment": "pack_only",
                   "numeric": {
@@ -1134,17 +1172,17 @@
                   }
                 },
                 {
-                  "key": "frunk",
-                  "featureKey": "frunk",
-                  "label": "Front storage",
-                  "category": "practicality",
+                  "key": "wheel_size",
+                  "featureKey": "wheel_size",
+                  "label": "Wheel size",
+                  "category": "exterior",
                   "attributes": {},
                   "evidence": "unknown",
                   "fitment": "unknown",
                   "numeric": {
                     "status": "resolved",
-                    "value": 35,
-                    "unit": "l"
+                    "value": 19,
+                    "unit": "in"
                   }
                 }
               ],
@@ -1342,137 +1380,15 @@
           ],
           "features": [
             {
-              "key": "frunk",
+              "key": "heated_seats",
               "cells": [
                 {
-                  "key": "frunk",
-                  "featureKey": "frunk",
-                  "label": "Front storage",
-                  "category": "practicality",
-                  "attributes": {},
-                  "evidence": "unknown",
-                  "fitment": "unknown",
-                  "numeric": {
-                    "status": "resolved",
-                    "value": 35,
-                    "unit": "l"
-                  }
-                },
-                {
-                  "key": "frunk",
-                  "featureKey": "frunk",
-                  "label": "Front storage",
-                  "category": "practicality",
-                  "attributes": {},
-                  "evidence": "unknown",
-                  "fitment": "unknown",
-                  "numeric": {
-                    "status": "resolved",
-                    "value": 35,
-                    "unit": "l"
-                  }
-                },
-                {
-                  "key": "frunk",
-                  "featureKey": "frunk",
-                  "label": "Front storage",
-                  "category": "practicality",
-                  "attributes": {},
-                  "evidence": "unknown",
-                  "fitment": "unknown",
-                  "numeric": {
-                    "status": "unknown",
-                    "value": null,
-                    "unit": "l"
-                  }
-                },
-                {
-                  "key": "frunk",
-                  "featureKey": "frunk",
-                  "label": "Front storage",
-                  "category": "practicality",
-                  "attributes": {},
-                  "evidence": "unknown",
-                  "fitment": "unknown",
-                  "numeric": {
-                    "status": "resolved",
-                    "value": 35,
-                    "unit": "l"
-                  }
-                }
-              ]
-            },
-            {
-              "key": "glass_roof",
-              "cells": [
-                {
-                  "key": "glass_roof",
-                  "featureKey": "glass_roof",
-                  "label": "Glass roof",
-                  "category": "comfort",
-                  "attributes": {},
-                  "evidence": "resolved",
-                  "fitment": "pack_only",
-                  "numeric": {
-                    "status": "unknown",
-                    "value": null,
-                    "unit": null
-                  }
-                },
-                {
-                  "key": "glass_roof",
-                  "featureKey": "glass_roof",
-                  "label": "Glass roof",
-                  "category": "comfort",
-                  "attributes": {},
-                  "evidence": "resolved",
-                  "fitment": "pack_only",
-                  "numeric": {
-                    "status": "unknown",
-                    "value": null,
-                    "unit": null
-                  }
-                },
-                {
-                  "key": "glass_roof",
-                  "featureKey": "glass_roof",
-                  "label": "Glass roof",
-                  "category": "comfort",
-                  "attributes": {},
-                  "evidence": "unknown",
-                  "fitment": "unknown",
-                  "numeric": {
-                    "status": "unknown",
-                    "value": null,
-                    "unit": null
-                  }
-                },
-                {
-                  "key": "glass_roof",
-                  "featureKey": "glass_roof",
-                  "label": "Glass roof",
-                  "category": "comfort",
-                  "attributes": {},
-                  "evidence": "resolved",
-                  "fitment": "pack_only",
-                  "numeric": {
-                    "status": "unknown",
-                    "value": null,
-                    "unit": null
-                  }
-                }
-              ]
-            },
-            {
-              "key": "seat_massage:position=driver",
-              "cells": [
-                {
-                  "key": "seat_massage:position=driver",
-                  "featureKey": "seat_massage",
-                  "label": "Seat massage",
+                  "key": "heated_seats",
+                  "featureKey": "heated_seats",
+                  "label": "Heated seats",
                   "category": "comfort",
                   "attributes": {
-                    "position": "driver"
+                    "level": "front"
                   },
                   "evidence": "resolved",
                   "fitment": "standard",
@@ -1483,12 +1399,12 @@
                   }
                 },
                 {
-                  "key": "seat_massage:position=driver",
-                  "featureKey": "seat_massage",
-                  "label": "Seat massage",
+                  "key": "heated_seats",
+                  "featureKey": "heated_seats",
+                  "label": "Heated seats",
                   "category": "comfort",
                   "attributes": {
-                    "position": "driver"
+                    "level": "front"
                   },
                   "evidence": "resolved",
                   "fitment": "standard",
@@ -1499,13 +1415,11 @@
                   }
                 },
                 {
-                  "key": "seat_massage:position=driver",
-                  "featureKey": "seat_massage",
-                  "label": "Seat massage",
+                  "key": "heated_seats",
+                  "featureKey": "heated_seats",
+                  "label": "Heated seats",
                   "category": "comfort",
-                  "attributes": {
-                    "position": "driver"
-                  },
+                  "attributes": {},
                   "evidence": "unknown",
                   "fitment": "unknown",
                   "numeric": {
@@ -1515,12 +1429,12 @@
                   }
                 },
                 {
-                  "key": "seat_massage:position=driver",
-                  "featureKey": "seat_massage",
-                  "label": "Seat massage",
+                  "key": "heated_seats",
+                  "featureKey": "heated_seats",
+                  "label": "Heated seats",
                   "category": "comfort",
                   "attributes": {
-                    "position": "driver"
+                    "level": "front"
                   },
                   "evidence": "resolved",
                   "fitment": "standard",
@@ -1533,18 +1447,18 @@
               ]
             },
             {
-              "key": "seat_massage:position=front_passenger",
+              "key": "panoramic_roof",
               "cells": [
                 {
-                  "key": "seat_massage:position=front_passenger",
-                  "featureKey": "seat_massage",
-                  "label": "Seat massage",
+                  "key": "panoramic_roof",
+                  "featureKey": "panoramic_roof",
+                  "label": "Panoramic roof",
                   "category": "comfort",
                   "attributes": {
-                    "position": "front_passenger"
+                    "level": "fixed"
                   },
                   "evidence": "resolved",
-                  "fitment": "optional",
+                  "fitment": "pack_only",
                   "numeric": {
                     "status": "unknown",
                     "value": null,
@@ -1552,15 +1466,15 @@
                   }
                 },
                 {
-                  "key": "seat_massage:position=front_passenger",
-                  "featureKey": "seat_massage",
-                  "label": "Seat massage",
+                  "key": "panoramic_roof",
+                  "featureKey": "panoramic_roof",
+                  "label": "Panoramic roof",
                   "category": "comfort",
                   "attributes": {
-                    "position": "front_passenger"
+                    "level": "fixed"
                   },
                   "evidence": "resolved",
-                  "fitment": "optional",
+                  "fitment": "pack_only",
                   "numeric": {
                     "status": "unknown",
                     "value": null,
@@ -1568,13 +1482,11 @@
                   }
                 },
                 {
-                  "key": "seat_massage:position=front_passenger",
-                  "featureKey": "seat_massage",
-                  "label": "Seat massage",
+                  "key": "panoramic_roof",
+                  "featureKey": "panoramic_roof",
+                  "label": "Panoramic roof",
                   "category": "comfort",
-                  "attributes": {
-                    "position": "front_passenger"
-                  },
+                  "attributes": {},
                   "evidence": "unknown",
                   "fitment": "unknown",
                   "numeric": {
@@ -1584,12 +1496,33 @@
                   }
                 },
                 {
-                  "key": "seat_massage:position=front_passenger",
-                  "featureKey": "seat_massage",
-                  "label": "Seat massage",
+                  "key": "panoramic_roof",
+                  "featureKey": "panoramic_roof",
+                  "label": "Panoramic roof",
                   "category": "comfort",
                   "attributes": {
-                    "position": "front_passenger"
+                    "level": "fixed"
+                  },
+                  "evidence": "resolved",
+                  "fitment": "pack_only",
+                  "numeric": {
+                    "status": "unknown",
+                    "value": null,
+                    "unit": null
+                  }
+                }
+              ]
+            },
+            {
+              "key": "ventilated_seats",
+              "cells": [
+                {
+                  "key": "ventilated_seats",
+                  "featureKey": "ventilated_seats",
+                  "label": "Ventilated seats",
+                  "category": "comfort",
+                  "attributes": {
+                    "level": "front"
                   },
                   "evidence": "resolved",
                   "fitment": "optional",
@@ -1597,6 +1530,113 @@
                     "status": "unknown",
                     "value": null,
                     "unit": null
+                  }
+                },
+                {
+                  "key": "ventilated_seats",
+                  "featureKey": "ventilated_seats",
+                  "label": "Ventilated seats",
+                  "category": "comfort",
+                  "attributes": {
+                    "level": "front"
+                  },
+                  "evidence": "resolved",
+                  "fitment": "optional",
+                  "numeric": {
+                    "status": "unknown",
+                    "value": null,
+                    "unit": null
+                  }
+                },
+                {
+                  "key": "ventilated_seats",
+                  "featureKey": "ventilated_seats",
+                  "label": "Ventilated seats",
+                  "category": "comfort",
+                  "attributes": {},
+                  "evidence": "unknown",
+                  "fitment": "unknown",
+                  "numeric": {
+                    "status": "unknown",
+                    "value": null,
+                    "unit": null
+                  }
+                },
+                {
+                  "key": "ventilated_seats",
+                  "featureKey": "ventilated_seats",
+                  "label": "Ventilated seats",
+                  "category": "comfort",
+                  "attributes": {
+                    "level": "front"
+                  },
+                  "evidence": "resolved",
+                  "fitment": "optional",
+                  "numeric": {
+                    "status": "unknown",
+                    "value": null,
+                    "unit": null
+                  }
+                }
+              ]
+            },
+            {
+              "key": "wheel_size",
+              "cells": [
+                {
+                  "key": "wheel_size",
+                  "featureKey": "wheel_size",
+                  "label": "Wheel size",
+                  "category": "exterior",
+                  "attributes": {},
+                  "evidence": "unknown",
+                  "fitment": "unknown",
+                  "numeric": {
+                    "status": "resolved",
+                    "value": 19,
+                    "unit": "in"
+                  }
+                },
+                {
+                  "key": "wheel_size",
+                  "featureKey": "wheel_size",
+                  "label": "Wheel size",
+                  "category": "exterior",
+                  "attributes": {},
+                  "evidence": "unknown",
+                  "fitment": "unknown",
+                  "numeric": {
+                    "status": "resolved",
+                    "value": 19,
+                    "unit": "in"
+                  }
+                },
+                {
+                  "key": "wheel_size",
+                  "featureKey": "wheel_size",
+                  "label": "Wheel size",
+                  "category": "exterior",
+                  "attributes": {},
+                  "evidence": "unknown",
+                  "fitment": "unknown",
+                  "numeric": {
+                    "status": "unknown",
+                    "value": null,
+                    "unit": "in"
+                  }
+                },
+                {
+                  "key": "wheel_size",
+                  "featureKey": "wheel_size",
+                  "label": "Wheel size",
+                  "category": "exterior",
+                  "attributes": {},
+                  "evidence": "unknown",
+                  "fitment": "unknown",
+                  "numeric": {
+                    "status": "resolved",
+                    "value": 19,
+                    "unit": "in"
                   }
                 }
               ]
@@ -1669,7 +1709,7 @@
             },
             "publication": "published",
             "powertrain": "bev",
-            "availability": "confirmed_current",
+            "availability": "current",
             "specs": {
               "battery_capacity_nominal": {
                 "status": "unknown",
@@ -1707,6 +1747,7 @@
                 "unit": "s"
               }
             },
+            "battery": null,
             "features": [],
             "price": null,
             "photos": [],
@@ -1747,7 +1788,7 @@
             },
             "publication": "published",
             "powertrain": "bev",
-            "availability": "confirmed_current",
+            "availability": "current",
             "specs": {
               "battery_capacity_nominal": {
                 "status": "unknown",
@@ -1785,14 +1826,18 @@
                 "unit": "s"
               }
             },
+            "battery": {
+              "capacityKwh": 60,
+              "basis": "usable"
+            },
             "features": [
               {
-                "key": "seat_massage:position=driver",
-                "featureKey": "seat_massage",
-                "label": "Seat massage",
+                "key": "heated_seats",
+                "featureKey": "heated_seats",
+                "label": "Heated seats",
                 "category": "comfort",
                 "attributes": {
-                  "position": "driver"
+                  "level": "front"
                 },
                 "evidence": "resolved",
                 "fitment": "standard",
@@ -1803,12 +1848,12 @@
                 }
               },
               {
-                "key": "seat_massage:position=front_passenger",
-                "featureKey": "seat_massage",
-                "label": "Seat massage",
+                "key": "ventilated_seats",
+                "featureKey": "ventilated_seats",
+                "label": "Ventilated seats",
                 "category": "comfort",
                 "attributes": {
-                  "position": "front_passenger"
+                  "level": "front"
                 },
                 "evidence": "resolved",
                 "fitment": "optional",
@@ -1819,11 +1864,13 @@
                 }
               },
               {
-                "key": "glass_roof",
-                "featureKey": "glass_roof",
-                "label": "Glass roof",
+                "key": "panoramic_roof",
+                "featureKey": "panoramic_roof",
+                "label": "Panoramic roof",
                 "category": "comfort",
-                "attributes": {},
+                "attributes": {
+                  "level": "fixed"
+                },
                 "evidence": "resolved",
                 "fitment": "pack_only",
                 "numeric": {
@@ -1833,17 +1880,17 @@
                 }
               },
               {
-                "key": "frunk",
-                "featureKey": "frunk",
-                "label": "Front storage",
-                "category": "practicality",
+                "key": "wheel_size",
+                "featureKey": "wheel_size",
+                "label": "Wheel size",
+                "category": "exterior",
                 "attributes": {},
                 "evidence": "unknown",
                 "fitment": "unknown",
                 "numeric": {
                   "status": "resolved",
-                  "value": 35,
-                  "unit": "l"
+                  "value": 19,
+                  "unit": "in"
                 }
               }
             ],
@@ -1888,7 +1935,7 @@
       }
     },
     {
-      "name": "Definitions with open-ended feature concepts",
+      "name": "Definitions: the fixed specification and feature catalogues",
       "response": {
         "apiVersion": "1",
         "asOf": "2026-09-17T12:00:00.000Z",
@@ -1900,144 +1947,362 @@
             {
               "key": "battery_capacity_nominal",
               "label": "Battery, nominal capacity",
-              "description": "Published catalogue specification.",
+              "category": "battery_and_charging",
+              "description": "Total (gross) battery capacity, as the manufacturer states it.",
               "type": "number",
-              "unit": "kWh"
+              "numericUnit": "kWh"
             },
             {
               "key": "battery_capacity_usable",
               "label": "Battery, usable capacity",
-              "description": "Published catalogue specification.",
+              "category": "battery_and_charging",
+              "description": "Energy the car can actually use (net capacity).",
               "type": "number",
-              "unit": "kWh"
+              "numericUnit": "kWh"
             },
             {
               "key": "range_wltp",
               "label": "Range (WLTP)",
-              "description": "Published catalogue specification.",
+              "category": "efficiency",
+              "description": "Combined range on the WLTP test cycle.",
               "type": "number",
-              "unit": "km"
+              "numericUnit": "km"
             },
             {
               "key": "consumption_wltp",
               "label": "Consumption (WLTP)",
-              "description": "Published catalogue specification.",
+              "category": "efficiency",
+              "description": "Combined energy consumption on the WLTP test cycle.",
               "type": "number",
-              "unit": "kWh/100 km"
+              "numericUnit": "kWh/100 km"
             },
             {
               "key": "power",
               "label": "Power",
-              "description": "Published catalogue specification.",
+              "category": "performance",
+              "description": "Maximum power of the motors combined.",
               "type": "number",
-              "unit": "kW"
+              "numericUnit": "kW"
             },
             {
               "key": "torque",
               "label": "Torque",
-              "description": "Published catalogue specification.",
+              "category": "performance",
+              "description": "Maximum torque of the motors combined.",
               "type": "number",
-              "unit": "Nm"
+              "numericUnit": "Nm"
             },
             {
               "key": "dc_charging_power_max",
               "label": "Maximum DC charging power",
-              "description": "Published catalogue specification.",
+              "category": "battery_and_charging",
+              "description": "Highest charging power on a DC fast charger.",
               "type": "number",
-              "unit": "kW"
+              "numericUnit": "kW"
             },
             {
               "key": "ac_charging_power_max",
               "label": "Maximum AC charging power",
-              "description": "Published catalogue specification.",
+              "category": "battery_and_charging",
+              "description": "Highest charging power on AC, set by the on-board charger.",
               "type": "number",
-              "unit": "kW"
+              "numericUnit": "kW"
             },
             {
               "key": "acceleration_0_100",
               "label": "0-100 km/h",
-              "description": "Published catalogue specification.",
+              "category": "performance",
+              "description": "Time from standstill to 100 km/h.",
               "type": "number",
-              "unit": "s"
+              "numericUnit": "s"
             },
             {
               "key": "top_speed",
               "label": "Top speed",
-              "description": "Published catalogue specification.",
+              "category": "performance",
+              "description": "Maximum speed.",
               "type": "number",
-              "unit": "km/h"
+              "numericUnit": "km/h"
             },
             {
               "key": "drivetrain",
               "label": "Drivetrain",
-              "description": "Published catalogue specification.",
+              "category": "performance",
+              "description": "Driven wheels: front, rear or all.",
               "type": "enum",
-              "unit": null
+              "numericUnit": null,
+              "values": [
+                "fwd",
+                "rwd",
+                "awd"
+              ]
             },
             {
               "key": "length",
               "label": "Length",
-              "description": "Published catalogue specification.",
+              "category": "dimensions",
+              "description": "Overall length.",
               "type": "number",
-              "unit": "mm"
+              "numericUnit": "mm"
             },
             {
               "key": "width",
               "label": "Width",
-              "description": "Published catalogue specification.",
+              "category": "dimensions",
+              "description": "Overall width, without mirrors unless the source says otherwise.",
               "type": "number",
-              "unit": "mm"
+              "numericUnit": "mm"
             },
             {
               "key": "height",
               "label": "Height",
-              "description": "Published catalogue specification.",
+              "category": "dimensions",
+              "description": "Overall height.",
               "type": "number",
-              "unit": "mm"
+              "numericUnit": "mm"
             },
             {
               "key": "boot_volume",
               "label": "Boot, seats up",
-              "description": "Published catalogue specification.",
+              "category": "dimensions",
+              "description": "Boot volume with the rear seats up.",
               "type": "number",
-              "unit": "l"
+              "numericUnit": "l"
             },
             {
               "key": "boot_volume_max",
               "label": "Boot, maximum",
-              "description": "Published catalogue specification.",
+              "category": "dimensions",
+              "description": "Boot volume with the rear seats folded.",
               "type": "number",
-              "unit": "l"
+              "numericUnit": "l"
             },
             {
               "key": "empty_weight",
               "label": "Empty weight",
-              "description": "Published catalogue specification.",
+              "category": "dimensions",
+              "description": "Weight in running order, as the manufacturer states it.",
               "type": "number",
-              "unit": "kg"
+              "numericUnit": "kg"
             }
           ],
           "features": [
             {
-              "key": "seat_massage",
-              "label": "Seat massage",
-              "description": "Massage seats; position is an assignment attribute.",
-              "category": "comfort",
+              "key": "heat_pump",
+              "label": "Heat pump",
+              "category": "charging",
+              "description": "Heat pump for cabin heating, which saves range in the cold.",
+              "type": "boolean",
               "numericUnit": null
             },
             {
-              "key": "glass_roof",
-              "label": "Glass roof",
-              "description": null,
-              "category": "comfort",
+              "key": "battery_preconditioning",
+              "label": "Battery pre-conditioning",
+              "category": "charging",
+              "description": "Warms or cools the battery before fast charging.",
+              "type": "boolean",
               "numericUnit": null
             },
             {
-              "key": "frunk",
-              "label": "Front storage",
-              "description": null,
-              "category": "practicality",
-              "numericUnit": "l"
+              "key": "head_up_display",
+              "label": "Head-up display",
+              "category": "driver_assistance",
+              "description": "Driving information projected in the driver's view.",
+              "type": "boolean",
+              "numericUnit": null
+            },
+            {
+              "key": "heated_steering_wheel",
+              "label": "Heated steering wheel",
+              "category": "comfort",
+              "description": "Heated steering wheel.",
+              "type": "boolean",
+              "numericUnit": null
+            },
+            {
+              "key": "keyless_entry_start",
+              "label": "Keyless entry and start",
+              "category": "comfort",
+              "description": "Unlocks and starts without taking out the key.",
+              "type": "boolean",
+              "numericUnit": null
+            },
+            {
+              "key": "bidirectional_charging",
+              "label": "Bidirectional charging",
+              "category": "charging",
+              "description": "Supplies power from the battery: to devices (V2L), a home (V2H) or the grid (V2G).",
+              "type": "level",
+              "numericUnit": null,
+              "levels": [
+                "v2l",
+                "v2h",
+                "v2g"
+              ]
+            },
+            {
+              "key": "climate_control",
+              "label": "Climate control",
+              "category": "comfort",
+              "description": "Type of climate control, from manual to multi-zone.",
+              "type": "level",
+              "numericUnit": null,
+              "levels": [
+                "manual",
+                "automatic",
+                "2_zone",
+                "3_zone",
+                "4_zone"
+              ]
+            },
+            {
+              "key": "parking_camera",
+              "label": "Parking camera",
+              "category": "driver_assistance",
+              "description": "Parking camera: rear, front and rear, or 360°.",
+              "type": "level",
+              "numericUnit": null,
+              "levels": [
+                "rear",
+                "front_and_rear",
+                "360"
+              ]
+            },
+            {
+              "key": "cruise_control",
+              "label": "Cruise control",
+              "category": "driver_assistance",
+              "description": "Cruise control, from standard to adaptive with lane centring.",
+              "type": "level",
+              "numericUnit": null,
+              "levels": [
+                "standard",
+                "adaptive",
+                "adaptive_lane_centring"
+              ]
+            },
+            {
+              "key": "seat_adjustment",
+              "label": "Seat adjustment",
+              "category": "comfort",
+              "description": "How the front seats adjust: manual, electric, electric with memory.",
+              "type": "level",
+              "numericUnit": null,
+              "levels": [
+                "manual",
+                "electric",
+                "electric_memory"
+              ]
+            },
+            {
+              "key": "heated_seats",
+              "label": "Heated seats",
+              "category": "comfort",
+              "description": "Heated seats, front only or front and rear.",
+              "type": "level",
+              "numericUnit": null,
+              "levels": [
+                "front",
+                "front_and_rear"
+              ]
+            },
+            {
+              "key": "ventilated_seats",
+              "label": "Ventilated seats",
+              "category": "comfort",
+              "description": "Ventilated seats, front only or front and rear.",
+              "type": "level",
+              "numericUnit": null,
+              "levels": [
+                "front",
+                "front_and_rear"
+              ]
+            },
+            {
+              "key": "headlights",
+              "label": "Headlights",
+              "category": "exterior",
+              "description": "Headlight technology.",
+              "type": "level",
+              "numericUnit": null,
+              "levels": [
+                "halogen",
+                "led",
+                "matrix_led"
+              ]
+            },
+            {
+              "key": "panoramic_roof",
+              "label": "Panoramic roof",
+              "category": "comfort",
+              "description": "Glass roof, fixed or opening.",
+              "type": "level",
+              "numericUnit": null,
+              "levels": [
+                "fixed",
+                "opening"
+              ]
+            },
+            {
+              "key": "tailgate",
+              "label": "Tailgate",
+              "category": "comfort",
+              "description": "How the tailgate opens: manual, electric, hands-free.",
+              "type": "level",
+              "numericUnit": null,
+              "levels": [
+                "manual",
+                "electric",
+                "hands_free"
+              ]
+            },
+            {
+              "key": "apple_carplay",
+              "label": "Apple CarPlay",
+              "category": "infotainment",
+              "description": "Apple CarPlay, wired or wireless.",
+              "type": "level",
+              "numericUnit": null,
+              "levels": [
+                "wired",
+                "wireless"
+              ]
+            },
+            {
+              "key": "android_auto",
+              "label": "Android Auto",
+              "category": "infotainment",
+              "description": "Android Auto, wired or wireless.",
+              "type": "level",
+              "numericUnit": null,
+              "levels": [
+                "wired",
+                "wireless"
+              ]
+            },
+            {
+              "key": "wheel_size",
+              "label": "Wheel size",
+              "category": "exterior",
+              "description": "Wheel diameter.",
+              "type": "number",
+              "numericUnit": "in"
+            },
+            {
+              "key": "central_screen_size",
+              "label": "Central screen",
+              "category": "infotainment",
+              "description": "Size of the central touchscreen.",
+              "type": "number",
+              "numericUnit": "in"
+            },
+            {
+              "key": "dc_charging_time",
+              "label": "DC charging time",
+              "category": "charging",
+              "description": "Time to charge on DC between the stated levels.",
+              "type": "number_with_window",
+              "numericUnit": "min"
             }
           ]
         }
@@ -2068,140 +2333,6 @@
           "kind": "makes",
           "items": [],
           "nextOffset": null
-        }
-      }
-    },
-    {
-      "name": "Definitions before feature population",
-      "response": {
-        "apiVersion": "1",
-        "asOf": "2026-09-17T12:00:00.000Z",
-        "market": "PT",
-        "powertrain": "bev",
-        "data": {
-          "kind": "definitions",
-          "specs": [
-            {
-              "key": "battery_capacity_nominal",
-              "label": "Battery, nominal capacity",
-              "description": "Published catalogue specification.",
-              "type": "number",
-              "unit": "kWh"
-            },
-            {
-              "key": "battery_capacity_usable",
-              "label": "Battery, usable capacity",
-              "description": "Published catalogue specification.",
-              "type": "number",
-              "unit": "kWh"
-            },
-            {
-              "key": "range_wltp",
-              "label": "Range (WLTP)",
-              "description": "Published catalogue specification.",
-              "type": "number",
-              "unit": "km"
-            },
-            {
-              "key": "consumption_wltp",
-              "label": "Consumption (WLTP)",
-              "description": "Published catalogue specification.",
-              "type": "number",
-              "unit": "kWh/100 km"
-            },
-            {
-              "key": "power",
-              "label": "Power",
-              "description": "Published catalogue specification.",
-              "type": "number",
-              "unit": "kW"
-            },
-            {
-              "key": "torque",
-              "label": "Torque",
-              "description": "Published catalogue specification.",
-              "type": "number",
-              "unit": "Nm"
-            },
-            {
-              "key": "dc_charging_power_max",
-              "label": "Maximum DC charging power",
-              "description": "Published catalogue specification.",
-              "type": "number",
-              "unit": "kW"
-            },
-            {
-              "key": "ac_charging_power_max",
-              "label": "Maximum AC charging power",
-              "description": "Published catalogue specification.",
-              "type": "number",
-              "unit": "kW"
-            },
-            {
-              "key": "acceleration_0_100",
-              "label": "0-100 km/h",
-              "description": "Published catalogue specification.",
-              "type": "number",
-              "unit": "s"
-            },
-            {
-              "key": "top_speed",
-              "label": "Top speed",
-              "description": "Published catalogue specification.",
-              "type": "number",
-              "unit": "km/h"
-            },
-            {
-              "key": "drivetrain",
-              "label": "Drivetrain",
-              "description": "Published catalogue specification.",
-              "type": "enum",
-              "unit": null
-            },
-            {
-              "key": "length",
-              "label": "Length",
-              "description": "Published catalogue specification.",
-              "type": "number",
-              "unit": "mm"
-            },
-            {
-              "key": "width",
-              "label": "Width",
-              "description": "Published catalogue specification.",
-              "type": "number",
-              "unit": "mm"
-            },
-            {
-              "key": "height",
-              "label": "Height",
-              "description": "Published catalogue specification.",
-              "type": "number",
-              "unit": "mm"
-            },
-            {
-              "key": "boot_volume",
-              "label": "Boot, seats up",
-              "description": "Published catalogue specification.",
-              "type": "number",
-              "unit": "l"
-            },
-            {
-              "key": "boot_volume_max",
-              "label": "Boot, maximum",
-              "description": "Published catalogue specification.",
-              "type": "number",
-              "unit": "l"
-            },
-            {
-              "key": "empty_weight",
-              "label": "Empty weight",
-              "description": "Published catalogue specification.",
-              "type": "number",
-              "unit": "kg"
-            }
-          ],
-          "features": []
         }
       }
     },
@@ -2251,7 +2382,7 @@
               "Example E1"
             ],
             "market": "PT",
-            "availability": "confirmed_current",
+            "availability": "current",
             "publication": "has_published_versions",
             "publishedVersionCount": 4,
             "photo": {
@@ -2305,7 +2436,7 @@
               },
               "publication": "published",
               "powertrain": "bev",
-              "availability": "confirmed_current",
+              "availability": "current",
               "specs": {
                 "battery_capacity_nominal": {
                   "status": "unknown",
@@ -2343,14 +2474,18 @@
                   "unit": "s"
                 }
               },
+              "battery": {
+                "capacityKwh": 60,
+                "basis": "usable"
+              },
               "features": [
                 {
-                  "key": "seat_massage:position=driver",
-                  "featureKey": "seat_massage",
-                  "label": "Seat massage",
+                  "key": "heated_seats",
+                  "featureKey": "heated_seats",
+                  "label": "Heated seats",
                   "category": "comfort",
                   "attributes": {
-                    "position": "driver"
+                    "level": "front"
                   },
                   "evidence": "resolved",
                   "fitment": "standard",
@@ -2361,12 +2496,12 @@
                   }
                 },
                 {
-                  "key": "seat_massage:position=front_passenger",
-                  "featureKey": "seat_massage",
-                  "label": "Seat massage",
+                  "key": "ventilated_seats",
+                  "featureKey": "ventilated_seats",
+                  "label": "Ventilated seats",
                   "category": "comfort",
                   "attributes": {
-                    "position": "front_passenger"
+                    "level": "front"
                   },
                   "evidence": "resolved",
                   "fitment": "optional",
@@ -2377,11 +2512,13 @@
                   }
                 },
                 {
-                  "key": "glass_roof",
-                  "featureKey": "glass_roof",
-                  "label": "Glass roof",
+                  "key": "panoramic_roof",
+                  "featureKey": "panoramic_roof",
+                  "label": "Panoramic roof",
                   "category": "comfort",
-                  "attributes": {},
+                  "attributes": {
+                    "level": "fixed"
+                  },
                   "evidence": "resolved",
                   "fitment": "pack_only",
                   "numeric": {
@@ -2391,17 +2528,17 @@
                   }
                 },
                 {
-                  "key": "frunk",
-                  "featureKey": "frunk",
-                  "label": "Front storage",
-                  "category": "practicality",
+                  "key": "wheel_size",
+                  "featureKey": "wheel_size",
+                  "label": "Wheel size",
+                  "category": "exterior",
                   "attributes": {},
                   "evidence": "unknown",
                   "fitment": "unknown",
                   "numeric": {
                     "status": "resolved",
-                    "value": 35,
-                    "unit": "l"
+                    "value": 19,
+                    "unit": "in"
                   }
                 }
               ],
@@ -2479,7 +2616,7 @@
             },
             "publication": "published",
             "powertrain": "bev",
-            "availability": "confirmed_current",
+            "availability": "current",
             "specs": {
               "battery_capacity_nominal": {
                 "status": "unknown",
@@ -2517,14 +2654,18 @@
                 "unit": "s"
               }
             },
+            "battery": {
+              "capacityKwh": 60,
+              "basis": "usable"
+            },
             "features": [
               {
-                "key": "seat_massage:position=driver",
-                "featureKey": "seat_massage",
-                "label": "Seat massage",
+                "key": "heated_seats",
+                "featureKey": "heated_seats",
+                "label": "Heated seats",
                 "category": "comfort",
                 "attributes": {
-                  "position": "driver"
+                  "level": "front"
                 },
                 "evidence": "resolved",
                 "fitment": "standard",
@@ -2535,12 +2676,12 @@
                 }
               },
               {
-                "key": "seat_massage:position=front_passenger",
-                "featureKey": "seat_massage",
-                "label": "Seat massage",
+                "key": "ventilated_seats",
+                "featureKey": "ventilated_seats",
+                "label": "Ventilated seats",
                 "category": "comfort",
                 "attributes": {
-                  "position": "front_passenger"
+                  "level": "front"
                 },
                 "evidence": "resolved",
                 "fitment": "optional",
@@ -2551,11 +2692,13 @@
                 }
               },
               {
-                "key": "glass_roof",
-                "featureKey": "glass_roof",
-                "label": "Glass roof",
+                "key": "panoramic_roof",
+                "featureKey": "panoramic_roof",
+                "label": "Panoramic roof",
                 "category": "comfort",
-                "attributes": {},
+                "attributes": {
+                  "level": "fixed"
+                },
                 "evidence": "resolved",
                 "fitment": "pack_only",
                 "numeric": {
@@ -2565,17 +2708,17 @@
                 }
               },
               {
-                "key": "frunk",
-                "featureKey": "frunk",
-                "label": "Front storage",
-                "category": "practicality",
+                "key": "wheel_size",
+                "featureKey": "wheel_size",
+                "label": "Wheel size",
+                "category": "exterior",
                 "attributes": {},
                 "evidence": "unknown",
                 "fitment": "unknown",
                 "numeric": {
                   "status": "resolved",
-                  "value": 35,
-                  "unit": "l"
+                  "value": 19,
+                  "unit": "in"
                 }
               }
             ],
@@ -2619,7 +2762,7 @@
       }
     },
     {
-      "name": "Unverified price, historical availability (includeHistorical=true), empty gallery",
+      "name": "Unverified price, discontinued availability (includeDiscontinued=true), empty gallery",
       "response": {
         "apiVersion": "1",
         "asOf": "2026-09-17T12:00:00.000Z",
@@ -2644,7 +2787,7 @@
             },
             "publication": "published",
             "powertrain": "bev",
-            "availability": "historical",
+            "availability": "discontinued",
             "specs": {
               "battery_capacity_nominal": {
                 "status": "unknown",
@@ -2682,14 +2825,18 @@
                 "unit": "s"
               }
             },
+            "battery": {
+              "capacityKwh": 60,
+              "basis": "usable"
+            },
             "features": [
               {
-                "key": "seat_massage:position=driver",
-                "featureKey": "seat_massage",
-                "label": "Seat massage",
+                "key": "heated_seats",
+                "featureKey": "heated_seats",
+                "label": "Heated seats",
                 "category": "comfort",
                 "attributes": {
-                  "position": "driver"
+                  "level": "front"
                 },
                 "evidence": "resolved",
                 "fitment": "standard",
@@ -2700,12 +2847,12 @@
                 }
               },
               {
-                "key": "seat_massage:position=front_passenger",
-                "featureKey": "seat_massage",
-                "label": "Seat massage",
+                "key": "ventilated_seats",
+                "featureKey": "ventilated_seats",
+                "label": "Ventilated seats",
                 "category": "comfort",
                 "attributes": {
-                  "position": "front_passenger"
+                  "level": "front"
                 },
                 "evidence": "resolved",
                 "fitment": "optional",
@@ -2716,11 +2863,13 @@
                 }
               },
               {
-                "key": "glass_roof",
-                "featureKey": "glass_roof",
-                "label": "Glass roof",
+                "key": "panoramic_roof",
+                "featureKey": "panoramic_roof",
+                "label": "Panoramic roof",
                 "category": "comfort",
-                "attributes": {},
+                "attributes": {
+                  "level": "fixed"
+                },
                 "evidence": "resolved",
                 "fitment": "pack_only",
                 "numeric": {
@@ -2730,17 +2879,17 @@
                 }
               },
               {
-                "key": "frunk",
-                "featureKey": "frunk",
-                "label": "Front storage",
-                "category": "practicality",
+                "key": "wheel_size",
+                "featureKey": "wheel_size",
+                "label": "Wheel size",
+                "category": "exterior",
                 "attributes": {},
                 "evidence": "unknown",
                 "fitment": "unknown",
                 "numeric": {
                   "status": "resolved",
-                  "value": 35,
-                  "unit": "l"
+                  "value": 19,
+                  "unit": "in"
                 }
               }
             ],
@@ -2830,7 +2979,7 @@
       }
     },
     {
-      "name": "Battery: sole unspecified reported value is used",
+      "name": "Battery: a sole unqualified figure is nominal 60",
       "response": {
         "apiVersion": "1",
         "asOf": "2026-09-17T12:00:00.000Z",
@@ -2855,7 +3004,7 @@
             },
             "publication": "published",
             "powertrain": "bev",
-            "availability": "confirmed_current",
+            "availability": "current",
             "specs": {
               "battery_capacity_nominal": {
                 "status": "resolved",
@@ -2892,6 +3041,10 @@
                 "value": null,
                 "unit": "s"
               }
+            },
+            "battery": {
+              "capacityKwh": 60,
+              "basis": "nominal"
             },
             "features": [],
             "price": null,
@@ -2933,7 +3086,7 @@
             },
             "publication": "published",
             "powertrain": "bev",
-            "availability": "confirmed_current",
+            "availability": "current",
             "specs": {
               "battery_capacity_nominal": {
                 "status": "resolved",
@@ -2970,6 +3123,10 @@
                 "value": null,
                 "unit": "s"
               }
+            },
+            "battery": {
+              "capacityKwh": 60,
+              "basis": "nominal"
             },
             "features": [],
             "price": null,
@@ -3011,7 +3168,7 @@
             },
             "publication": "published",
             "powertrain": "bev",
-            "availability": "confirmed_current",
+            "availability": "current",
             "specs": {
               "battery_capacity_nominal": {
                 "status": "unknown",
@@ -3048,6 +3205,10 @@
                 "value": null,
                 "unit": "s"
               }
+            },
+            "battery": {
+              "capacityKwh": 57.5,
+              "basis": "usable"
             },
             "features": [],
             "price": null,
