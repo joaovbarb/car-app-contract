@@ -6,6 +6,14 @@ This is the frontend's read-only boundary. It does not perform discovery, extrac
 
 Newest first. Older entries are in [CHANGELOG.md](CHANGELOG.md).
 
+### 2026-09-25 — round 36
+
+A change in which versions are served; no schema change. `apiVersion` remains `"1"`, and `contracts.ts`, `definitions.ts` and the fixtures are unchanged.
+
+- **A retired version is not served.** The backend retires a version the manufacturer no longer sells, by hand or automatically on very strong evidence after 90 days. A retired version is treated exactly like an unknown one: `/versions/{versionId}` answers 404 `NOT_FOUND`; it is absent from a model's `versions`, from its card's version count and "from" price, and from the model availability derived from versions. Its model is still served, with its gallery, even when every version is retired. Reason: a version no longer sold should not sit beside its replacement (a facelift's old versions were listed with the new ones).
+- **A comparison naming a retired version returns 404 as a whole**, under the existing rule that a missing requested version fails the request. A saved or shared comparison that contains a retired version ID therefore stops working. Handle that 404 as for any comparison: tell the visitor a car in it is no longer available and let them rebuild it from the browse routes.
+- A retired version keeps its ID. If it is restored, it is served again under the same ID.
+
 ### 2026-09-24 — round 31
 
 A deliberate breaking change, made once, so that the contract speaks the backend's language. `apiVersion` remains `"1"`. Regenerate `src/generated/contract/` and update the frontend.
@@ -39,7 +47,7 @@ The endpoint version and payload version are deliberately distinct: the URL is v
 | `/compare?ids={id1},{id2}` | Two to four versions, aligned rows and preference assessments |
 | `/definitions` | The fixed specification and feature definitions: exactly `specDefinitions` and `featureDefinitions` from [definitions.ts](definitions.ts) |
 
-Every successful response has `apiVersion: "1"`, `asOf` (UTC ISO timestamp), `market`, `powertrain` and a `data` object discriminated by `kind`. Comparison cells follow the order of the requested IDs. A missing, unpublished or out-of-scope requested version makes the entire detail/comparison request return 404, rather than silently dropping it.
+Every successful response has `apiVersion: "1"`, `asOf` (UTC ISO timestamp), `market`, `powertrain` and a `data` object discriminated by `kind`. Comparison cells follow the order of the requested IDs. A missing, unpublished, retired or out-of-scope requested version makes the entire detail/comparison request return 404, rather than silently dropping it.
 
 ## Query parameters
 
