@@ -6,6 +6,15 @@ This is the frontend's read-only boundary. It does not perform discovery, extrac
 
 Newest first. Older entries are in [CHANGELOG.md](CHANGELOG.md).
 
+### 2026-09-25 — round 37
+
+2026-09-25 -- round 37: retired versions are served by ID and in compare with retired: true, so saved IDs stay valid; they are not listed.
+
+A schema change; `apiVersion` remains `"1"`. Regenerate `src/generated/contract/` and update the frontend.
+
+- **Each version has `retired: boolean` and `retiredAt: string | null`** (UTC ISO timestamp; null when not retired). `/versions/{versionId}` and `/compare` serve a retired version with `retired: true`, so saved and shared comparisons keep working. This replaces round 36's 404 for a retired version. Reason: public IDs and saved comparisons stay stable.
+- A retired version is still left out of a model's `versions`, its card's version count and "from" price, and every list. A client can say, wherever a retired version appears, that it is no longer sold.
+
 ### 2026-09-25 — round 36
 
 A change in which versions are served; no schema change. `apiVersion` remains `"1"`, and `contracts.ts`, `definitions.ts` and the fixtures are unchanged.
@@ -47,7 +56,7 @@ The endpoint version and payload version are deliberately distinct: the URL is v
 | `/compare?ids={id1},{id2}` | Two to four versions, aligned rows and preference assessments |
 | `/definitions` | The fixed specification and feature definitions: exactly `specDefinitions` and `featureDefinitions` from [definitions.ts](definitions.ts) |
 
-Every successful response has `apiVersion: "1"`, `asOf` (UTC ISO timestamp), `market`, `powertrain` and a `data` object discriminated by `kind`. Comparison cells follow the order of the requested IDs. A missing, unpublished, retired or out-of-scope requested version makes the entire detail/comparison request return 404, rather than silently dropping it.
+Every successful response has `apiVersion: "1"`, `asOf` (UTC ISO timestamp), `market`, `powertrain` and a `data` object discriminated by `kind`. Comparison cells follow the order of the requested IDs. A missing, unpublished or out-of-scope requested version makes the entire detail/comparison request return 404, rather than silently dropping it; a retired version is served, with `retired: true`.
 
 ## Query parameters
 

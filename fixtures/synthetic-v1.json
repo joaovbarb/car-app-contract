@@ -182,6 +182,8 @@
               "publication": "published",
               "powertrain": "bev",
               "availability": "current",
+              "retired": false,
+              "retiredAt": null,
               "specs": {
                 "battery_capacity_nominal": {
                   "status": "unknown",
@@ -335,6 +337,8 @@
               "publication": "published",
               "powertrain": "bev",
               "availability": "current",
+              "retired": false,
+              "retiredAt": null,
               "specs": {
                 "battery_capacity_nominal": {
                   "status": "unknown",
@@ -488,6 +492,8 @@
               "publication": "published",
               "powertrain": "bev",
               "availability": "current",
+              "retired": false,
+              "retiredAt": null,
               "specs": {
                 "battery_capacity_nominal": {
                   "status": "unknown",
@@ -549,6 +555,8 @@
               "publication": "published",
               "powertrain": "bev",
               "availability": "current",
+              "retired": false,
+              "retiredAt": null,
               "specs": {
                 "battery_capacity_nominal": {
                   "status": "unknown",
@@ -714,6 +722,8 @@
               "publication": "published",
               "powertrain": "bev",
               "availability": "current",
+              "retired": false,
+              "retiredAt": null,
               "specs": {
                 "battery_capacity_nominal": {
                   "status": "unknown",
@@ -867,6 +877,8 @@
               "publication": "published",
               "powertrain": "bev",
               "availability": "current",
+              "retired": false,
+              "retiredAt": null,
               "specs": {
                 "battery_capacity_nominal": {
                   "status": "unknown",
@@ -1020,6 +1032,8 @@
               "publication": "published",
               "powertrain": "bev",
               "availability": "current",
+              "retired": false,
+              "retiredAt": null,
               "specs": {
                 "battery_capacity_nominal": {
                   "status": "unknown",
@@ -1081,6 +1095,8 @@
               "publication": "published",
               "powertrain": "bev",
               "availability": "current",
+              "retired": false,
+              "retiredAt": null,
               "specs": {
                 "battery_capacity_nominal": {
                   "status": "unknown",
@@ -1710,6 +1726,8 @@
             "publication": "published",
             "powertrain": "bev",
             "availability": "current",
+            "retired": false,
+            "retiredAt": null,
             "specs": {
               "battery_capacity_nominal": {
                 "status": "unknown",
@@ -1789,6 +1807,8 @@
             "publication": "published",
             "powertrain": "bev",
             "availability": "current",
+            "retired": false,
+            "retiredAt": null,
             "specs": {
               "battery_capacity_nominal": {
                 "status": "unknown",
@@ -2437,6 +2457,8 @@
               "publication": "published",
               "powertrain": "bev",
               "availability": "current",
+              "retired": false,
+              "retiredAt": null,
               "specs": {
                 "battery_capacity_nominal": {
                   "status": "unknown",
@@ -2617,6 +2639,8 @@
             "publication": "published",
             "powertrain": "bev",
             "availability": "current",
+            "retired": false,
+            "retiredAt": null,
             "specs": {
               "battery_capacity_nominal": {
                 "status": "unknown",
@@ -2788,6 +2812,8 @@
             "publication": "published",
             "powertrain": "bev",
             "availability": "discontinued",
+            "retired": false,
+            "retiredAt": null,
             "specs": {
               "battery_capacity_nominal": {
                 "status": "unknown",
@@ -3005,6 +3031,8 @@
             "publication": "published",
             "powertrain": "bev",
             "availability": "current",
+            "retired": false,
+            "retiredAt": null,
             "specs": {
               "battery_capacity_nominal": {
                 "status": "resolved",
@@ -3087,6 +3115,8 @@
             "publication": "published",
             "powertrain": "bev",
             "availability": "current",
+            "retired": false,
+            "retiredAt": null,
             "specs": {
               "battery_capacity_nominal": {
                 "status": "resolved",
@@ -3169,6 +3199,8 @@
             "publication": "published",
             "powertrain": "bev",
             "availability": "current",
+            "retired": false,
+            "retiredAt": null,
             "specs": {
               "battery_capacity_nominal": {
                 "status": "unknown",

@@ -54,6 +54,14 @@ export const versionSchema = z.object({ id: z.uuid(), modelId: z.uuid(), market:
   make: z.string(), model: z.string(), generation: z.string().nullable(), modelYear: z.number().int().nullable(),
   equipmentGrade: z.string(), technicalConfiguration: z.object({ batteryLabel: z.string().nullable(), motorLabel: z.string().nullable(), drivetrain: z.string().nullable() }),
   publication: z.literal("published"), powertrain: powertrainSchema.exclude(["all"]), availability: availabilitySchema,
+  /**
+   * True when the version is retired: the manufacturer no longer sells it (round 37). A retired version is served
+   * by its ID and in `compare`, marked, so saved IDs stay valid; it is left out of model lists, version lists within
+   * a model, prices and counts.
+   */
+  retired: z.boolean(),
+  /** When the version was retired (UTC ISO timestamp); null when it is not retired. */
+  retiredAt: z.iso.datetime().nullable(),
   specs: z.record(z.string(), valueSchema), battery: batterySchema.nullable(), features: z.array(featureSchema),
   price: priceSchema.nullable(),
   /** @deprecated Use data.photos from GET /models/{modelId}; retained for legacy clients only. */
