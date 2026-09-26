@@ -6,6 +6,15 @@ This is the frontend's read-only boundary. It does not perform discovery, extrac
 
 Newest first. Older entries are in [CHANGELOG.md](CHANGELOG.md).
 
+### 2026-09-26 — round 46
+
+2026-09-26 -- round 46: models can be sorted by coverage (sort=coverage), and each carries coverageScore.
+
+An additive schema change; `apiVersion` remains `"1"`. Regenerate `src/generated/contract/` and update the frontend.
+
+- **`/models` accepts `sort`**: `name` (the default, today's order by make and model name) or `coverage` (highest `coverageScore` first, ties in name order). Paging (`limit`, `offset`, `nextOffset`) applies after sorting, so `sort=coverage&limit=30` returns the 30 best documented models of the whole list. Other routes ignore it.
+- **Each model in a `/models` list carries `coverageScore`**, a number from 0 to 100: how well documented the model is -- priced versions 40, versions with specifications 30, good photos 20 (at least 1,024 px, up to ten), an exterior main photo 10. `listedModelSchema` is the list item (`modelSchema` plus `coverageScore`, type `ListedModel`); the card on `/models/{modelId}` is unchanged. Reason: the homepage picks among the best documented models of the whole catalogue, not only the first page of the alphabetical list.
+
 ### 2026-09-25 — round 37
 
 2026-09-25 -- round 37: retired versions are served by ID and in compare with retired: true, so saved IDs stay valid; they are not listed.
@@ -50,7 +59,7 @@ The endpoint version and payload version are deliberately distinct: the URL is v
 | Route | Result |
 | --- | --- |
 | `/makes` | Makes with browsable models in the selected scope; `q` searches make names |
-| `/models` | Model cards; `q` searches canonical make/model names and known model aliases |
+| `/models` | Model cards, each with `coverageScore`; `q` searches canonical make/model names and known model aliases; `sort=coverage` orders by `coverageScore` |
 | `/models/{modelId}` | One card, its model gallery (`data.photos`), and a paginated list of published comparison versions |
 | `/versions/{versionId}` | One published version and its three-way preference assessment |
 | `/compare?ids={id1},{id2}` | Two to four versions, aligned rows and preference assessments |
@@ -71,6 +80,7 @@ Every successful response has `apiVersion: "1"`, `asOf` (UTC ISO timestamp), `ma
 | `ids` | Compare only: 2–4 distinct version UUIDs, comma separated |
 | `preferences` | URL-encoded JSON array with at most 10 supported preferences, maximum 4000 characters |
 | `uncertainty` | `strict` (default) or `include`; controls preference filtering in browse/model-version lists |
+| `sort` | `/models` only: `name` (default; by make and model name) or `coverage` (highest `coverageScore` first, ties by name) |
 
 Unknown or repeated parameters are rejected with 400 `INVALID_REQUEST`. Requests are capped at 8192 URL characters. No implicit currency conversion is performed. Tax geography is the market's default fiscal region. `all` removes the powertrain filter but still requires a resolved, recognized powertrain for version publication.
 
@@ -80,6 +90,7 @@ Unknown or repeated parameters are rejected with 400 `INVALID_REQUEST`. Requests
 GET /api/public/v2/makes?market=PT&powertrain=bev
 GET /api/public/v2/models?market=PT&powertrain=bev&q=Explorer&limit=12
 GET /api/public/v2/models?includeDiscontinued=true
+GET /api/public/v2/models?sort=coverage&limit=30
 GET /api/public/v2/models/MODEL_UUID?limit=20
 GET /api/public/v2/versions/VERSION_UUID
 GET /api/public/v2/compare?ids=VERSION_UUID_1,VERSION_UUID_2
@@ -166,7 +177,7 @@ Gallery order comes from each photo's `order`. Version pagination (`limit`, `off
 
 Errors use `{ "apiVersion": "1", "error": { "code": "...", "message": "..." } }`. Codes: `INVALID_REQUEST`/400, `MARKET_UNAVAILABLE`/400, `NOT_FOUND`/404, `METHOD_NOT_ALLOWED`/405, `TEMPORARILY_UNAVAILABLE`/503. Errors are not cached. Handle 503 with ordinary bounded client retries.
 
-Publication, prices and galleries share a consistent snapshot within each response. Offset ordering is deterministic by make/model/name/ID; a later request may observe intervening population updates. Deduplicate pagination by ID and refresh the list when appropriate. This is not a cross-request snapshot cursor.
+Publication, prices and galleries share a consistent snapshot within each response. Offset ordering is deterministic by make/model/name/ID (with `sort=coverage`, by `coverageScore` first); a later request may observe intervening population updates. Deduplicate pagination by ID and refresh the list when appropriate. This is not a cross-request snapshot cursor.
 
 Success responses permit 30 seconds of browser caching and 60 seconds of shared caching. A read is bounded to 1000 matching models, 4000 trims and 10000 related records per query; excessive scope returns 503 rather than a silently incomplete result. Narrow `q`/`makeId` or use detail routes if this deployment outgrows the bound.
 

@@ -23,6 +23,7 @@
               "availability": "current",
               "publication": "has_published_versions",
               "publishedVersionCount": 4,
+              "coverageScore": 82,
               "photo": {
                 "url": "https://example.com/photos/example-one.jpg",
                 "width": 1600,
@@ -81,6 +82,7 @@
               "availability": "current",
               "publication": "has_published_versions",
               "publishedVersionCount": 1,
+              "coverageScore": 40,
               "photo": null,
               "priceSummary": {
                 "label": "Lowest known trim price",

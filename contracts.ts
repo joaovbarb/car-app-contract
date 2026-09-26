@@ -71,6 +71,14 @@ export const modelSchema = z.object({ id: z.uuid(), makeId: z.uuid(), make: z.st
   market: z.string(), availability: availabilitySchema, publication: z.enum(["model_only", "has_published_versions"]),
   publishedVersionCount: z.number().int().nonnegative(), photo: photoSchema.nullable(),
   priceSummary: z.object({ label: z.literal("Lowest known trim price"), coverage: z.literal("incomplete"), price: priceSchema }).nullable() });
+/**
+ * A model in a list (`/models`): its card plus `coverageScore`, how well documented the model is, 0-100:
+ * priced versions 40, versions with specifications 30, good photos 20 (at least 1,024 px, up to ten), an
+ * exterior main photo 10 (round 46).
+ */
+export const listedModelSchema = modelSchema.extend({ coverageScore: z.number().min(0).max(100) });
+/** The order of a models list: `name` (default, by make and model name) or `coverage` (highest `coverageScore` first, ties by name). */
+export const modelSortSchema = z.enum(["name", "coverage"]);
 export const preferenceSchema = z.discriminatedUnion("kind", [
   z.object({ kind: z.literal("spec"), key: z.string().min(1).max(80), op: z.enum(["gte", "lte", "eq"]), value: scalar }).strict(),
   z.object({ kind: z.literal("feature"), key: z.string().min(1).max(160), fitment: fitmentSchema.exclude(["unknown"]) }).strict(),
@@ -82,6 +90,8 @@ export const querySchema = z.object({ market: z.string().regex(/^[A-Z]{2}$/).def
   limit: z.coerce.number().int().min(1).max(50).default(20), offset: z.coerce.number().int().min(0).max(10000).default(0),
   includeDiscontinued: z.enum(["true", "false"]).default("false").transform(v => v === "true"),
   uncertainty: z.enum(["strict", "include"]).default("strict"),
+  /** Models list only: `name` (default) or `coverage`. */
+  sort: modelSortSchema.default("name"),
   preferences: z.string().max(4000).optional().transform((v, ctx) => {
     if (!v) return [];
     try { return z.array(preferenceSchema).max(10).parse(JSON.parse(v)); }
@@ -116,7 +126,7 @@ export const definitionSchema = z.object({ key: z.string(), label: z.string(), c
 export const responseSchema = z.object({ apiVersion: z.literal("1"), asOf: z.iso.datetime(), market: z.string(), powertrain: powertrainFilterSchema,
   data: z.discriminatedUnion("kind", [
     z.object({ kind: z.literal("makes"), items: z.array(z.object({ id: z.uuid(), name: z.string() })), nextOffset: z.number().int().nullable() }),
-    z.object({ kind: z.literal("models"), items: z.array(modelSchema), nextOffset: z.number().int().nullable() }),
+    z.object({ kind: z.literal("models"), items: z.array(listedModelSchema), nextOffset: z.number().int().nullable() }),
     z.object({ kind: z.literal("model"), model: modelSchema,
       /** Canonical model gallery. Optional only during rollout: absent is not an empty gallery. */
       photos: z.array(photoSchema).optional(),
@@ -131,6 +141,8 @@ export type Query = z.infer<typeof querySchema>;
 export type Version = z.infer<typeof versionSchema>;
 export type Feature = z.infer<typeof featureSchema>;
 export type ModelCard = z.infer<typeof modelSchema>;
+export type ListedModel = z.infer<typeof listedModelSchema>;
+export type ModelSort = z.infer<typeof modelSortSchema>;
 export type Preference = z.infer<typeof preferenceSchema>;
 export type ResponseData = z.infer<typeof responseSchema>["data"];
 
