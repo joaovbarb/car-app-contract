@@ -1,30 +1,23 @@
 {
   "$comment": "GENERATED from contracts.ts and definitions.ts by `npm run contract:schema`; do not edit by hand. The same document is served by GET /api/public/v2/contract. Pre-stable: see integration.md's changelog.",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "apiVersion": "1",
   "status": "pre-stable",
   "routes": {
     "/makes": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
       "type": "object",
       "properties": {
         "apiVersion": {
-          "type": "string",
-          "const": "1"
+          "$ref": "#/$defs/__schema0"
         },
         "asOf": {
-          "type": "string",
-          "format": "date-time",
-          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+          "$ref": "#/$defs/__schema1"
         },
         "market": {
-          "type": "string"
+          "$ref": "#/$defs/__schema2"
         },
         "powertrain": {
-          "type": "string",
-          "enum": [
-            "bev",
-            "all"
-          ]
+          "$ref": "#/$defs/__schema3"
         },
         "data": {
           "type": "object",
@@ -82,27 +75,19 @@
       ]
     },
     "/models": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
       "type": "object",
       "properties": {
         "apiVersion": {
-          "type": "string",
-          "const": "1"
+          "$ref": "#/$defs/__schema0"
         },
         "asOf": {
-          "type": "string",
-          "format": "date-time",
-          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+          "$ref": "#/$defs/__schema1"
         },
         "market": {
-          "type": "string"
+          "$ref": "#/$defs/__schema2"
         },
         "powertrain": {
-          "type": "string",
-          "enum": [
-            "bev",
-            "all"
-          ]
+          "$ref": "#/$defs/__schema3"
         },
         "data": {
           "type": "object",
@@ -117,286 +102,37 @@
                 "type": "object",
                 "properties": {
                   "id": {
-                    "type": "string",
-                    "format": "uuid",
-                    "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                    "$ref": "#/$defs/__schema4"
                   },
                   "makeId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                    "$ref": "#/$defs/__schema5"
                   },
                   "make": {
-                    "type": "string"
+                    "$ref": "#/$defs/__schema6"
                   },
                   "name": {
-                    "type": "string"
+                    "$ref": "#/$defs/__schema7"
                   },
                   "aliases": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
+                    "$ref": "#/$defs/__schema8"
                   },
                   "market": {
-                    "type": "string"
+                    "$ref": "#/$defs/__schema9"
                   },
                   "availability": {
-                    "type": "string",
-                    "enum": [
-                      "current",
-                      "upcoming",
-                      "discontinued",
-                      "unknown"
-                    ]
+                    "$ref": "#/$defs/__schema10"
                   },
                   "publication": {
-                    "type": "string",
-                    "enum": [
-                      "model_only",
-                      "has_published_versions"
-                    ]
+                    "$ref": "#/$defs/__schema11"
                   },
                   "publishedVersionCount": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 9007199254740991
+                    "$ref": "#/$defs/__schema12"
                   },
                   "photo": {
-                    "anyOf": [
-                      {
-                        "type": "object",
-                        "properties": {
-                          "url": {
-                            "type": "string",
-                            "format": "uri"
-                          },
-                          "width": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "exclusiveMinimum": 0,
-                                "maximum": 9007199254740991
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "height": {
-                            "anyOf": [
-                              {
-                                "type": "integer",
-                                "exclusiveMinimum": 0,
-                                "maximum": 9007199254740991
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "order": {
-                            "type": "integer",
-                            "minimum": 0,
-                            "maximum": 9007199254740991
-                          },
-                          "label": {
-                            "type": "string"
-                          },
-                          "attribution": {
-                            "type": [
-                              "string",
-                              "null"
-                            ]
-                          },
-                          "sourceUrl": {
-                            "type": [
-                              "string",
-                              "null"
-                            ]
-                          },
-                          "representative": {
-                            "type": "boolean"
-                          },
-                          "scope": {
-                            "type": "string",
-                            "enum": [
-                              "model_wide",
-                              "generation_wide",
-                              "trim_specific"
-                            ]
-                          },
-                          "equipmentDisclaimer": {
-                            "type": "string"
-                          }
-                        },
-                        "required": [
-                          "url",
-                          "width",
-                          "height",
-                          "order",
-                          "label",
-                          "attribution",
-                          "sourceUrl",
-                          "representative",
-                          "scope",
-                          "equipmentDisclaimer"
-                        ]
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
+                    "$ref": "#/$defs/__schema13"
                   },
                   "priceSummary": {
-                    "anyOf": [
-                      {
-                        "type": "object",
-                        "properties": {
-                          "label": {
-                            "type": "string",
-                            "const": "Lowest known trim price"
-                          },
-                          "coverage": {
-                            "type": "string",
-                            "const": "incomplete"
-                          },
-                          "price": {
-                            "type": "object",
-                            "properties": {
-                              "versionId": {
-                                "type": "string",
-                                "format": "uuid",
-                                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
-                              },
-                              "amountMinor": {
-                                "type": "integer",
-                                "exclusiveMinimum": 0,
-                                "maximum": 9007199254740991
-                              },
-                              "currency": {
-                                "type": "string",
-                                "minLength": 3,
-                                "maxLength": 3
-                              },
-                              "taxInclusive": {
-                                "type": "boolean",
-                                "const": true
-                              },
-                              "taxBasis": {
-                                "type": "string",
-                                "enum": [
-                                  "explicit_included",
-                                  "explicit_excluded_converted",
-                                  "market_convention"
-                                ]
-                              },
-                              "method": {
-                                "type": "string",
-                                "enum": [
-                                  "official",
-                                  "dealer_estimate",
-                                  "unclassified"
-                                ]
-                              },
-                              "lastSuccessfulCheck": {
-                                "anyOf": [
-                                  {
-                                    "type": "string",
-                                    "format": "date-time",
-                                    "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
-                                  },
-                                  {
-                                    "type": "null"
-                                  }
-                                ]
-                              },
-                              "freshness": {
-                                "type": "string",
-                                "enum": [
-                                  "fresh",
-                                  "stale",
-                                  "unverified"
-                                ]
-                              },
-                              "validUntil": {
-                                "anyOf": [
-                                  {
-                                    "type": "string",
-                                    "format": "date",
-                                    "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
-                                  },
-                                  {
-                                    "type": "null"
-                                  }
-                                ]
-                              },
-                              "estimated": {
-                                "type": "boolean",
-                                "const": true
-                              },
-                              "source": {
-                                "anyOf": [
-                                  {
-                                    "type": "object",
-                                    "properties": {
-                                      "title": {
-                                        "type": "string"
-                                      },
-                                      "url": {
-                                        "type": "string",
-                                        "format": "uri"
-                                      },
-                                      "checkedAt": {
-                                        "anyOf": [
-                                          {
-                                            "type": "string",
-                                            "format": "date-time",
-                                            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
-                                          },
-                                          {
-                                            "type": "null"
-                                          }
-                                        ]
-                                      }
-                                    },
-                                    "required": [
-                                      "title",
-                                      "url",
-                                      "checkedAt"
-                                    ]
-                                  },
-                                  {
-                                    "type": "null"
-                                  }
-                                ]
-                              }
-                            },
-                            "required": [
-                              "versionId",
-                              "amountMinor",
-                              "currency",
-                              "taxInclusive",
-                              "taxBasis",
-                              "method",
-                              "lastSuccessfulCheck",
-                              "freshness",
-                              "validUntil",
-                              "estimated",
-                              "source"
-                            ]
-                          }
-                        },
-                        "required": [
-                          "label",
-                          "coverage",
-                          "price"
-                        ]
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
+                    "$ref": "#/$defs/__schema15"
                   },
                   "coverageScore": {
                     "type": "number",
@@ -449,27 +185,19 @@
       ]
     },
     "/models/{modelId}": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
       "type": "object",
       "properties": {
         "apiVersion": {
-          "type": "string",
-          "const": "1"
+          "$ref": "#/$defs/__schema0"
         },
         "asOf": {
-          "type": "string",
-          "format": "date-time",
-          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+          "$ref": "#/$defs/__schema1"
         },
         "market": {
-          "type": "string"
+          "$ref": "#/$defs/__schema2"
         },
         "powertrain": {
-          "type": "string",
-          "enum": [
-            "bev",
-            "all"
-          ]
+          "$ref": "#/$defs/__schema3"
         },
         "data": {
           "type": "object",
@@ -482,82 +210,37 @@
               "type": "object",
               "properties": {
                 "id": {
-                  "type": "string",
-                  "format": "uuid",
-                  "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                  "$ref": "#/$defs/__schema4"
                 },
                 "makeId": {
-                  "type": "string",
-                  "format": "uuid",
-                  "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                  "$ref": "#/$defs/__schema5"
                 },
                 "make": {
-                  "type": "string"
+                  "$ref": "#/$defs/__schema6"
                 },
                 "name": {
-                  "type": "string"
+                  "$ref": "#/$defs/__schema7"
                 },
                 "aliases": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
+                  "$ref": "#/$defs/__schema8"
                 },
                 "market": {
-                  "type": "string"
+                  "$ref": "#/$defs/__schema9"
                 },
                 "availability": {
-                  "$ref": "#/$defs/__schema0"
+                  "$ref": "#/$defs/__schema10"
                 },
                 "publication": {
-                  "type": "string",
-                  "enum": [
-                    "model_only",
-                    "has_published_versions"
-                  ]
+                  "$ref": "#/$defs/__schema11"
                 },
                 "publishedVersionCount": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 9007199254740991
+                  "$ref": "#/$defs/__schema12"
                 },
                 "photo": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/$defs/__schema1"
-                    },
-                    {
-                      "type": "null"
-                    }
-                  ]
+                  "$ref": "#/$defs/__schema13"
                 },
                 "priceSummary": {
-                  "anyOf": [
-                    {
-                      "type": "object",
-                      "properties": {
-                        "label": {
-                          "type": "string",
-                          "const": "Lowest known trim price"
-                        },
-                        "coverage": {
-                          "type": "string",
-                          "const": "incomplete"
-                        },
-                        "price": {
-                          "$ref": "#/$defs/__schema2"
-                        }
-                      },
-                      "required": [
-                        "label",
-                        "coverage",
-                        "price"
-                      ]
-                    },
-                    {
-                      "type": "null"
-                    }
-                  ]
+                  "$ref": "#/$defs/__schema15"
                 }
               },
               "required": [
@@ -577,277 +260,13 @@
             "photos": {
               "type": "array",
               "items": {
-                "$ref": "#/$defs/__schema1"
+                "$ref": "#/$defs/__schema14"
               }
             },
             "versions": {
               "type": "array",
               "items": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "string",
-                    "format": "uuid",
-                    "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
-                  },
-                  "modelId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
-                  },
-                  "market": {
-                    "type": "string",
-                    "minLength": 2,
-                    "maxLength": 2
-                  },
-                  "name": {
-                    "type": "string"
-                  },
-                  "make": {
-                    "type": "string"
-                  },
-                  "model": {
-                    "type": "string"
-                  },
-                  "generation": {
-                    "type": [
-                      "string",
-                      "null"
-                    ]
-                  },
-                  "modelYear": {
-                    "anyOf": [
-                      {
-                        "type": "integer",
-                        "minimum": -9007199254740991,
-                        "maximum": 9007199254740991
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
-                  },
-                  "equipmentGrade": {
-                    "type": "string"
-                  },
-                  "technicalConfiguration": {
-                    "type": "object",
-                    "properties": {
-                      "batteryLabel": {
-                        "type": [
-                          "string",
-                          "null"
-                        ]
-                      },
-                      "motorLabel": {
-                        "type": [
-                          "string",
-                          "null"
-                        ]
-                      },
-                      "drivetrain": {
-                        "type": [
-                          "string",
-                          "null"
-                        ]
-                      }
-                    },
-                    "required": [
-                      "batteryLabel",
-                      "motorLabel",
-                      "drivetrain"
-                    ]
-                  },
-                  "publication": {
-                    "type": "string",
-                    "const": "published"
-                  },
-                  "powertrain": {
-                    "type": "string",
-                    "enum": [
-                      "bev",
-                      "not_bev"
-                    ]
-                  },
-                  "availability": {
-                    "$ref": "#/$defs/__schema0"
-                  },
-                  "retired": {
-                    "type": "boolean"
-                  },
-                  "retiredAt": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "format": "date-time",
-                        "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
-                  },
-                  "specs": {
-                    "type": "object",
-                    "propertyNames": {
-                      "type": "string"
-                    },
-                    "additionalProperties": {
-                      "$ref": "#/$defs/__schema4"
-                    }
-                  },
-                  "battery": {
-                    "anyOf": [
-                      {
-                        "type": "object",
-                        "properties": {
-                          "capacityKwh": {
-                            "type": "number",
-                            "exclusiveMinimum": 0
-                          },
-                          "basis": {
-                            "type": "string",
-                            "enum": [
-                              "nominal",
-                              "usable"
-                            ]
-                          }
-                        },
-                        "required": [
-                          "capacityKwh",
-                          "basis"
-                        ]
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
-                  },
-                  "features": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "key": {
-                          "type": "string"
-                        },
-                        "featureKey": {
-                          "type": "string"
-                        },
-                        "label": {
-                          "type": "string"
-                        },
-                        "category": {
-                          "type": [
-                            "string",
-                            "null"
-                          ]
-                        },
-                        "attributes": {
-                          "type": "object",
-                          "propertyNames": {
-                            "type": "string"
-                          },
-                          "additionalProperties": {
-                            "$ref": "#/$defs/__schema6"
-                          }
-                        },
-                        "evidence": {
-                          "$ref": "#/$defs/__schema5"
-                        },
-                        "fitment": {
-                          "type": "string",
-                          "enum": [
-                            "standard",
-                            "optional",
-                            "pack_only",
-                            "unavailable",
-                            "unknown"
-                          ]
-                        },
-                        "numeric": {
-                          "$ref": "#/$defs/__schema4"
-                        }
-                      },
-                      "required": [
-                        "key",
-                        "featureKey",
-                        "label",
-                        "category",
-                        "attributes",
-                        "evidence",
-                        "fitment",
-                        "numeric"
-                      ]
-                    }
-                  },
-                  "price": {
-                    "anyOf": [
-                      {
-                        "$ref": "#/$defs/__schema2"
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
-                  },
-                  "photos": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/$defs/__schema1"
-                    }
-                  },
-                  "facts": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "text": {
-                          "type": "string"
-                        },
-                        "scope": {
-                          "type": "string",
-                          "enum": [
-                            "model",
-                            "generation",
-                            "trim"
-                          ]
-                        },
-                        "source": {
-                          "$ref": "#/$defs/__schema3"
-                        }
-                      },
-                      "required": [
-                        "text",
-                        "scope",
-                        "source"
-                      ]
-                    }
-                  }
-                },
-                "required": [
-                  "id",
-                  "modelId",
-                  "market",
-                  "name",
-                  "make",
-                  "model",
-                  "generation",
-                  "modelYear",
-                  "equipmentGrade",
-                  "technicalConfiguration",
-                  "publication",
-                  "powertrain",
-                  "availability",
-                  "retired",
-                  "retiredAt",
-                  "specs",
-                  "battery",
-                  "features",
-                  "price",
-                  "photos",
-                  "facts"
-                ]
+                "$ref": "#/$defs/__schema18"
               }
             },
             "nextOffset": {
@@ -877,293 +296,22 @@
         "market",
         "powertrain",
         "data"
-      ],
-      "$defs": {
-        "__schema0": {
-          "type": "string",
-          "enum": [
-            "current",
-            "upcoming",
-            "discontinued",
-            "unknown"
-          ]
-        },
-        "__schema1": {
-          "type": "object",
-          "properties": {
-            "url": {
-              "type": "string",
-              "format": "uri"
-            },
-            "width": {
-              "anyOf": [
-                {
-                  "type": "integer",
-                  "exclusiveMinimum": 0,
-                  "maximum": 9007199254740991
-                },
-                {
-                  "type": "null"
-                }
-              ]
-            },
-            "height": {
-              "anyOf": [
-                {
-                  "type": "integer",
-                  "exclusiveMinimum": 0,
-                  "maximum": 9007199254740991
-                },
-                {
-                  "type": "null"
-                }
-              ]
-            },
-            "order": {
-              "type": "integer",
-              "minimum": 0,
-              "maximum": 9007199254740991
-            },
-            "label": {
-              "type": "string"
-            },
-            "attribution": {
-              "type": [
-                "string",
-                "null"
-              ]
-            },
-            "sourceUrl": {
-              "type": [
-                "string",
-                "null"
-              ]
-            },
-            "representative": {
-              "type": "boolean"
-            },
-            "scope": {
-              "type": "string",
-              "enum": [
-                "model_wide",
-                "generation_wide",
-                "trim_specific"
-              ]
-            },
-            "equipmentDisclaimer": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "url",
-            "width",
-            "height",
-            "order",
-            "label",
-            "attribution",
-            "sourceUrl",
-            "representative",
-            "scope",
-            "equipmentDisclaimer"
-          ]
-        },
-        "__schema2": {
-          "type": "object",
-          "properties": {
-            "versionId": {
-              "type": "string",
-              "format": "uuid",
-              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
-            },
-            "amountMinor": {
-              "type": "integer",
-              "exclusiveMinimum": 0,
-              "maximum": 9007199254740991
-            },
-            "currency": {
-              "type": "string",
-              "minLength": 3,
-              "maxLength": 3
-            },
-            "taxInclusive": {
-              "type": "boolean",
-              "const": true
-            },
-            "taxBasis": {
-              "type": "string",
-              "enum": [
-                "explicit_included",
-                "explicit_excluded_converted",
-                "market_convention"
-              ]
-            },
-            "method": {
-              "type": "string",
-              "enum": [
-                "official",
-                "dealer_estimate",
-                "unclassified"
-              ]
-            },
-            "lastSuccessfulCheck": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "format": "date-time",
-                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
-                },
-                {
-                  "type": "null"
-                }
-              ]
-            },
-            "freshness": {
-              "type": "string",
-              "enum": [
-                "fresh",
-                "stale",
-                "unverified"
-              ]
-            },
-            "validUntil": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "format": "date",
-                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
-                },
-                {
-                  "type": "null"
-                }
-              ]
-            },
-            "estimated": {
-              "type": "boolean",
-              "const": true
-            },
-            "source": {
-              "anyOf": [
-                {
-                  "$ref": "#/$defs/__schema3"
-                },
-                {
-                  "type": "null"
-                }
-              ]
-            }
-          },
-          "required": [
-            "versionId",
-            "amountMinor",
-            "currency",
-            "taxInclusive",
-            "taxBasis",
-            "method",
-            "lastSuccessfulCheck",
-            "freshness",
-            "validUntil",
-            "estimated",
-            "source"
-          ]
-        },
-        "__schema3": {
-          "type": "object",
-          "properties": {
-            "title": {
-              "type": "string"
-            },
-            "url": {
-              "type": "string",
-              "format": "uri"
-            },
-            "checkedAt": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "format": "date-time",
-                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
-                },
-                {
-                  "type": "null"
-                }
-              ]
-            }
-          },
-          "required": [
-            "title",
-            "url",
-            "checkedAt"
-          ]
-        },
-        "__schema4": {
-          "type": "object",
-          "properties": {
-            "status": {
-              "$ref": "#/$defs/__schema5"
-            },
-            "value": {
-              "anyOf": [
-                {
-                  "$ref": "#/$defs/__schema6"
-                },
-                {
-                  "type": "null"
-                }
-              ]
-            },
-            "unit": {
-              "type": [
-                "string",
-                "null"
-              ]
-            }
-          },
-          "required": [
-            "status",
-            "value",
-            "unit"
-          ]
-        },
-        "__schema5": {
-          "type": "string",
-          "enum": [
-            "resolved",
-            "unknown",
-            "disputed",
-            "not_applicable"
-          ]
-        },
-        "__schema6": {
-          "type": [
-            "string",
-            "number",
-            "boolean"
-          ]
-        }
-      }
+      ]
     },
     "/versions/{versionId}": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
       "type": "object",
       "properties": {
         "apiVersion": {
-          "type": "string",
-          "const": "1"
+          "$ref": "#/$defs/__schema0"
         },
         "asOf": {
-          "type": "string",
-          "format": "date-time",
-          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+          "$ref": "#/$defs/__schema1"
         },
         "market": {
-          "type": "string"
+          "$ref": "#/$defs/__schema2"
         },
         "powertrain": {
-          "type": "string",
-          "enum": [
-            "bev",
-            "all"
-          ]
+          "$ref": "#/$defs/__schema3"
         },
         "data": {
           "type": "object",
@@ -1173,472 +321,10 @@
               "const": "version"
             },
             "version": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string",
-                  "format": "uuid",
-                  "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
-                },
-                "modelId": {
-                  "type": "string",
-                  "format": "uuid",
-                  "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
-                },
-                "market": {
-                  "type": "string",
-                  "minLength": 2,
-                  "maxLength": 2
-                },
-                "name": {
-                  "type": "string"
-                },
-                "make": {
-                  "type": "string"
-                },
-                "model": {
-                  "type": "string"
-                },
-                "generation": {
-                  "type": [
-                    "string",
-                    "null"
-                  ]
-                },
-                "modelYear": {
-                  "anyOf": [
-                    {
-                      "type": "integer",
-                      "minimum": -9007199254740991,
-                      "maximum": 9007199254740991
-                    },
-                    {
-                      "type": "null"
-                    }
-                  ]
-                },
-                "equipmentGrade": {
-                  "type": "string"
-                },
-                "technicalConfiguration": {
-                  "type": "object",
-                  "properties": {
-                    "batteryLabel": {
-                      "type": [
-                        "string",
-                        "null"
-                      ]
-                    },
-                    "motorLabel": {
-                      "type": [
-                        "string",
-                        "null"
-                      ]
-                    },
-                    "drivetrain": {
-                      "type": [
-                        "string",
-                        "null"
-                      ]
-                    }
-                  },
-                  "required": [
-                    "batteryLabel",
-                    "motorLabel",
-                    "drivetrain"
-                  ]
-                },
-                "publication": {
-                  "type": "string",
-                  "const": "published"
-                },
-                "powertrain": {
-                  "type": "string",
-                  "enum": [
-                    "bev",
-                    "not_bev"
-                  ]
-                },
-                "availability": {
-                  "type": "string",
-                  "enum": [
-                    "current",
-                    "upcoming",
-                    "discontinued",
-                    "unknown"
-                  ]
-                },
-                "retired": {
-                  "type": "boolean"
-                },
-                "retiredAt": {
-                  "anyOf": [
-                    {
-                      "type": "string",
-                      "format": "date-time",
-                      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
-                    },
-                    {
-                      "type": "null"
-                    }
-                  ]
-                },
-                "specs": {
-                  "type": "object",
-                  "propertyNames": {
-                    "type": "string"
-                  },
-                  "additionalProperties": {
-                    "$ref": "#/$defs/__schema0"
-                  }
-                },
-                "battery": {
-                  "anyOf": [
-                    {
-                      "type": "object",
-                      "properties": {
-                        "capacityKwh": {
-                          "type": "number",
-                          "exclusiveMinimum": 0
-                        },
-                        "basis": {
-                          "type": "string",
-                          "enum": [
-                            "nominal",
-                            "usable"
-                          ]
-                        }
-                      },
-                      "required": [
-                        "capacityKwh",
-                        "basis"
-                      ]
-                    },
-                    {
-                      "type": "null"
-                    }
-                  ]
-                },
-                "features": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "key": {
-                        "type": "string"
-                      },
-                      "featureKey": {
-                        "type": "string"
-                      },
-                      "label": {
-                        "type": "string"
-                      },
-                      "category": {
-                        "type": [
-                          "string",
-                          "null"
-                        ]
-                      },
-                      "attributes": {
-                        "type": "object",
-                        "propertyNames": {
-                          "type": "string"
-                        },
-                        "additionalProperties": {
-                          "$ref": "#/$defs/__schema2"
-                        }
-                      },
-                      "evidence": {
-                        "$ref": "#/$defs/__schema1"
-                      },
-                      "fitment": {
-                        "type": "string",
-                        "enum": [
-                          "standard",
-                          "optional",
-                          "pack_only",
-                          "unavailable",
-                          "unknown"
-                        ]
-                      },
-                      "numeric": {
-                        "$ref": "#/$defs/__schema0"
-                      }
-                    },
-                    "required": [
-                      "key",
-                      "featureKey",
-                      "label",
-                      "category",
-                      "attributes",
-                      "evidence",
-                      "fitment",
-                      "numeric"
-                    ]
-                  }
-                },
-                "price": {
-                  "anyOf": [
-                    {
-                      "type": "object",
-                      "properties": {
-                        "versionId": {
-                          "type": "string",
-                          "format": "uuid",
-                          "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
-                        },
-                        "amountMinor": {
-                          "type": "integer",
-                          "exclusiveMinimum": 0,
-                          "maximum": 9007199254740991
-                        },
-                        "currency": {
-                          "type": "string",
-                          "minLength": 3,
-                          "maxLength": 3
-                        },
-                        "taxInclusive": {
-                          "type": "boolean",
-                          "const": true
-                        },
-                        "taxBasis": {
-                          "type": "string",
-                          "enum": [
-                            "explicit_included",
-                            "explicit_excluded_converted",
-                            "market_convention"
-                          ]
-                        },
-                        "method": {
-                          "type": "string",
-                          "enum": [
-                            "official",
-                            "dealer_estimate",
-                            "unclassified"
-                          ]
-                        },
-                        "lastSuccessfulCheck": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "format": "date-time",
-                              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
-                            },
-                            {
-                              "type": "null"
-                            }
-                          ]
-                        },
-                        "freshness": {
-                          "type": "string",
-                          "enum": [
-                            "fresh",
-                            "stale",
-                            "unverified"
-                          ]
-                        },
-                        "validUntil": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "format": "date",
-                              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
-                            },
-                            {
-                              "type": "null"
-                            }
-                          ]
-                        },
-                        "estimated": {
-                          "type": "boolean",
-                          "const": true
-                        },
-                        "source": {
-                          "anyOf": [
-                            {
-                              "$ref": "#/$defs/__schema3"
-                            },
-                            {
-                              "type": "null"
-                            }
-                          ]
-                        }
-                      },
-                      "required": [
-                        "versionId",
-                        "amountMinor",
-                        "currency",
-                        "taxInclusive",
-                        "taxBasis",
-                        "method",
-                        "lastSuccessfulCheck",
-                        "freshness",
-                        "validUntil",
-                        "estimated",
-                        "source"
-                      ]
-                    },
-                    {
-                      "type": "null"
-                    }
-                  ]
-                },
-                "photos": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "url": {
-                        "type": "string",
-                        "format": "uri"
-                      },
-                      "width": {
-                        "anyOf": [
-                          {
-                            "type": "integer",
-                            "exclusiveMinimum": 0,
-                            "maximum": 9007199254740991
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
-                      },
-                      "height": {
-                        "anyOf": [
-                          {
-                            "type": "integer",
-                            "exclusiveMinimum": 0,
-                            "maximum": 9007199254740991
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
-                      },
-                      "order": {
-                        "type": "integer",
-                        "minimum": 0,
-                        "maximum": 9007199254740991
-                      },
-                      "label": {
-                        "type": "string"
-                      },
-                      "attribution": {
-                        "type": [
-                          "string",
-                          "null"
-                        ]
-                      },
-                      "sourceUrl": {
-                        "type": [
-                          "string",
-                          "null"
-                        ]
-                      },
-                      "representative": {
-                        "type": "boolean"
-                      },
-                      "scope": {
-                        "type": "string",
-                        "enum": [
-                          "model_wide",
-                          "generation_wide",
-                          "trim_specific"
-                        ]
-                      },
-                      "equipmentDisclaimer": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "url",
-                      "width",
-                      "height",
-                      "order",
-                      "label",
-                      "attribution",
-                      "sourceUrl",
-                      "representative",
-                      "scope",
-                      "equipmentDisclaimer"
-                    ]
-                  }
-                },
-                "facts": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "text": {
-                        "type": "string"
-                      },
-                      "scope": {
-                        "type": "string",
-                        "enum": [
-                          "model",
-                          "generation",
-                          "trim"
-                        ]
-                      },
-                      "source": {
-                        "$ref": "#/$defs/__schema3"
-                      }
-                    },
-                    "required": [
-                      "text",
-                      "scope",
-                      "source"
-                    ]
-                  }
-                }
-              },
-              "required": [
-                "id",
-                "modelId",
-                "market",
-                "name",
-                "make",
-                "model",
-                "generation",
-                "modelYear",
-                "equipmentGrade",
-                "technicalConfiguration",
-                "publication",
-                "powertrain",
-                "availability",
-                "retired",
-                "retiredAt",
-                "specs",
-                "battery",
-                "features",
-                "price",
-                "photos",
-                "facts"
-              ]
+              "$ref": "#/$defs/__schema18"
             },
             "preferenceMatch": {
-              "type": "object",
-              "properties": {
-                "result": {
-                  "type": "string",
-                  "enum": [
-                    "match",
-                    "mismatch",
-                    "unknown"
-                  ]
-                },
-                "reasons": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                }
-              },
-              "required": [
-                "result",
-                "reasons"
-              ]
+              "$ref": "#/$defs/__schema23"
             }
           },
           "required": [
@@ -1654,106 +340,22 @@
         "market",
         "powertrain",
         "data"
-      ],
-      "$defs": {
-        "__schema0": {
-          "type": "object",
-          "properties": {
-            "status": {
-              "$ref": "#/$defs/__schema1"
-            },
-            "value": {
-              "anyOf": [
-                {
-                  "$ref": "#/$defs/__schema2"
-                },
-                {
-                  "type": "null"
-                }
-              ]
-            },
-            "unit": {
-              "type": [
-                "string",
-                "null"
-              ]
-            }
-          },
-          "required": [
-            "status",
-            "value",
-            "unit"
-          ]
-        },
-        "__schema1": {
-          "type": "string",
-          "enum": [
-            "resolved",
-            "unknown",
-            "disputed",
-            "not_applicable"
-          ]
-        },
-        "__schema2": {
-          "type": [
-            "string",
-            "number",
-            "boolean"
-          ]
-        },
-        "__schema3": {
-          "type": "object",
-          "properties": {
-            "title": {
-              "type": "string"
-            },
-            "url": {
-              "type": "string",
-              "format": "uri"
-            },
-            "checkedAt": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "format": "date-time",
-                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
-                },
-                {
-                  "type": "null"
-                }
-              ]
-            }
-          },
-          "required": [
-            "title",
-            "url",
-            "checkedAt"
-          ]
-        }
-      }
+      ]
     },
     "/compare": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
       "type": "object",
       "properties": {
         "apiVersion": {
-          "type": "string",
-          "const": "1"
+          "$ref": "#/$defs/__schema0"
         },
         "asOf": {
-          "type": "string",
-          "format": "date-time",
-          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+          "$ref": "#/$defs/__schema1"
         },
         "market": {
-          "type": "string"
+          "$ref": "#/$defs/__schema2"
         },
         "powertrain": {
-          "type": "string",
-          "enum": [
-            "bev",
-            "all"
-          ]
+          "$ref": "#/$defs/__schema3"
         },
         "data": {
           "type": "object",
@@ -1765,397 +367,7 @@
             "versions": {
               "type": "array",
               "items": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "string",
-                    "format": "uuid",
-                    "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
-                  },
-                  "modelId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
-                  },
-                  "market": {
-                    "type": "string",
-                    "minLength": 2,
-                    "maxLength": 2
-                  },
-                  "name": {
-                    "type": "string"
-                  },
-                  "make": {
-                    "type": "string"
-                  },
-                  "model": {
-                    "type": "string"
-                  },
-                  "generation": {
-                    "type": [
-                      "string",
-                      "null"
-                    ]
-                  },
-                  "modelYear": {
-                    "anyOf": [
-                      {
-                        "type": "integer",
-                        "minimum": -9007199254740991,
-                        "maximum": 9007199254740991
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
-                  },
-                  "equipmentGrade": {
-                    "type": "string"
-                  },
-                  "technicalConfiguration": {
-                    "type": "object",
-                    "properties": {
-                      "batteryLabel": {
-                        "type": [
-                          "string",
-                          "null"
-                        ]
-                      },
-                      "motorLabel": {
-                        "type": [
-                          "string",
-                          "null"
-                        ]
-                      },
-                      "drivetrain": {
-                        "type": [
-                          "string",
-                          "null"
-                        ]
-                      }
-                    },
-                    "required": [
-                      "batteryLabel",
-                      "motorLabel",
-                      "drivetrain"
-                    ]
-                  },
-                  "publication": {
-                    "type": "string",
-                    "const": "published"
-                  },
-                  "powertrain": {
-                    "type": "string",
-                    "enum": [
-                      "bev",
-                      "not_bev"
-                    ]
-                  },
-                  "availability": {
-                    "type": "string",
-                    "enum": [
-                      "current",
-                      "upcoming",
-                      "discontinued",
-                      "unknown"
-                    ]
-                  },
-                  "retired": {
-                    "type": "boolean"
-                  },
-                  "retiredAt": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "format": "date-time",
-                        "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
-                  },
-                  "specs": {
-                    "type": "object",
-                    "propertyNames": {
-                      "type": "string"
-                    },
-                    "additionalProperties": {
-                      "$ref": "#/$defs/__schema0"
-                    }
-                  },
-                  "battery": {
-                    "anyOf": [
-                      {
-                        "type": "object",
-                        "properties": {
-                          "capacityKwh": {
-                            "type": "number",
-                            "exclusiveMinimum": 0
-                          },
-                          "basis": {
-                            "type": "string",
-                            "enum": [
-                              "nominal",
-                              "usable"
-                            ]
-                          }
-                        },
-                        "required": [
-                          "capacityKwh",
-                          "basis"
-                        ]
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
-                  },
-                  "features": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/$defs/__schema3"
-                    }
-                  },
-                  "price": {
-                    "anyOf": [
-                      {
-                        "type": "object",
-                        "properties": {
-                          "versionId": {
-                            "type": "string",
-                            "format": "uuid",
-                            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
-                          },
-                          "amountMinor": {
-                            "type": "integer",
-                            "exclusiveMinimum": 0,
-                            "maximum": 9007199254740991
-                          },
-                          "currency": {
-                            "type": "string",
-                            "minLength": 3,
-                            "maxLength": 3
-                          },
-                          "taxInclusive": {
-                            "type": "boolean",
-                            "const": true
-                          },
-                          "taxBasis": {
-                            "type": "string",
-                            "enum": [
-                              "explicit_included",
-                              "explicit_excluded_converted",
-                              "market_convention"
-                            ]
-                          },
-                          "method": {
-                            "type": "string",
-                            "enum": [
-                              "official",
-                              "dealer_estimate",
-                              "unclassified"
-                            ]
-                          },
-                          "lastSuccessfulCheck": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "format": "date-time",
-                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "freshness": {
-                            "type": "string",
-                            "enum": [
-                              "fresh",
-                              "stale",
-                              "unverified"
-                            ]
-                          },
-                          "validUntil": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "format": "date",
-                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          },
-                          "estimated": {
-                            "type": "boolean",
-                            "const": true
-                          },
-                          "source": {
-                            "anyOf": [
-                              {
-                                "$ref": "#/$defs/__schema4"
-                              },
-                              {
-                                "type": "null"
-                              }
-                            ]
-                          }
-                        },
-                        "required": [
-                          "versionId",
-                          "amountMinor",
-                          "currency",
-                          "taxInclusive",
-                          "taxBasis",
-                          "method",
-                          "lastSuccessfulCheck",
-                          "freshness",
-                          "validUntil",
-                          "estimated",
-                          "source"
-                        ]
-                      },
-                      {
-                        "type": "null"
-                      }
-                    ]
-                  },
-                  "photos": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "url": {
-                          "type": "string",
-                          "format": "uri"
-                        },
-                        "width": {
-                          "anyOf": [
-                            {
-                              "type": "integer",
-                              "exclusiveMinimum": 0,
-                              "maximum": 9007199254740991
-                            },
-                            {
-                              "type": "null"
-                            }
-                          ]
-                        },
-                        "height": {
-                          "anyOf": [
-                            {
-                              "type": "integer",
-                              "exclusiveMinimum": 0,
-                              "maximum": 9007199254740991
-                            },
-                            {
-                              "type": "null"
-                            }
-                          ]
-                        },
-                        "order": {
-                          "type": "integer",
-                          "minimum": 0,
-                          "maximum": 9007199254740991
-                        },
-                        "label": {
-                          "type": "string"
-                        },
-                        "attribution": {
-                          "type": [
-                            "string",
-                            "null"
-                          ]
-                        },
-                        "sourceUrl": {
-                          "type": [
-                            "string",
-                            "null"
-                          ]
-                        },
-                        "representative": {
-                          "type": "boolean"
-                        },
-                        "scope": {
-                          "type": "string",
-                          "enum": [
-                            "model_wide",
-                            "generation_wide",
-                            "trim_specific"
-                          ]
-                        },
-                        "equipmentDisclaimer": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "url",
-                        "width",
-                        "height",
-                        "order",
-                        "label",
-                        "attribution",
-                        "sourceUrl",
-                        "representative",
-                        "scope",
-                        "equipmentDisclaimer"
-                      ]
-                    }
-                  },
-                  "facts": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "text": {
-                          "type": "string"
-                        },
-                        "scope": {
-                          "type": "string",
-                          "enum": [
-                            "model",
-                            "generation",
-                            "trim"
-                          ]
-                        },
-                        "source": {
-                          "$ref": "#/$defs/__schema4"
-                        }
-                      },
-                      "required": [
-                        "text",
-                        "scope",
-                        "source"
-                      ]
-                    }
-                  }
-                },
-                "required": [
-                  "id",
-                  "modelId",
-                  "market",
-                  "name",
-                  "make",
-                  "model",
-                  "generation",
-                  "modelYear",
-                  "equipmentGrade",
-                  "technicalConfiguration",
-                  "publication",
-                  "powertrain",
-                  "availability",
-                  "retired",
-                  "retiredAt",
-                  "specs",
-                  "battery",
-                  "features",
-                  "price",
-                  "photos",
-                  "facts"
-                ]
+                "$ref": "#/$defs/__schema18"
               }
             },
             "specs": {
@@ -2169,7 +381,7 @@
                   "cells": {
                     "type": "array",
                     "items": {
-                      "$ref": "#/$defs/__schema0"
+                      "$ref": "#/$defs/__schema19"
                     }
                   }
                 },
@@ -2190,7 +402,7 @@
                   "cells": {
                     "type": "array",
                     "items": {
-                      "$ref": "#/$defs/__schema3"
+                      "$ref": "#/$defs/__schema22"
                     }
                   }
                 },
@@ -2211,27 +423,7 @@
                     "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
                   },
                   "match": {
-                    "type": "object",
-                    "properties": {
-                      "result": {
-                        "type": "string",
-                        "enum": [
-                          "match",
-                          "mismatch",
-                          "unknown"
-                        ]
-                      },
-                      "reasons": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "required": [
-                      "result",
-                      "reasons"
-                    ]
+                    "$ref": "#/$defs/__schema23"
                   }
                 },
                 "required": [
@@ -2256,161 +448,22 @@
         "market",
         "powertrain",
         "data"
-      ],
-      "$defs": {
-        "__schema0": {
-          "type": "object",
-          "properties": {
-            "status": {
-              "$ref": "#/$defs/__schema1"
-            },
-            "value": {
-              "anyOf": [
-                {
-                  "$ref": "#/$defs/__schema2"
-                },
-                {
-                  "type": "null"
-                }
-              ]
-            },
-            "unit": {
-              "type": [
-                "string",
-                "null"
-              ]
-            }
-          },
-          "required": [
-            "status",
-            "value",
-            "unit"
-          ]
-        },
-        "__schema1": {
-          "type": "string",
-          "enum": [
-            "resolved",
-            "unknown",
-            "disputed",
-            "not_applicable"
-          ]
-        },
-        "__schema2": {
-          "type": [
-            "string",
-            "number",
-            "boolean"
-          ]
-        },
-        "__schema3": {
-          "type": "object",
-          "properties": {
-            "key": {
-              "type": "string"
-            },
-            "featureKey": {
-              "type": "string"
-            },
-            "label": {
-              "type": "string"
-            },
-            "category": {
-              "type": [
-                "string",
-                "null"
-              ]
-            },
-            "attributes": {
-              "type": "object",
-              "propertyNames": {
-                "type": "string"
-              },
-              "additionalProperties": {
-                "$ref": "#/$defs/__schema2"
-              }
-            },
-            "evidence": {
-              "$ref": "#/$defs/__schema1"
-            },
-            "fitment": {
-              "type": "string",
-              "enum": [
-                "standard",
-                "optional",
-                "pack_only",
-                "unavailable",
-                "unknown"
-              ]
-            },
-            "numeric": {
-              "$ref": "#/$defs/__schema0"
-            }
-          },
-          "required": [
-            "key",
-            "featureKey",
-            "label",
-            "category",
-            "attributes",
-            "evidence",
-            "fitment",
-            "numeric"
-          ]
-        },
-        "__schema4": {
-          "type": "object",
-          "properties": {
-            "title": {
-              "type": "string"
-            },
-            "url": {
-              "type": "string",
-              "format": "uri"
-            },
-            "checkedAt": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "format": "date-time",
-                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
-                },
-                {
-                  "type": "null"
-                }
-              ]
-            }
-          },
-          "required": [
-            "title",
-            "url",
-            "checkedAt"
-          ]
-        }
-      }
+      ]
     },
     "/definitions": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
       "type": "object",
       "properties": {
         "apiVersion": {
-          "type": "string",
-          "const": "1"
+          "$ref": "#/$defs/__schema0"
         },
         "asOf": {
-          "type": "string",
-          "format": "date-time",
-          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+          "$ref": "#/$defs/__schema1"
         },
         "market": {
-          "type": "string"
+          "$ref": "#/$defs/__schema2"
         },
         "powertrain": {
-          "type": "string",
-          "enum": [
-            "bev",
-            "all"
-          ]
+          "$ref": "#/$defs/__schema3"
         },
         "data": {
           "type": "object",
@@ -2422,97 +475,13 @@
             "specs": {
               "type": "array",
               "items": {
-                "type": "object",
-                "properties": {
-                  "key": {
-                    "type": "string"
-                  },
-                  "label": {
-                    "type": "string"
-                  },
-                  "category": {
-                    "type": "string"
-                  },
-                  "description": {
-                    "type": "string"
-                  },
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "number",
-                      "enum"
-                    ]
-                  },
-                  "numericUnit": {
-                    "type": [
-                      "string",
-                      "null"
-                    ]
-                  },
-                  "values": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "required": [
-                  "key",
-                  "label",
-                  "category",
-                  "description",
-                  "type",
-                  "numericUnit"
-                ]
+                "$ref": "#/$defs/__schema24"
               }
             },
             "features": {
               "type": "array",
               "items": {
-                "type": "object",
-                "properties": {
-                  "key": {
-                    "type": "string"
-                  },
-                  "label": {
-                    "type": "string"
-                  },
-                  "category": {
-                    "type": "string"
-                  },
-                  "description": {
-                    "type": "string"
-                  },
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "boolean",
-                      "level",
-                      "number",
-                      "number_with_window"
-                    ]
-                  },
-                  "numericUnit": {
-                    "type": [
-                      "string",
-                      "null"
-                    ]
-                  },
-                  "levels": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "required": [
-                  "key",
-                  "label",
-                  "category",
-                  "description",
-                  "type",
-                  "numericUnit"
-                ]
+                "$ref": "#/$defs/__schema25"
               }
             }
           },
@@ -2532,27 +501,19 @@
       ]
     },
     "/contract": {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
       "type": "object",
       "properties": {
         "apiVersion": {
-          "type": "string",
-          "const": "1"
+          "$ref": "#/$defs/__schema0"
         },
         "asOf": {
-          "type": "string",
-          "format": "date-time",
-          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+          "$ref": "#/$defs/__schema1"
         },
         "market": {
-          "type": "string"
+          "$ref": "#/$defs/__schema2"
         },
         "powertrain": {
-          "type": "string",
-          "enum": [
-            "bev",
-            "all"
-          ]
+          "$ref": "#/$defs/__schema3"
         },
         "data": {
           "type": "object",
@@ -2560,6 +521,9 @@
             "kind": {
               "type": "string",
               "const": "contract"
+            },
+            "$schema": {
+              "type": "string"
             },
             "apiVersion": {
               "type": "string",
@@ -2575,11 +539,20 @@
                 "type": "string"
               },
               "additionalProperties": {
-                "$ref": "#/$defs/__schema0"
+                "$ref": "#/$defs/__schema26"
               }
             },
             "error": {
-              "$ref": "#/$defs/__schema0"
+              "$ref": "#/$defs/__schema26"
+            },
+            "$defs": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/__schema26"
+              }
             },
             "definitions": {
               "type": "object",
@@ -2587,97 +560,13 @@
                 "specs": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "properties": {
-                      "key": {
-                        "type": "string"
-                      },
-                      "label": {
-                        "type": "string"
-                      },
-                      "category": {
-                        "type": "string"
-                      },
-                      "description": {
-                        "type": "string"
-                      },
-                      "type": {
-                        "type": "string",
-                        "enum": [
-                          "number",
-                          "enum"
-                        ]
-                      },
-                      "numericUnit": {
-                        "type": [
-                          "string",
-                          "null"
-                        ]
-                      },
-                      "values": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "required": [
-                      "key",
-                      "label",
-                      "category",
-                      "description",
-                      "type",
-                      "numericUnit"
-                    ]
+                    "$ref": "#/$defs/__schema24"
                   }
                 },
                 "features": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "properties": {
-                      "key": {
-                        "type": "string"
-                      },
-                      "label": {
-                        "type": "string"
-                      },
-                      "category": {
-                        "type": "string"
-                      },
-                      "description": {
-                        "type": "string"
-                      },
-                      "type": {
-                        "type": "string",
-                        "enum": [
-                          "boolean",
-                          "level",
-                          "number",
-                          "number_with_window"
-                        ]
-                      },
-                      "numericUnit": {
-                        "type": [
-                          "string",
-                          "null"
-                        ]
-                      },
-                      "levels": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "required": [
-                      "key",
-                      "label",
-                      "category",
-                      "description",
-                      "type",
-                      "numericUnit"
-                    ]
+                    "$ref": "#/$defs/__schema25"
                   }
                 }
               },
@@ -2689,10 +578,12 @@
           },
           "required": [
             "kind",
+            "$schema",
             "apiVersion",
             "status",
             "routes",
             "error",
+            "$defs",
             "definitions"
           ]
         }
@@ -2703,20 +594,10 @@
         "market",
         "powertrain",
         "data"
-      ],
-      "$defs": {
-        "__schema0": {
-          "type": "object",
-          "propertyNames": {
-            "type": "string"
-          },
-          "additionalProperties": {}
-        }
-      }
+      ]
     }
   },
   "error": {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "type": "object",
     "properties": {
       "apiVersion": {
@@ -2750,6 +631,753 @@
       "apiVersion",
       "error"
     ]
+  },
+  "$defs": {
+    "__schema0": {
+      "type": "string",
+      "const": "1"
+    },
+    "__schema1": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+    },
+    "__schema2": {
+      "type": "string"
+    },
+    "__schema3": {
+      "type": "string",
+      "enum": [
+        "bev",
+        "all"
+      ]
+    },
+    "__schema4": {
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+    },
+    "__schema5": {
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+    },
+    "__schema6": {
+      "type": "string"
+    },
+    "__schema7": {
+      "type": "string"
+    },
+    "__schema8": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "__schema9": {
+      "type": "string"
+    },
+    "__schema10": {
+      "type": "string",
+      "enum": [
+        "current",
+        "upcoming",
+        "discontinued",
+        "unknown"
+      ]
+    },
+    "__schema11": {
+      "type": "string",
+      "enum": [
+        "model_only",
+        "has_published_versions"
+      ]
+    },
+    "__schema12": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "__schema13": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/__schema14"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "__schema14": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "width": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "height": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "label": {
+          "type": "string"
+        },
+        "attribution": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sourceUrl": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "representative": {
+          "type": "boolean"
+        },
+        "scope": {
+          "type": "string",
+          "enum": [
+            "model_wide",
+            "generation_wide",
+            "trim_specific"
+          ]
+        },
+        "equipmentDisclaimer": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "width",
+        "height",
+        "order",
+        "label",
+        "attribution",
+        "sourceUrl",
+        "representative",
+        "scope",
+        "equipmentDisclaimer"
+      ]
+    },
+    "__schema15": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "const": "Lowest known trim price"
+            },
+            "coverage": {
+              "type": "string",
+              "const": "incomplete"
+            },
+            "price": {
+              "$ref": "#/$defs/__schema16"
+            }
+          },
+          "required": [
+            "label",
+            "coverage",
+            "price"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "__schema16": {
+      "type": "object",
+      "properties": {
+        "versionId": {
+          "type": "string",
+          "format": "uuid",
+          "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+        },
+        "amountMinor": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 9007199254740991
+        },
+        "currency": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "taxInclusive": {
+          "type": "boolean",
+          "const": true
+        },
+        "taxBasis": {
+          "type": "string",
+          "enum": [
+            "explicit_included",
+            "explicit_excluded_converted",
+            "market_convention"
+          ]
+        },
+        "method": {
+          "type": "string",
+          "enum": [
+            "official",
+            "dealer_estimate",
+            "unclassified"
+          ]
+        },
+        "lastSuccessfulCheck": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "freshness": {
+          "type": "string",
+          "enum": [
+            "fresh",
+            "stale",
+            "unverified"
+          ]
+        },
+        "validUntil": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "estimated": {
+          "type": "boolean",
+          "const": true
+        },
+        "source": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/__schema17"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "versionId",
+        "amountMinor",
+        "currency",
+        "taxInclusive",
+        "taxBasis",
+        "method",
+        "lastSuccessfulCheck",
+        "freshness",
+        "validUntil",
+        "estimated",
+        "source"
+      ]
+    },
+    "__schema17": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "checkedAt": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "title",
+        "url",
+        "checkedAt"
+      ]
+    },
+    "__schema18": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+        },
+        "modelId": {
+          "type": "string",
+          "format": "uuid",
+          "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+        },
+        "market": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 2
+        },
+        "name": {
+          "type": "string"
+        },
+        "make": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
+        },
+        "generation": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "modelYear": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "equipmentGrade": {
+          "type": "string"
+        },
+        "technicalConfiguration": {
+          "type": "object",
+          "properties": {
+            "batteryLabel": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "motorLabel": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "drivetrain": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "batteryLabel",
+            "motorLabel",
+            "drivetrain"
+          ]
+        },
+        "publication": {
+          "type": "string",
+          "const": "published"
+        },
+        "powertrain": {
+          "type": "string",
+          "enum": [
+            "bev",
+            "not_bev"
+          ]
+        },
+        "availability": {
+          "$ref": "#/$defs/__schema10"
+        },
+        "retired": {
+          "type": "boolean"
+        },
+        "retiredAt": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "specs": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema19"
+          }
+        },
+        "battery": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "capacityKwh": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "basis": {
+                  "type": "string",
+                  "enum": [
+                    "nominal",
+                    "usable"
+                  ]
+                }
+              },
+              "required": [
+                "capacityKwh",
+                "basis"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema22"
+          }
+        },
+        "price": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/__schema16"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "photos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema14"
+          }
+        },
+        "facts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string"
+              },
+              "scope": {
+                "type": "string",
+                "enum": [
+                  "model",
+                  "generation",
+                  "trim"
+                ]
+              },
+              "source": {
+                "$ref": "#/$defs/__schema17"
+              }
+            },
+            "required": [
+              "text",
+              "scope",
+              "source"
+            ]
+          }
+        }
+      },
+      "required": [
+        "id",
+        "modelId",
+        "market",
+        "name",
+        "make",
+        "model",
+        "generation",
+        "modelYear",
+        "equipmentGrade",
+        "technicalConfiguration",
+        "publication",
+        "powertrain",
+        "availability",
+        "retired",
+        "retiredAt",
+        "specs",
+        "battery",
+        "features",
+        "price",
+        "photos",
+        "facts"
+      ]
+    },
+    "__schema19": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/__schema20"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/__schema21"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "status",
+        "value",
+        "unit"
+      ]
+    },
+    "__schema20": {
+      "type": "string",
+      "enum": [
+        "resolved",
+        "unknown",
+        "disputed",
+        "not_applicable"
+      ]
+    },
+    "__schema21": {
+      "type": [
+        "string",
+        "number",
+        "boolean"
+      ]
+    },
+    "__schema22": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "featureKey": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "category": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "attributes": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema21"
+          }
+        },
+        "evidence": {
+          "$ref": "#/$defs/__schema20"
+        },
+        "fitment": {
+          "type": "string",
+          "enum": [
+            "standard",
+            "optional",
+            "pack_only",
+            "unavailable",
+            "unknown"
+          ]
+        },
+        "numeric": {
+          "$ref": "#/$defs/__schema19"
+        }
+      },
+      "required": [
+        "key",
+        "featureKey",
+        "label",
+        "category",
+        "attributes",
+        "evidence",
+        "fitment",
+        "numeric"
+      ]
+    },
+    "__schema23": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "string",
+          "enum": [
+            "match",
+            "mismatch",
+            "unknown"
+          ]
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "result",
+        "reasons"
+      ]
+    },
+    "__schema24": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "number",
+            "enum"
+          ]
+        },
+        "numericUnit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "key",
+        "label",
+        "category",
+        "description",
+        "type",
+        "numericUnit"
+      ]
+    },
+    "__schema25": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "boolean",
+            "level",
+            "number",
+            "number_with_window"
+          ]
+        },
+        "numericUnit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "levels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "key",
+        "label",
+        "category",
+        "description",
+        "type",
+        "numericUnit"
+      ]
+    },
+    "__schema26": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {}
+    }
   },
   "definitions": {
     "specs": [
