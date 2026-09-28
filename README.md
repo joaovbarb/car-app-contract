@@ -1,43 +1,80 @@
-# Consumer contract (payload schema 1)
+# Car App public contract
 
-This read-only API provides market-scoped vehicle browsing, published versions, comparisons, specifications, dynamic equipment features, qualified cash price estimates and curated photos. It supports frontend development even when live vehicles have incomplete evidence or no published versions.
+The read-only API of a catalogue of new battery-electric cars on sale in Portugal: makes, models, versions (trims),
+specifications, equipment features, approximate cash prices and photos. This directory is the whole contract a
+frontend needs. It is written for a frontend **in another repository**, which knows nothing about the backend.
 
-Read [integration.md](integration.md) first for routes, rendering semantics and the latest changes, then [contracts.ts](contracts.ts) for authoritative TypeScript/Zod schemas and [definitions.ts](definitions.ts) for the fixed specification and feature definitions, in exactly the shape `/definitions` serves (generated from the backend's catalogues). [CHANGELOG.md](CHANGELOG.md) records earlier contract revisions. The backend agent maintains this directory; frontend agents have read-only access.
+## Status: pre-stable
 
-Start with [synthetic fixtures](fixtures/synthetic-v1.json). The wrapper contains `synthetic: true`, successful `scenarios` and `errors`. Each entry's `response` is an HTTP body; names and error `httpStatus` are mock metadata. Successful bodies use status 200. Fixture IDs are synthetic, not production IDs. Example image/source URLs are placeholders, not usable assets; show image fallbacks. Examples cover all six routes, pagination, empty results, model-only coverage, all error codes and incomplete/disputed/stale data. No fixtures are production seed data.
+The contract may still change. Every change, breaking or not, is recorded in the changelog at the top of
+[integration.md](integration.md), newest first, with a date; [CHANGELOG.md](CHANGELOG.md) holds older revisions.
+**Check the changelog whenever you update your copy.** No versioning promise is made yet: until a stable version is
+declared, a change may land under the same `apiVersion` (`"1"`).
 
-## 2026-09-18 endpoint cutover
+## What is here
 
-The only consumer endpoint is `/api/public/v2`. This URL cutover does not change the JSON envelope: successful and error bodies continue to carry `apiVersion: "1"` and validate against the existing schemas. The replacement catalogue has independent IDs and data; old v1 URLs and IDs are not preserved, redirected, mapped, imported, or used as fallbacks.
+| File | What it is |
+| --- | --- |
+| [integration.md](integration.md) | Routes, parameters, rendering rules, errors, caching, and the changelog. Read it first. |
+| [contracts.ts](contracts.ts) | The authoritative Zod 4 schemas and TypeScript types of every body. Browser-safe, no imports but `zod`. |
+| [definitions.ts](definitions.ts) | The fixed specification and feature definitions, exactly as `/definitions` serves them. |
+| [schema.json](schema.json) | The same contract as JSON Schema (draft 2020-12): every route's success body, the error body, the definitions. |
+| [fixtures/synthetic-v1.json](fixtures/synthetic-v1.json) | Synthetic example bodies for every route and error. |
 
-The canonical gallery is now `data.photos` on `/models/{modelId}`. Cards retain `model.photo` as a hero; `version.photos` is deprecated compatibility data. New frontend code should fetch the model detail using a version's `modelId`, not treat version pictures as a trim gallery.
+`definitions.ts` and `schema.json` are generated; never edit them by hand.
 
-`data.photos` remains optional for payload compatibility. An absent property means the response has not supplied the model gallery; `[]` explicitly means no published model photos. Do not default absence to an empty gallery or present version photos as a canonical model gallery.
+## Getting the contract
 
-A battery is two specifications, `battery_capacity_nominal` and `battery_capacity_usable`. Where one figure is needed, use `version.battery` (`{ capacityKwh, basis }`, the nominal capacity when known, otherwise the usable one). Availability is `current`, `upcoming`, `discontinued` or `unknown`; discontinued models are served only with `includeDiscontinued=true`.
+- **From the public mirror repository**, which holds only this directory: copy the files, add it as a git submodule,
+  or read the raw files. Pin the commit you built against and review the changelog before moving to a newer one.
+- **From the API itself**: `GET /api/public/v2/contract` returns, in the usual envelope, `apiVersion`, `status`
+  (`"pre-stable"`) and the JSON Schema of every route's success body and of the error body, plus the definitions.
+  It is generated from `contracts.ts` and `definitions.ts` at runtime, so it always matches the deployed API.
+  `schema.json` is the same document (without the envelope and `kind`).
 
-## Independent frontend installation
+**TypeScript frontends** copy `contracts.ts`, `definitions.ts` and the fixtures into their own source (for example
+`src/generated/contract/`), install `zod` 4 (4.6.1 or later) in their own project, import `responseSchema`,
+`errorSchema` and the exported types, and treat the copy as generated: replace it on update, never edit it. This is what
+the frontend in the backend's own repository does. **Other frontends** use `schema.json` or the `/contract` route.
 
-Runtime dependency: **Zod 4.6.1** (Zod 4 API). TypeScript **5.9.3** was used for independent verification. Neither module needs a server, environment variables or backend imports. Install dependencies in your frontend, not in this read-only directory. Importing these files directly from outside the frontend can make module resolution look for root dependencies; use a generated local copy instead.
+## Rules for a frontend
 
-From your frontend directory, install `zod@4.6.1` with your frontend package manager (for npm: `npm install zod@4.6.1`). For a TypeScript project install TypeScript locally as a dev dependency. Create `scripts/sync-contract.mjs` inside your frontend with:
+- **Parse leniently.** Tolerate fields you do not know, and new values of an enumeration: a new value is not an error.
+  Show what you understand and skip or label the rest. (The JSON Schema leaves objects open to new fields, but lists
+  enumeration values as they are today; do not let a strict validator reject a body over a new value.)
+- **Absent and null mean what the contract says.** `null` means not known or not available; it is never zero, false or
+  an empty list. An absent optional field is not the same as an empty one (`data.photos` absent is "not supplied", `[]`
+  is "no photos"). Unknown specifications and features are shown as unknown.
+- **Cache; do not call the API per visitor.** Fetch on your server or at build time, keep the result, and refresh it
+  on a schedule. Respect the cache headers: a success is `public, max-age=60, s-maxage=300, stale-while-revalidate=60`,
+  so a response may be about five minutes old; errors are `no-store`. Retry a 503 a few times with a delay.
+- **IDs are stable.** Store make, model and version IDs freely. A retired version (no longer sold) stays reachable by
+  its ID and in `compare`, with `retired: true`; it is left out of lists. Names are labels, not keys.
+- **Photo credits.** Each photo carries `attribution` (the source site's name) and `sourceUrl` (the page it was found
+  on), both null when unknown. Showing a credit is your choice; the data is there for it.
+- **No credentials.** The API is public and read-only: no keys, no cookies, no credentials mode. CORS is open by
+  default; if an operator restricts it, give them your exact origin.
 
-```js
-import { copyFile, mkdir } from "node:fs/promises";
-const source = new URL("../../contract/", import.meta.url);
-const target = new URL("../src/generated/contract/", import.meta.url);
-await mkdir(new URL("fixtures/", target), { recursive: true });
-for (const name of ["contracts.ts", "definitions.ts", "fixtures/synthetic-v1.json"]) {
-  await copyFile(new URL(name, source), new URL(name, target));
-}
-```
+## The envelope
 
-Run `node scripts/sync-contract.mjs` from the frontend. This setup helper reads only the contract and writes only frontend files; it is not browser runtime code. Treat `src/generated/contract/` as generated, never edit its declarations manually. Regenerate on contract updates, review the changelog, and validate fixtures again. This requires no package publishing, root scripts, root dependencies or writes to the source contract.
+Every success body has `apiVersion: "1"`, `asOf` (UTC ISO timestamp), `market`, `powertrain` and a `data` object
+discriminated by `kind`. Every error body is `{ "apiVersion": "1", "error": { "code": "...", "message": "..." } }`.
+The URL version (`/api/public/v2`) and the payload version (`apiVersion: "1"`) are deliberately distinct.
 
-In frontend code, import `responseSchema`, `errorSchema` and exported types from the generated `contracts` module, and `specDefinitions` and `featureDefinitions` from generated `definitions`. Use your frontend's JSON loader or fetch a locally served copy of the fixture JSON. Mock each scenario's response rather than serving the wrapper as an API response.
+## Synthetic fixtures
 
-## Connect to live data
+Start with [fixtures/synthetic-v1.json](fixtures/synthetic-v1.json): a wrapper with `synthetic: true`, successful
+`scenarios` and `errors`. Each entry's `response` is an HTTP body (status 200 for scenarios, the entry's `httpStatus` for
+errors); names and `httpStatus` are mock metadata. The IDs are synthetic, not production IDs, and image and source URLs
+are placeholders, so render an image fallback. The examples cover every data route, pagination, empty results, models
+without versions, every error code, and incomplete, disputed and stale data.
 
-Configure a public `apiBase` in your frontend: empty string for same-origin, or the backend-provided public origin without a trailing slash. Request `${apiBase}/api/public/v2/models`. Parse successful JSON with `responseSchema` and unsuccessful JSON with `errorSchema`; network, CORS or deployment-access failures may not have JSON bodies. Do not embed admin, database or provider credentials or send cookies. For cross-origin use, give the backend operator your exact frontend origin to include in the backend’s central public API configuration.
+## Rendering notes
 
-Keep working with fixtures if the live catalogue is not ready. Record requests in your frontend's `docs/api-requests.md`: use case, current documented limitation, requested response/behavior and acceptance example. Send that request to the backend/coordinating agent; no backend inspection is necessary. Enabling public v2 reads is independent from enabling research, spending, events, or schedules.
+- The canonical gallery is `data.photos` on `/models/{modelId}`; a card's `model.photo` is its hero. `version.photos`
+  is deprecated: never treat it as a trim gallery. For a version page, fetch its model's gallery by `modelId`.
+- A battery is two specifications, `battery_capacity_nominal` and `battery_capacity_usable`. Where one figure is
+  needed, use `version.battery` (`{ capacityKwh, basis }`, nominal when known, otherwise usable).
+- Availability is `current`, `upcoming`, `discontinued` or `unknown`; discontinued models only with
+  `includeDiscontinued=true`. A model with zero versions, or an empty gallery, is a valid state.
+- Prices are approximate cash prices of an exact version, taxes included, in integer cents; show their freshness.

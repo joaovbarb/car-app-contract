@@ -6,6 +6,17 @@ This is the frontend's read-only boundary. It does not perform discovery, extrac
 
 Newest first. Older entries are in [CHANGELOG.md](CHANGELOG.md).
 
+### 2026-09-28 — round 54
+
+2026-09-28 -- round 54: GET /api/public/v2/contract serves the contract as JSON Schema; contract/schema.json holds the same; the README is written for frontends in other repositories. The contract is pre-stable.
+
+No change to any existing body; `apiVersion` remains `"1"`, and `contracts.ts`, `definitions.ts` and the fixtures are unchanged. Nothing to regenerate.
+
+- **`/contract`** (new route): in the usual envelope and with the usual cache header, `data` holds `kind: "contract"`, `apiVersion`, `status: "pre-stable"`, `routes` (the JSON Schema of each route's success body, keyed by its path), `error` (the JSON Schema of the error body) and `definitions` (`specs` and `features`, exactly as `/definitions`). It is generated at runtime from `contracts.ts` and `definitions.ts`, so it always matches the deployed API, and it reads no catalogue data. `responseSchema` does not list the kind `contract`: read this route as plain JSON, or with its own schema in `routes["/contract"]`.
+- **`schema.json`** (new file): the same document without the envelope and `kind`, for frontends not written in TypeScript. It is generated; a backend test fails when it differs from the contract.
+- **Pre-stable**: the contract may still change; every change is recorded here, newest first. No versioning promise is made yet.
+- **README.md** is rewritten for a frontend in another repository: getting the contract (the mirror repository or `/contract`) and the rules for a frontend (parse leniently, null and absent, caching, stable IDs, photo credits, no credentials).
+
 ### 2026-09-28 — round 53
 
 2026-09-28 -- round 53: photos carry attribution (the source site's name) and sourceUrl (the source page).
@@ -64,7 +75,8 @@ A deliberate breaking change, made once, so that the contract speaks the backend
 
 ## Start here
 
-- [Versioned TypeScript/Zod contracts](contracts.ts): browser-safe; requires Zod 4.6.1. Use the independently installed frontend pattern in [README](README.md).
+- [Versioned TypeScript/Zod contracts](contracts.ts): browser-safe; requires Zod 4.6.1. Copy it into your frontend as described in the [README](README.md).
+- [JSON Schema](schema.json): the same contract as JSON Schema, for frontends not written in TypeScript; also served by `/contract`. Generated; never edit it by hand.
 - [Definitions](definitions.ts): the fixed specification and feature definitions, browser-safe, in exactly the shape the `/definitions` route serves. Generated from the backend's catalogues; never edit it by hand.
 - [Synthetic JSON fixtures](fixtures/synthetic-v1.json): validate against `responseSchema`. The top-level `synthetic` flag, `scenarios`, `errors`, names and `httpStatus` belong to the fixture wrapper, not HTTP responses. Serve each entry’s `response` as the mock body (200 for scenarios, the supplied status for errors); validate success with `responseSchema` and errors with `errorSchema`. These examples are never inserted into a database. Image/source URLs use example.com placeholders; provide an image fallback when rendering fixtures.
 
@@ -82,6 +94,7 @@ The endpoint version and payload version are deliberately distinct: the URL is v
 | `/versions/{versionId}` | One published version and its three-way preference assessment |
 | `/compare?ids={id1},{id2}` | Two to four versions, aligned rows and preference assessments |
 | `/definitions` | The fixed specification and feature definitions: exactly `specDefinitions` and `featureDefinitions` from [definitions.ts](definitions.ts) |
+| `/contract` | The contract itself: `apiVersion`, `status` (`"pre-stable"`), the JSON Schema of every route's success body (`routes`, keyed by path) and of the error body (`error`), and the definitions. The same as [schema.json](schema.json); reads no catalogue data |
 
 Every successful response has `apiVersion: "1"`, `asOf` (UTC ISO timestamp), `market`, `powertrain` and a `data` object discriminated by `kind`. Comparison cells follow the order of the requested IDs. A missing, unpublished or out-of-scope requested version makes the entire detail/comparison request return 404, rather than silently dropping it; a retired version is served, with `retired: true`.
 
@@ -113,6 +126,7 @@ GET /api/public/v2/models/MODEL_UUID?limit=20
 GET /api/public/v2/versions/VERSION_UUID
 GET /api/public/v2/compare?ids=VERSION_UUID_1,VERSION_UUID_2
 GET /api/public/v2/definitions
+GET /api/public/v2/contract
 ```
 
 Use real returned UUIDs; placeholders above are intentionally not valid requests. Fixture UUIDs work with a fixture-backed frontend, not the production database.
