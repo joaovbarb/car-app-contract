@@ -6,6 +6,16 @@ This is the frontend's read-only boundary. It does not perform discovery, extrac
 
 Newest first. Older entries are in [CHANGELOG.md](CHANGELOG.md).
 
+### 2026-09-28 — round 53
+
+2026-09-28 -- round 53: photos carry attribution (the source site's name) and sourceUrl (the source page).
+
+No `apiVersion` change: it remains `"1"` (an added field; our frontend is the only consumer and deploys in the same push). Regenerate the frontend's contract copy.
+
+- **`attribution`** (`string | null`, already present, null until now): the name of the site the photo was found on, e.g. `"audi.com"` -- the host of the source page without `www.`.
+- **`sourceUrl`** (`string | null`, new): the page the photo was found on.
+- Both are null when the photo's source page is not known. They appear wherever a photo does: `model.photo`, `data.photos` and the deprecated `version.photos`. Whether to show a credit is the site's choice.
+
 ### 2026-09-28 — round 52
 
 2026-09-28 -- round 52: successful responses are cached longer: `cache-control: public, max-age=60, s-maxage=300, stale-while-revalidate=60`.
@@ -177,7 +187,7 @@ Where one figure is needed -- a card, a list, a comparison headline -- use `vers
 
 The canonical gallery is `data.photos` on model detail, independent of versions. Cards carry `model.photo` as the hero. For a version page, use its `modelId` to fetch `/models/{modelId}` and render `data.photos` as **Model photos**, not trim photos. For a comparison, reuse one gallery per distinct model ID. A model with zero published versions may still have a full gallery.
 
-Gallery order comes from each photo's `order`. Version pagination (`limit`, `offset`, `nextOffset`) applies only to `versions`; every page for a model can carry the same gallery. Photos contain final public URLs, dimensions where known, order, labels and attribution. Respect `representative` and `equipmentDisclaimer`; a model/generation picture does not establish a trim's equipment. The gallery contains photos applicable to this model/generation (`model_wide` or matching `generation_wide`); keep scope metadata and disclaimers. There is no client-side storage URL construction or signed upload URL.
+Gallery order comes from each photo's `order`. Version pagination (`limit`, `offset`, `nextOffset`) applies only to `versions`; every page for a model can carry the same gallery. Photos contain final public URLs, dimensions where known, order, labels, `attribution` (the source site's name, e.g. "audi.com") and `sourceUrl` (the page the photo was found on); both are null when the source is not known. Respect `representative` and `equipmentDisclaimer`; a model/generation picture does not establish a trim's equipment. The gallery contains photos applicable to this model/generation (`model_wide` or matching `generation_wide`); keep scope metadata and disclaimers. There is no client-side storage URL construction or signed upload URL.
 
 `data.photos` is optional in the schema: absence means the response did not supply the gallery; an explicit `[]` means a supported empty gallery. `version.photos` is deprecated and may be `[]` even when the model gallery is populated; never infer that a model has no photos from it.
 

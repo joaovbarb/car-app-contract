@@ -30,7 +30,8 @@
                 "height": 900,
                 "order": 0,
                 "label": "Example One representative exterior",
-                "attribution": "Synthetic example image",
+                "attribution": "example.test",
+                "sourceUrl": "https://example.test/synthetic-gallery",
                 "representative": true,
                 "scope": "model_wide",
                 "equipmentDisclaimer": "Pictured equipment may differ from this version."
@@ -138,7 +139,8 @@
               "height": 900,
               "order": 0,
               "label": "Example One representative exterior",
-              "attribution": "Synthetic example image",
+              "attribution": "example.test",
+              "sourceUrl": "https://example.test/synthetic-gallery",
               "representative": true,
               "scope": "model_wide",
               "equipmentDisclaimer": "Pictured equipment may differ from this version."
@@ -687,7 +689,8 @@
               "height": 900,
               "order": 0,
               "label": "Example One representative exterior",
-              "attribution": "Synthetic example image",
+              "attribution": "example.test",
+              "sourceUrl": "https://example.test/synthetic-gallery",
               "representative": true,
               "scope": "model_wide",
               "equipmentDisclaimer": "Pictured equipment may differ from this version."
@@ -2413,7 +2416,8 @@
               "height": 900,
               "order": 0,
               "label": "Example One representative exterior",
-              "attribution": "Synthetic example image",
+              "attribution": "example.test",
+              "sourceUrl": "https://example.test/synthetic-gallery",
               "representative": true,
               "scope": "model_wide",
               "equipmentDisclaimer": "Pictured equipment may differ from this version."
@@ -2605,7 +2609,8 @@
               "height": 900,
               "order": 0,
               "label": "Example One representative exterior",
-              "attribution": "Synthetic example image",
+              "attribution": "example.test",
+              "sourceUrl": "https://example.test/synthetic-gallery",
               "representative": true,
               "scope": "model_wide",
               "equipmentDisclaimer": "Pictured equipment may differ from this version."
@@ -2981,7 +2986,8 @@
               "height": 900,
               "order": 0,
               "label": "Synthetic model-only exterior",
-              "attribution": "Synthetic example image",
+              "attribution": "example.test",
+              "sourceUrl": "https://example.test/synthetic-gallery",
               "representative": true,
               "scope": "model_wide",
               "equipmentDisclaimer": "Pictured equipment may differ from this version."
@@ -2997,7 +3003,8 @@
               "height": 900,
               "order": 0,
               "label": "Synthetic model-only exterior",
-              "attribution": "Synthetic example image",
+              "attribution": "example.test",
+              "sourceUrl": "https://example.test/synthetic-gallery",
               "representative": true,
               "scope": "model_wide",
               "equipmentDisclaimer": "Pictured equipment may differ from this version."

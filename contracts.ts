@@ -22,8 +22,14 @@ export const batteryBasisSchema = z.enum(["nominal", "usable"]);
  */
 export const batterySchema = z.object({ capacityKwh: z.number().positive(), basis: batteryBasisSchema });
 export const provenanceSchema = z.object({ title: z.string(), url: z.url(), checkedAt: z.iso.datetime().nullable() });
+/**
+ * A published photo. `attribution`: the name of the site the photo was found on, e.g. "audi.com"; `sourceUrl`: the
+ * page the photo was found on (round 53). Both null when the photo's source page is not known. Showing a credit is
+ * the site's choice.
+ */
 export const photoSchema = z.object({ url: z.url(), width: z.number().int().positive().nullable(), height: z.number().int().positive().nullable(),
-  order: z.number().int().nonnegative(), label: z.string(), attribution: z.string().nullable(), representative: z.boolean(),
+  order: z.number().int().nonnegative(), label: z.string(), attribution: z.string().nullable(), sourceUrl: z.string().nullable(),
+  representative: z.boolean(),
   scope: z.enum(["model_wide", "generation_wide", "trim_specific"]), equipmentDisclaimer: z.string() });
 /**
  * The kind of source a price came from. `official`: the manufacturer's own. `dealer_estimate`: a
