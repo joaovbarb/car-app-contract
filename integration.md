@@ -6,6 +6,14 @@ This is the frontend's read-only boundary. It does not perform discovery, extrac
 
 Newest first. Older entries are in [CHANGELOG.md](CHANGELOG.md).
 
+### 2026-09-30 — round 63
+
+2026-09-30 -- round 63: successful responses are cached much longer: `cache-control: public, max-age=60, s-maxage=3600, stale-while-revalidate=86400`.
+
+No schema change; `apiVersion` remains `"1"`. Nothing to regenerate.
+
+- **Caching**: success responses previously sent `public, max-age=60, s-maxage=300, stale-while-revalidate=60`. They now allow 60 seconds of browser caching, an hour of shared (CDN) caching and up to a day more of a stale copy served while it refreshes in the background. A response is normally at most about an hour old; the first request after a quiet period can receive an older copy (up to about a day) while the refresh happens. Errors are still not cached (`no-store`). Reason: after an idle period a visitor waited for the function's cold start (14.4 s measured); now the cached answer is served and the cold start happens behind the scenes.
+
 ### 2026-09-28 — round 54
 
 2026-09-28 -- round 54: GET /api/public/v2/contract serves the contract as JSON Schema; contract/schema.json holds the same; the README is written for frontends in other repositories. The contract is pre-stable.
@@ -211,7 +219,7 @@ Errors use `{ "apiVersion": "1", "error": { "code": "...", "message": "..." } }`
 
 Publication, prices and galleries share a consistent snapshot within each response. Offset ordering is deterministic by make/model/name/ID (with `sort=coverage`, by `coverageScore` first); a later request may observe intervening population updates. Deduplicate pagination by ID and refresh the list when appropriate. This is not a cross-request snapshot cursor.
 
-Success responses are sent with `cache-control: public, max-age=60, s-maxage=300, stale-while-revalidate=60`: 60 seconds of browser caching, 300 seconds of shared (CDN) caching, and up to 60 seconds more of a stale copy served while it refreshes. A catalogue change can therefore take about five minutes to appear. A read is bounded to 1000 matching models, 4000 trims and 10000 related records per query; excessive scope returns 503 rather than a silently incomplete result. Narrow `q`/`makeId` or use detail routes if this deployment outgrows the bound.
+Success responses are sent with `cache-control: public, max-age=60, s-maxage=3600, stale-while-revalidate=86400`: 60 seconds of browser caching, an hour of shared (CDN) caching, and up to a day more of a stale copy served while it refreshes in the background. A catalogue change can therefore take about an hour to appear, and the first request after a quiet period may still receive an older copy while the refresh happens. A read is bounded to 1000 matching models, 4000 trims and 10000 related records per query; excessive scope returns 503 rather than a silently incomplete result. Narrow `q`/`makeId` or use detail routes if this deployment outgrows the bound.
 
 Same-origin frontend calls use an empty API base URL. For another deployment, configure the frontend with the public origin supplied by the backend operator (for example `https://catalogue.example.com`), without `/api/public/v2` or a trailing slash. CORS is open by default; if the operator restricts it, give them your exact frontend origin. No admin credentials, cookies or credentials mode are required. Deployment protection can prevent access: ask the operator for a publicly accessible endpoint; never embed bypass secrets.
 

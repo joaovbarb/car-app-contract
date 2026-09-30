@@ -46,8 +46,10 @@ the frontend in the backend's own repository does. **Other frontends** use `sche
   an empty list. An absent optional field is not the same as an empty one (`data.photos` absent is "not supplied", `[]`
   is "no photos"). Unknown specifications and features are shown as unknown.
 - **Cache; do not call the API per visitor.** Fetch on your server or at build time, keep the result, and refresh it
-  on a schedule. Respect the cache headers: a success is `public, max-age=60, s-maxage=300, stale-while-revalidate=60`,
-  so a response may be about five minutes old; errors are `no-store`. Retry a 503 a few times with a delay.
+  on a schedule. Respect the cache headers: a success is
+  `public, max-age=60, s-maxage=3600, stale-while-revalidate=86400`, so a response may be about an hour old, and older
+  (up to about a day) on the first request after a quiet period; errors are `no-store`. Retry a 503 a few times with a
+  delay.
 - **IDs are stable.** Store make, model and version IDs freely. A retired version (no longer sold) stays reachable by
   its ID and in `compare`, with `retired: true`; it is left out of lists. Names are labels, not keys.
 - **Photo credits.** Each photo carries `attribution` (the source site's name) and `sourceUrl` (the page it was found
