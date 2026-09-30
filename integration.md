@@ -6,6 +6,12 @@ This is the frontend's read-only boundary. It does not perform discovery, extrac
 
 Newest first. Older entries are in [CHANGELOG.md](CHANGELOG.md).
 
+### 2026-09-30 — round 65
+
+2026-09-30 -- round 65: every response carries a `server-timing` header (durations only), exposed to browsers with `access-control-expose-headers: Server-Timing`.
+
+No schema change; `apiVersion` remains `"1"`. Nothing to regenerate.
+
 ### 2026-09-30 — round 63
 
 2026-09-30 -- round 63: successful responses are cached much longer: `cache-control: public, max-age=60, s-maxage=3600, stale-while-revalidate=86400`.
@@ -220,6 +226,8 @@ Errors use `{ "apiVersion": "1", "error": { "code": "...", "message": "..." } }`
 Publication, prices and galleries share a consistent snapshot within each response. Offset ordering is deterministic by make/model/name/ID (with `sort=coverage`, by `coverageScore` first); a later request may observe intervening population updates. Deduplicate pagination by ID and refresh the list when appropriate. This is not a cross-request snapshot cursor.
 
 Success responses are sent with `cache-control: public, max-age=60, s-maxage=3600, stale-while-revalidate=86400`: 60 seconds of browser caching, an hour of shared (CDN) caching, and up to a day more of a stale copy served while it refreshes in the background. A catalogue change can therefore take up to an hour to reach the API's answers, and the first request after a quiet period may still receive a copy up to about 25 hours old while the refresh happens. A frontend's own cache adds to this: a page regenerated hourly from the API can show data about two hours old, and up to about a day old after a quiet period. Revalidating a frontend page (for example by hand) does not purge the API's CDN copy, so it does not force fresh data: the page is rebuilt from the CDN's copy, up to an hour old, or up to about 25 hours right after a quiet period. A read is bounded to 1000 matching models, 4000 trims and 10000 related records per query; excessive scope returns 503 rather than a silently incomplete result. Narrow `q`/`makeId` or use detail routes if this deployment outgrows the bound.
+
+Every response carries `server-timing` (for example `proc;dur=3703.6, mod;dur=3161.9, compose;dur=0.0, db;dur=138.1, query;dur=255.6, build;dur=0.8, total;dur=256.5`, plus `first;desc="1"` on an instance's first request): durations in milliseconds only -- since the server process started, since the route loaded, the phases that ran and the handler's total -- readable from a browser (`access-control-expose-headers: Server-Timing`). A CDN hit repeats the header of the answer it stored. It is diagnostic, not part of the payload contract.
 
 Same-origin frontend calls use an empty API base URL. For another deployment, configure the frontend with the public origin supplied by the backend operator (for example `https://catalogue.example.com`), without `/api/public/v2` or a trailing slash. CORS is open by default; if the operator restricts it, give them your exact frontend origin. No admin credentials, cookies or credentials mode are required. Deployment protection can prevent access: ask the operator for a publicly accessible endpoint; never embed bypass secrets.
 
