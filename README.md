@@ -85,6 +85,7 @@ without versions, every error code, and incomplete, disputed and stale data.
 - **To filter models by their versions' properties**, fetch `/search-index` once (one compact row per served version:
   shown price in whole euros, nominal battery, WLTP range, drivetrain, length, height, boot and seats, each null when
   unknown, never zero; and each attribute's `{ min, max }` over the whole index) and match on your side: a model
-  matches when one of its rows satisfies every filter. See [integration.md](integration.md#search-index).
+  matches when one of its rows satisfies every filter. The index is whole for up to 5,000 models and 10,000 served
+  versions; beyond that it answers 503, never a partial index. See [integration.md](integration.md#search-index).
 - `seats` (a version specification since round 74) is the most seats the version can be ordered with. **Body type is
   deliberately not provided**: infer it from length, height and seats if you need it.

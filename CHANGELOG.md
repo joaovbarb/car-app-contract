@@ -1,5 +1,13 @@
 # Contract changelog
 
+## 2026-10-02 — round 76 (documentation)
+
+- The search index's real size limits: it is whole for up to 5,000 models and 10,000 served versions (raised from
+  1,000 and 4,000), and beyond them it answers 503 `TEMPORARILY_UNAVAILABLE`, never a partial index. Round 74's
+  "one request whatever the size of the catalogue" is withdrawn. The same bounds apply to the other list reads.
+  Nothing changes shape; `apiVersion` remains `"1"`. The entry is at the top of [integration.md](integration.md),
+  and the limits are in its "Search index" section.
+
 ## 2026-10-02 — round 74 (additive)
 
 - `GET /api/public/v2/search-index` (new route, `kind: "search_index"`): one compact row per served version and
