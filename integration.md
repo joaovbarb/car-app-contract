@@ -174,7 +174,7 @@ if (!response.ok) throw new Error(payload.error.message);
 // Optionally validate responseSchema.parse(payload).
 ```
 
-Numeric spec preferences support `gte`, `lte`, `eq`; enum preferences support string `eq`. Feature preferences use a returned feature row `key` and a required fitment (`standard`, `optional`, `pack_only`, `unavailable`). Missing rows, disputed values, not-applicable measurements, unknown fitment and stale/unverified prices produce `unknown`, never false/zero. Any verified failed criterion yields `mismatch`; otherwise any unknown criterion yields `unknown`; only all verified successes yield `match`. Reasons are returned on version detail and comparison. Browse includes a model only when one coherent published version meets all criteria; it never combines different versions' strengths. `include` admits uncertain candidates, but still excludes confirmed mismatches.
+Numeric spec preferences support `gte`, `lte`, `eq`; enum preferences support string `eq`. A price preference (`maxAmountMinor`, in cents) is judged against the shown price, the whole-euro `amountMinor` the response carries: a price equal to the maximum matches. Feature preferences use a returned feature row `key` and a required fitment (`standard`, `optional`, `pack_only`, `unavailable`). Missing rows, disputed values, not-applicable measurements, unknown fitment and stale/unverified prices produce `unknown`, never false/zero. Any verified failed criterion yields `mismatch`; otherwise any unknown criterion yields `unknown`; only all verified successes yield `match`. Reasons are returned on version detail and comparison. Browse includes a model only when one coherent published version meets all criteria; it never combines different versions' strengths. `include` admits uncertain candidates, but still excludes confirmed mismatches.
 
 ## Search index
 
@@ -213,7 +213,7 @@ Every attribute is `null` when it is **unknown, never zero**: not recorded yet, 
 
 **Body type is deliberately not provided** -- here or anywhere in the contract. If you need one, infer it from `lengthMm`, `heightMm` and `seats`, and present it as your own inference.
 
-**Seats.** `seats` is a version specification (also in `/definitions` and `version.specs`): the maximum number of seats the version can be ordered with, as the manufacturer states it (homologated). A version sold with 5 seats, or 7 with an optional third row, has 7. Catalogued passenger cars have at most 7.
+**Seats.** `seats` is a version specification (also in `/definitions` and `version.specs`): the maximum number of seats the version can be ordered with, as the manufacturer states it (homologated). A version sold with 5 seats, or 7 with an optional third row, has 7. A served value is a whole number from 1 to 9; nothing else about it is guaranteed.
 
 **Caching and `asOf`.** Cached exactly like every other success: `cache-control: public, max-age=60, s-maxage=3600, stale-while-revalidate=86400`, with a `server-timing` header. `asOf` is when the API built the body; a cached copy keeps its `asOf`, so it tells you how old the index you hold is (normally up to an hour, up to about 25 hours after a quiet period). Fetch the index on your server, keep it, and refresh it on a schedule; do not fetch it per visitor. It is one request whatever the size of the catalogue (about 250 bytes per version).
 
@@ -223,7 +223,7 @@ Every attribute is `null` when it is **unknown, never zero**: not recorded yet, 
 GET /api/public/v2/search-index?market=PT&powertrain=bev
 ```
 
-**Response** (sanitized; the IDs are the fixtures' synthetic ones): a full row, a row with nulls (only a usable battery is known, so `batteryNominalKwh` is null, and no price is shown), and the domains:
+**Response** (sanitized; the IDs are synthetic, used only by the fixtures' search-index scenarios): a full row, a row with nulls (only a usable battery is known, so `batteryNominalKwh` is null, and no price is shown), and the domains:
 
 ```json
 {
@@ -235,8 +235,8 @@ GET /api/public/v2/search-index?market=PT&powertrain=bev
     "kind": "search_index",
     "versions": [
       {
-        "modelId": "00000000-0000-4000-8000-000000000100",
-        "versionId": "00000000-0000-4000-8000-000000000001",
+        "modelId": "00000000-0000-4000-8000-000000000300",
+        "versionId": "00000000-0000-4000-8000-000000000301",
         "price": { "amountEur": 24600, "verifiedAt": "2026-10-01T08:00:00.000Z", "sourceKind": "official" },
         "batteryNominalKwh": 63.2,
         "rangeWltpKm": 410,
@@ -247,8 +247,8 @@ GET /api/public/v2/search-index?market=PT&powertrain=bev
         "seats": 5
       },
       {
-        "modelId": "00000000-0000-4000-8000-000000000100",
-        "versionId": "00000000-0000-4000-8000-000000000003",
+        "modelId": "00000000-0000-4000-8000-000000000300",
+        "versionId": "00000000-0000-4000-8000-000000000303",
         "price": null,
         "batteryNominalKwh": null,
         "rangeWltpKm": null,
