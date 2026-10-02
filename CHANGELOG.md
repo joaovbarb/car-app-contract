@@ -1,5 +1,13 @@
 # Contract changelog
 
+## 2026-10-02 — round 74 (additive)
+
+- `GET /api/public/v2/search-index` (new route, `kind: "search_index"`): one compact row per served version and
+  the domains over the whole index; the new `seats` specification; every public price a whole number of euros. Body
+  type is deliberately not provided. `apiVersion` remains `"1"` (pre-stable: changes land under the same version and
+  are recorded). The full entry is at the top of [integration.md](integration.md), and the route is documented in
+  its "Search index" section.
+
 ## 2026-09-24 — round 31 (breaking)
 
 - Availability values are the backend's own (`current`, `upcoming`, `discontinued`, `unknown`);

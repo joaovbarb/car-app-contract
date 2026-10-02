@@ -266,7 +266,7 @@
             "versions": {
               "type": "array",
               "items": {
-                "$ref": "#/$defs/__schema18"
+                "$ref": "#/$defs/__schema19"
               }
             },
             "nextOffset": {
@@ -321,10 +321,10 @@
               "const": "version"
             },
             "version": {
-              "$ref": "#/$defs/__schema18"
+              "$ref": "#/$defs/__schema19"
             },
             "preferenceMatch": {
-              "$ref": "#/$defs/__schema23"
+              "$ref": "#/$defs/__schema24"
             }
           },
           "required": [
@@ -367,7 +367,7 @@
             "versions": {
               "type": "array",
               "items": {
-                "$ref": "#/$defs/__schema18"
+                "$ref": "#/$defs/__schema19"
               }
             },
             "specs": {
@@ -381,7 +381,7 @@
                   "cells": {
                     "type": "array",
                     "items": {
-                      "$ref": "#/$defs/__schema19"
+                      "$ref": "#/$defs/__schema20"
                     }
                   }
                 },
@@ -402,7 +402,7 @@
                   "cells": {
                     "type": "array",
                     "items": {
-                      "$ref": "#/$defs/__schema22"
+                      "$ref": "#/$defs/__schema23"
                     }
                   }
                 },
@@ -423,7 +423,7 @@
                     "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
                   },
                   "match": {
-                    "$ref": "#/$defs/__schema23"
+                    "$ref": "#/$defs/__schema24"
                   }
                 },
                 "required": [
@@ -475,13 +475,13 @@
             "specs": {
               "type": "array",
               "items": {
-                "$ref": "#/$defs/__schema24"
+                "$ref": "#/$defs/__schema25"
               }
             },
             "features": {
               "type": "array",
               "items": {
-                "$ref": "#/$defs/__schema25"
+                "$ref": "#/$defs/__schema26"
               }
             }
           },
@@ -489,6 +489,234 @@
             "kind",
             "specs",
             "features"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "asOf",
+        "market",
+        "powertrain",
+        "data"
+      ]
+    },
+    "/search-index": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "$ref": "#/$defs/__schema0"
+        },
+        "asOf": {
+          "$ref": "#/$defs/__schema1"
+        },
+        "market": {
+          "$ref": "#/$defs/__schema2"
+        },
+        "powertrain": {
+          "$ref": "#/$defs/__schema3"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "search_index"
+            },
+            "versions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "modelId": {
+                    "type": "string",
+                    "format": "uuid",
+                    "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                  },
+                  "versionId": {
+                    "type": "string",
+                    "format": "uuid",
+                    "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                  },
+                  "price": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "amountEur": {
+                            "type": "integer",
+                            "exclusiveMinimum": 0,
+                            "maximum": 9007199254740991
+                          },
+                          "verifiedAt": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "sourceKind": {
+                            "$ref": "#/$defs/__schema17"
+                          }
+                        },
+                        "required": [
+                          "amountEur",
+                          "verifiedAt",
+                          "sourceKind"
+                        ]
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "batteryNominalKwh": {
+                    "anyOf": [
+                      {
+                        "type": "number",
+                        "exclusiveMinimum": 0
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "rangeWltpKm": {
+                    "anyOf": [
+                      {
+                        "type": "integer",
+                        "exclusiveMinimum": 0,
+                        "maximum": 9007199254740991
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "drivetrain": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/__schema27"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "lengthMm": {
+                    "anyOf": [
+                      {
+                        "type": "integer",
+                        "exclusiveMinimum": 0,
+                        "maximum": 9007199254740991
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "heightMm": {
+                    "anyOf": [
+                      {
+                        "type": "integer",
+                        "exclusiveMinimum": 0,
+                        "maximum": 9007199254740991
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "bootVolumeL": {
+                    "anyOf": [
+                      {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 9007199254740991
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "seats": {
+                    "anyOf": [
+                      {
+                        "type": "integer",
+                        "exclusiveMinimum": 0,
+                        "maximum": 9007199254740991
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "modelId",
+                  "versionId",
+                  "price",
+                  "batteryNominalKwh",
+                  "rangeWltpKm",
+                  "drivetrain",
+                  "lengthMm",
+                  "heightMm",
+                  "bootVolumeL",
+                  "seats"
+                ]
+              }
+            },
+            "domains": {
+              "type": "object",
+              "properties": {
+                "priceEur": {
+                  "$ref": "#/$defs/__schema28"
+                },
+                "batteryNominalKwh": {
+                  "$ref": "#/$defs/__schema28"
+                },
+                "rangeWltpKm": {
+                  "$ref": "#/$defs/__schema28"
+                },
+                "lengthMm": {
+                  "$ref": "#/$defs/__schema28"
+                },
+                "heightMm": {
+                  "$ref": "#/$defs/__schema28"
+                },
+                "bootVolumeL": {
+                  "$ref": "#/$defs/__schema28"
+                },
+                "seats": {
+                  "$ref": "#/$defs/__schema28"
+                }
+              },
+              "required": [
+                "priceEur",
+                "batteryNominalKwh",
+                "rangeWltpKm",
+                "lengthMm",
+                "heightMm",
+                "bootVolumeL",
+                "seats"
+              ]
+            },
+            "drivetrains": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/__schema27"
+              }
+            }
+          },
+          "required": [
+            "kind",
+            "versions",
+            "domains",
+            "drivetrains"
           ]
         }
       },
@@ -539,11 +767,11 @@
                 "type": "string"
               },
               "additionalProperties": {
-                "$ref": "#/$defs/__schema26"
+                "$ref": "#/$defs/__schema29"
               }
             },
             "error": {
-              "$ref": "#/$defs/__schema26"
+              "$ref": "#/$defs/__schema29"
             },
             "$defs": {
               "type": "object",
@@ -551,7 +779,7 @@
                 "type": "string"
               },
               "additionalProperties": {
-                "$ref": "#/$defs/__schema26"
+                "$ref": "#/$defs/__schema29"
               }
             },
             "definitions": {
@@ -560,13 +788,13 @@
                 "specs": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/$defs/__schema24"
+                    "$ref": "#/$defs/__schema25"
                   }
                 },
                 "features": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/$defs/__schema25"
+                    "$ref": "#/$defs/__schema26"
                   }
                 }
               },
@@ -846,12 +1074,7 @@
           ]
         },
         "method": {
-          "type": "string",
-          "enum": [
-            "official",
-            "dealer_estimate",
-            "unclassified"
-          ]
+          "$ref": "#/$defs/__schema17"
         },
         "lastSuccessfulCheck": {
           "anyOf": [
@@ -892,7 +1115,7 @@
         "source": {
           "anyOf": [
             {
-              "$ref": "#/$defs/__schema17"
+              "$ref": "#/$defs/__schema18"
             },
             {
               "type": "null"
@@ -915,6 +1138,14 @@
       ]
     },
     "__schema17": {
+      "type": "string",
+      "enum": [
+        "official",
+        "dealer_estimate",
+        "unclassified"
+      ]
+    },
+    "__schema18": {
       "type": "object",
       "properties": {
         "title": {
@@ -943,7 +1174,7 @@
         "checkedAt"
       ]
     },
-    "__schema18": {
+    "__schema19": {
       "type": "object",
       "properties": {
         "id": {
@@ -1054,7 +1285,7 @@
             "type": "string"
           },
           "additionalProperties": {
-            "$ref": "#/$defs/__schema19"
+            "$ref": "#/$defs/__schema20"
           }
         },
         "battery": {
@@ -1087,7 +1318,7 @@
         "features": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/__schema22"
+            "$ref": "#/$defs/__schema23"
           }
         },
         "price": {
@@ -1123,7 +1354,7 @@
                 ]
               },
               "source": {
-                "$ref": "#/$defs/__schema17"
+                "$ref": "#/$defs/__schema18"
               }
             },
             "required": [
@@ -1158,16 +1389,16 @@
         "facts"
       ]
     },
-    "__schema19": {
+    "__schema20": {
       "type": "object",
       "properties": {
         "status": {
-          "$ref": "#/$defs/__schema20"
+          "$ref": "#/$defs/__schema21"
         },
         "value": {
           "anyOf": [
             {
-              "$ref": "#/$defs/__schema21"
+              "$ref": "#/$defs/__schema22"
             },
             {
               "type": "null"
@@ -1187,7 +1418,7 @@
         "unit"
       ]
     },
-    "__schema20": {
+    "__schema21": {
       "type": "string",
       "enum": [
         "resolved",
@@ -1196,14 +1427,14 @@
         "not_applicable"
       ]
     },
-    "__schema21": {
+    "__schema22": {
       "type": [
         "string",
         "number",
         "boolean"
       ]
     },
-    "__schema22": {
+    "__schema23": {
       "type": "object",
       "properties": {
         "key": {
@@ -1227,11 +1458,11 @@
             "type": "string"
           },
           "additionalProperties": {
-            "$ref": "#/$defs/__schema21"
+            "$ref": "#/$defs/__schema22"
           }
         },
         "evidence": {
-          "$ref": "#/$defs/__schema20"
+          "$ref": "#/$defs/__schema21"
         },
         "fitment": {
           "type": "string",
@@ -1244,7 +1475,7 @@
           ]
         },
         "numeric": {
-          "$ref": "#/$defs/__schema19"
+          "$ref": "#/$defs/__schema20"
         }
       },
       "required": [
@@ -1258,7 +1489,7 @@
         "numeric"
       ]
     },
-    "__schema23": {
+    "__schema24": {
       "type": "object",
       "properties": {
         "result": {
@@ -1281,7 +1512,7 @@
         "reasons"
       ]
     },
-    "__schema24": {
+    "__schema25": {
       "type": "object",
       "properties": {
         "key": {
@@ -1325,7 +1556,7 @@
         "numericUnit"
       ]
     },
-    "__schema25": {
+    "__schema26": {
       "type": "object",
       "properties": {
         "key": {
@@ -1371,7 +1602,37 @@
         "numericUnit"
       ]
     },
-    "__schema26": {
+    "__schema27": {
+      "type": "string",
+      "enum": [
+        "fwd",
+        "rwd",
+        "awd"
+      ]
+    },
+    "__schema28": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "min": {
+              "type": "number"
+            },
+            "max": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "min",
+            "max"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "__schema29": {
       "type": "object",
       "propertyNames": {
         "type": "string"
@@ -1521,6 +1782,14 @@
         "description": "Weight in running order, as the manufacturer states it.",
         "type": "number",
         "numericUnit": "kg"
+      },
+      {
+        "key": "seats",
+        "label": "Seats",
+        "category": "dimensions",
+        "description": "The maximum number of seats this version can be ordered with, as the manufacturer states it (homologated).",
+        "type": "number",
+        "numericUnit": "seats"
       }
     ],
     "features": [

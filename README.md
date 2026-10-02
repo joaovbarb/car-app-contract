@@ -69,7 +69,7 @@ The URL version (`/api/public/v2`) and the payload version (`apiVersion: "1"`) a
 Start with [fixtures/synthetic-v1.json](fixtures/synthetic-v1.json): a wrapper with `synthetic: true`, successful
 `scenarios` and `errors`. Each entry's `response` is an HTTP body (status 200 for scenarios, the entry's `httpStatus` for
 errors); names and `httpStatus` are mock metadata. The IDs are synthetic, not production IDs, and image and source URLs
-are placeholders, so render an image fallback. The examples cover every data route, pagination, empty results, models
+are placeholders, so render an image fallback. The examples cover every data route (the search index included), pagination, empty results, models
 without versions, every error code, and incomplete, disputed and stale data.
 
 ## Rendering notes
@@ -80,4 +80,11 @@ without versions, every error code, and incomplete, disputed and stale data.
   needed, use `version.battery` (`{ capacityKwh, basis }`, nominal when known, otherwise usable).
 - Availability is `current`, `upcoming`, `discontinued` or `unknown`; discontinued models only with
   `includeDiscontinued=true`. A model with zero versions, or an empty gallery, is a valid state.
-- Prices are approximate cash prices of an exact version, taxes included, in integer cents; show their freshness.
+- Prices are approximate cash prices of an exact version, taxes included, in integer cents and always a whole number
+  of euros (`amountMinor` a multiple of 100, rounded half up, since round 74); show their freshness.
+- **To filter models by their versions' properties**, fetch `/search-index` once (one compact row per served version:
+  shown price in whole euros, nominal battery, WLTP range, drivetrain, length, height, boot and seats, each null when
+  unknown, never zero; and each attribute's `{ min, max }` over the whole index) and match on your side: a model
+  matches when one of its rows satisfies every filter. See [integration.md](integration.md#search-index).
+- `seats` (a version specification since round 74) is the most seats the version can be ordered with. **Body type is
+  deliberately not provided**: infer it from length, height and seats if you need it.

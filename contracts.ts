@@ -37,6 +37,10 @@ export const photoSchema = z.object({ url: z.url(), width: z.number().int().posi
  * dealer's, so the price is reported without that claim.
  */
 export const priceMethodSchema = z.enum(["official", "dealer_estimate", "unclassified"]);
+/**
+ * A version's shown price. `amountMinor` is in minor units (cents) and, since round 74, always a whole number of euros
+ * (a multiple of 100): public prices are rounded to the euro, half up.
+ */
 export const priceSchema = z.object({ versionId: z.uuid(), amountMinor: z.number().int().positive(), currency: z.string().length(3),
   taxInclusive: z.literal(true), taxBasis: z.enum(["explicit_included", "explicit_excluded_converted", "market_convention"]),
   method: priceMethodSchema, lastSuccessfulCheck: z.iso.datetime().nullable(),
@@ -129,6 +133,33 @@ export const featureDefinitionSchema = z.object({ key: z.string(), label: z.stri
 export const definitionSchema = z.object({ key: z.string(), label: z.string(), category: z.string(),
   description: z.string(), type: z.enum(["number", "enum"]), numericUnit: z.string().nullable(),
   values: z.array(z.string()).optional() });
+/** A version's driven wheels: front, rear or all (the `drivetrain` specification's values). */
+export const drivetrainSchema = z.enum(["fwd", "rwd", "awd"]);
+/**
+ * Round 74: the price of a search-index row -- the version's shown price, the same one `/versions/{versionId}` serves.
+ * `amountEur`: whole euros, taxes included (rounded half up from the stored amount). `verifiedAt`: when the price was
+ * last confirmed on its source (UTC ISO timestamp), null when no check is recorded. `sourceKind`: the kind of source,
+ * as a price's `method`.
+ */
+export const searchIndexPriceSchema = z.object({ amountEur: z.number().int().positive(),
+  verifiedAt: z.iso.datetime().nullable(), sourceKind: priceMethodSchema });
+/**
+ * Round 74: one served version of the search index (`/search-index`). Every attribute is null when unknown -- never
+ * zero. `batteryNominalKwh` is the nominal (gross) capacity only, kWh to 1 decimal (a usable figure never stands in);
+ * `rangeWltpKm` the combined WLTP range, whole km; `lengthMm` and `heightMm` whole mm; `bootVolumeL` the boot with
+ * the rear seats up, whole litres; `seats` the most seats the version can be ordered with.
+ */
+export const searchIndexVersionSchema = z.object({ modelId: z.uuid(), versionId: z.uuid(),
+  price: searchIndexPriceSchema.nullable(), batteryNominalKwh: z.number().positive().nullable(),
+  rangeWltpKm: z.number().int().positive().nullable(), drivetrain: drivetrainSchema.nullable(),
+  lengthMm: z.number().int().positive().nullable(), heightMm: z.number().int().positive().nullable(),
+  bootVolumeL: z.number().int().nonnegative().nullable(), seats: z.number().int().positive().nullable() });
+/** Round 74: the smallest and largest known value of one attribute over the whole index; null when no row knows it. */
+export const searchIndexDomainSchema = z.object({ min: z.number(), max: z.number() }).nullable();
+/** Round 74: each numeric attribute's domain over the whole index (market and powertrain), never a page. */
+export const searchIndexDomainsSchema = z.object({ priceEur: searchIndexDomainSchema,
+  batteryNominalKwh: searchIndexDomainSchema, rangeWltpKm: searchIndexDomainSchema, lengthMm: searchIndexDomainSchema,
+  heightMm: searchIndexDomainSchema, bootVolumeL: searchIndexDomainSchema, seats: searchIndexDomainSchema });
 export const responseSchema = z.object({ apiVersion: z.literal("1"), asOf: z.iso.datetime(), market: z.string(), powertrain: powertrainFilterSchema,
   data: z.discriminatedUnion("kind", [
     z.object({ kind: z.literal("makes"), items: z.array(z.object({ id: z.uuid(), name: z.string() })), nextOffset: z.number().int().nullable() }),
@@ -141,6 +172,12 @@ export const responseSchema = z.object({ apiVersion: z.literal("1"), asOf: z.iso
     z.object({ kind: z.literal("comparison"), versions: z.array(versionSchema), specs: z.array(z.object({ key: z.string(), cells: z.array(valueSchema) })),
       features: z.array(z.object({ key: z.string(), cells: z.array(featureSchema) })), matches: z.array(z.object({ versionId: z.uuid(), match: matchSchema })) }),
     z.object({ kind: z.literal("definitions"), specs: z.array(definitionSchema), features: z.array(featureDefinitionSchema) }),
+    /**
+     * Round 74: `/search-index` -- one row per served version, the domains over the whole index, and every
+     * drivetrain value (`fwd`, `rwd`, `awd`) whether or not a row has it.
+     */
+    z.object({ kind: z.literal("search_index"), versions: z.array(searchIndexVersionSchema),
+      domains: searchIndexDomainsSchema, drivetrains: z.array(drivetrainSchema) }),
   ]) });
 export const errorSchema = z.object({ apiVersion: z.literal("1"), error: z.object({ code: z.enum(["INVALID_REQUEST", "MARKET_UNAVAILABLE", "NOT_FOUND", "METHOD_NOT_ALLOWED", "TEMPORARILY_UNAVAILABLE"]), message: z.string() }) });
 export type Query = z.infer<typeof querySchema>;
@@ -158,3 +195,7 @@ export type Battery = z.infer<typeof batterySchema>;
 export type Availability = z.infer<typeof availabilitySchema>;
 export type PriceMethod = z.infer<typeof priceMethodSchema>;
 export type ModelDetail = Extract<ResponseData, { kind: "model" }>;
+export type Drivetrain = z.infer<typeof drivetrainSchema>;
+export type SearchIndexVersion = z.infer<typeof searchIndexVersionSchema>;
+export type SearchIndexDomains = z.infer<typeof searchIndexDomainsSchema>;
+export type SearchIndex = Extract<ResponseData, { kind: "search_index" }>;

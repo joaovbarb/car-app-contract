@@ -2109,6 +2109,14 @@
               "description": "Weight in running order, as the manufacturer states it.",
               "type": "number",
               "numericUnit": "kg"
+            },
+            {
+              "key": "seats",
+              "label": "Seats",
+              "category": "dimensions",
+              "description": "The maximum number of seats this version can be ordered with, as the manufacturer states it (homologated).",
+              "type": "number",
+              "numericUnit": "seats"
             }
           ],
           "features": [
@@ -3262,6 +3270,142 @@
               "Synthetic battery-selection example; no preferences evaluated."
             ]
           }
+        }
+      }
+    },
+    {
+      "name": "Search index: a full row, a row with nulls (only a usable battery known, no price), whole-euro prices and the domains over the whole index",
+      "response": {
+        "apiVersion": "1",
+        "asOf": "2026-10-02T12:00:00.000Z",
+        "market": "PT",
+        "powertrain": "bev",
+        "data": {
+          "kind": "search_index",
+          "versions": [
+            {
+              "modelId": "00000000-0000-4000-8000-000000000100",
+              "versionId": "00000000-0000-4000-8000-000000000001",
+              "price": {
+                "amountEur": 24600,
+                "verifiedAt": "2026-10-01T08:00:00.000Z",
+                "sourceKind": "official"
+              },
+              "batteryNominalKwh": 63.2,
+              "rangeWltpKm": 410,
+              "drivetrain": "rwd",
+              "lengthMm": 4310,
+              "heightMm": 1620,
+              "bootVolumeL": 380,
+              "seats": 5
+            },
+            {
+              "modelId": "00000000-0000-4000-8000-000000000100",
+              "versionId": "00000000-0000-4000-8000-000000000002",
+              "price": {
+                "amountEur": 39000,
+                "verifiedAt": "2026-10-01T08:00:00.000Z",
+                "sourceKind": "official"
+              },
+              "batteryNominalKwh": 82,
+              "rangeWltpKm": 520,
+              "drivetrain": "awd",
+              "lengthMm": 4310,
+              "heightMm": 1620,
+              "bootVolumeL": 380,
+              "seats": 5
+            },
+            {
+              "modelId": "00000000-0000-4000-8000-000000000100",
+              "versionId": "00000000-0000-4000-8000-000000000003",
+              "price": null,
+              "batteryNominalKwh": null,
+              "rangeWltpKm": null,
+              "drivetrain": null,
+              "lengthMm": 4310,
+              "heightMm": 1620,
+              "bootVolumeL": null,
+              "seats": null
+            },
+            {
+              "modelId": "00000000-0000-4000-8000-000000000102",
+              "versionId": "00000000-0000-4000-8000-000000000005",
+              "price": {
+                "amountEur": 31900,
+                "verifiedAt": null,
+                "sourceKind": "unclassified"
+              },
+              "batteryNominalKwh": 60,
+              "rangeWltpKm": 450,
+              "drivetrain": "fwd",
+              "lengthMm": 4400,
+              "heightMm": 1550,
+              "bootVolumeL": 410,
+              "seats": 7
+            }
+          ],
+          "domains": {
+            "priceEur": {
+              "min": 24600,
+              "max": 39000
+            },
+            "batteryNominalKwh": {
+              "min": 60,
+              "max": 82
+            },
+            "rangeWltpKm": {
+              "min": 410,
+              "max": 520
+            },
+            "lengthMm": {
+              "min": 4310,
+              "max": 4400
+            },
+            "heightMm": {
+              "min": 1550,
+              "max": 1620
+            },
+            "bootVolumeL": {
+              "min": 380,
+              "max": 410
+            },
+            "seats": {
+              "min": 5,
+              "max": 7
+            }
+          },
+          "drivetrains": [
+            "fwd",
+            "rwd",
+            "awd"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Search index: no served version",
+      "response": {
+        "apiVersion": "1",
+        "asOf": "2026-10-02T12:00:00.000Z",
+        "market": "PT",
+        "powertrain": "bev",
+        "data": {
+          "kind": "search_index",
+          "versions": [],
+          "domains": {
+            "priceEur": null,
+            "batteryNominalKwh": null,
+            "rangeWltpKm": null,
+            "lengthMm": null,
+            "heightMm": null,
+            "bootVolumeL": null,
+            "seats": null
+          },
+          "drivetrains": [
+            "fwd",
+            "rwd",
+            "awd"
+          ]
         }
       }
     }

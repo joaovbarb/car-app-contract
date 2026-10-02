@@ -6,6 +6,18 @@ This is the frontend's read-only boundary. It does not perform discovery, extrac
 
 Newest first. Older entries are in [CHANGELOG.md](CHANGELOG.md).
 
+### 2026-10-02 — round 74
+
+2026-10-02 -- round 74: GET /api/public/v2/search-index serves one compact row per served version, with the domains over the whole index; seats is a new version specification; every public price is a whole number of euros.
+
+An additive change: nothing existing changes shape, and `apiVersion` remains `"1"` -- the contract is pre-stable, and its rule is that a change lands under the same `apiVersion` and is recorded here. Regenerate your copy of `contracts.ts`, `definitions.ts`, `schema.json` and the fixtures.
+
+- **`/search-index`** (new route, `data.kind: "search_index"`): every served version of the market and powertrain in one body, for filtering models by their versions' properties on the frontend's side. See [Search index](#search-index) below for every field, its unit, precision and null meaning, the domains and the validation. New schemas: `searchIndexVersionSchema`, `searchIndexPriceSchema`, `searchIndexDomainsSchema`, `searchIndexDomainSchema`, `drivetrainSchema`; new types `SearchIndex`, `SearchIndexVersion`, `SearchIndexDomains`, `Drivetrain`.
+- **`seats`** (new specification definition, category `dimensions`, `type: "number"`, `numericUnit: "seats"`): the maximum number of seats the version can be ordered with, as the manufacturer states it (homologated) -- a version sold with 5 seats, or 7 with an optional third row, has 7. A whole number. It appears in `/definitions`, `definitions.ts`, `version.specs` and comparisons like any specification, and as `seats` in the search index. Coverage starts empty and grows as research and imports record it: unknown is not "no seats".
+- **Prices in whole euros**: every public price amount is rounded to the euro, half up -- `price.amountMinor` (still in cents, now always a multiple of 100) on versions, comparisons, model cards' `priceSummary`, and `amountEur` in the search index. Field types do not change. Reason: prices are approximate cash estimates, and cents suggested a precision they do not have.
+- **Body type is deliberately not provided**, in the search index or anywhere: infer it from `lengthMm`, `heightMm` and `seats` if you need it.
+- The fixtures gain two scenarios (a full index with a row of nulls, and an empty index) and the `seats` definition.
+
 ### 2026-09-30 — round 65
 
 2026-09-30 -- round 65: every response carries a `server-timing` header (durations only), exposed to browsers with `access-control-expose-headers: Server-Timing`.
@@ -108,6 +120,7 @@ The endpoint version and payload version are deliberately distinct: the URL is v
 | `/versions/{versionId}` | One published version and its three-way preference assessment |
 | `/compare?ids={id1},{id2}` | Two to four versions, aligned rows and preference assessments |
 | `/definitions` | The fixed specification and feature definitions: exactly `specDefinitions` and `featureDefinitions` from [definitions.ts](definitions.ts) |
+| `/search-index` | One compact row per served version of the market and powertrain, the numeric domains over the whole index and the drivetrain values; see [Search index](#search-index). Takes only `market` and `powertrain` |
 | `/contract` | The contract itself: `apiVersion`, `status` (`"pre-stable"`), the JSON Schema of every route's success body (`routes`, keyed by path) and of the error body (`error`), and the definitions. The same as [schema.json](schema.json); reads no catalogue data |
 
 Every successful response has `apiVersion: "1"`, `asOf` (UTC ISO timestamp), `market`, `powertrain` and a `data` object discriminated by `kind`. Comparison cells follow the order of the requested IDs. A missing, unpublished or out-of-scope requested version makes the entire detail/comparison request return 404, rather than silently dropping it; a retired version is served, with `retired: true`.
@@ -127,7 +140,7 @@ Every successful response has `apiVersion: "1"`, `asOf` (UTC ISO timestamp), `ma
 | `uncertainty` | `strict` (default) or `include`; controls preference filtering in browse/model-version lists |
 | `sort` | `/models` only: `name` (default; by make and model name) or `coverage` (highest `coverageScore` first, ties by name) |
 
-Unknown or repeated parameters are rejected with 400 `INVALID_REQUEST`. Requests are capped at 8192 URL characters. No implicit currency conversion is performed. Tax geography is the market's default fiscal region. `all` removes the powertrain filter but still requires a resolved, recognized powertrain for version publication.
+`/search-index` accepts only `market` and `powertrain`; every other parameter, including `limit`, `offset`, `q` and `includeDiscontinued`, is rejected there as unknown. Unknown or repeated parameters are rejected with 400 `INVALID_REQUEST`. Requests are capped at 8192 URL characters. No implicit currency conversion is performed. Tax geography is the market's default fiscal region. `all` removes the powertrain filter but still requires a resolved, recognized powertrain for version publication.
 
 ## Examples
 
@@ -140,6 +153,7 @@ GET /api/public/v2/models/MODEL_UUID?limit=20
 GET /api/public/v2/versions/VERSION_UUID
 GET /api/public/v2/compare?ids=VERSION_UUID_1,VERSION_UUID_2
 GET /api/public/v2/definitions
+GET /api/public/v2/search-index?market=PT&powertrain=bev
 GET /api/public/v2/contract
 ```
 
@@ -161,6 +175,107 @@ if (!response.ok) throw new Error(payload.error.message);
 ```
 
 Numeric spec preferences support `gte`, `lte`, `eq`; enum preferences support string `eq`. Feature preferences use a returned feature row `key` and a required fitment (`standard`, `optional`, `pack_only`, `unavailable`). Missing rows, disputed values, not-applicable measurements, unknown fitment and stale/unverified prices produce `unknown`, never false/zero. Any verified failed criterion yields `mismatch`; otherwise any unknown criterion yields `unknown`; only all verified successes yield `match`. Reasons are returned on version detail and comparison. Browse includes a model only when one coherent published version meets all criteria; it never combines different versions' strengths. `include` admits uncertain candidates, but still excludes confirmed mismatches.
+
+## Search index
+
+`GET /api/public/v2/search-index?market=PT&powertrain=bev` returns, in one body, every **served** version of the market and powertrain -- the versions the models list would show, by the same rules: published, not retired, of a model the default list serves (current, upcoming or unknown availability; discontinued models are not in the index). It is meant for filtering models by the properties of their versions on the frontend's side: the backend does no matching, sorting or paging. A model matches a set of filters when **one** of its rows satisfies every filter; never combine two rows of a model into an imaginary version. Use `modelId` to join a row to its model card from `/models`, and `versionId` to open the version (`/versions/{versionId}`) or to list the model's versions that matched.
+
+**Parameters.** `market` and `powertrain` only, validated exactly as for `/models`: `market` an uppercase ISO country, default `PT`, 400 `MARKET_UNAVAILABLE` when not enabled; `powertrain` `bev` (default) or `all`. Any other parameter (`limit`, `offset`, `q`, `makeId`, `includeDiscontinued`, `sort`, a filter of your own) is rejected with 400 `INVALID_REQUEST`, as is a repeated parameter: the index is always whole, never a page. A failed read answers 503 `TEMPORARILY_UNAVAILABLE`, never an empty index.
+
+**Body.** The usual envelope (`apiVersion`, `asOf`, `market`, `powertrain`) around `data`:
+
+| Field | Meaning |
+| --- | --- |
+| `kind` | `"search_index"` |
+| `versions` | One row per served version, ordered by `modelId` then `versionId` (a model's rows are adjacent). An empty array is a valid index |
+| `domains` | For each numeric attribute, `{ min, max }`: the smallest and largest **known** value over the **whole index** (every row of the market and powertrain, never a page or a filtered subset), or `null` when no row knows it. Use them to initialise sliders; they move only when the catalogue does |
+| `drivetrains` | Every value a row's `drivetrain` can take, always `["fwd", "rwd", "awd"]`, whether or not a row has it now |
+
+The domains are `priceEur` (from `price.amountEur`), `batteryNominalKwh`, `rangeWltpKm`, `lengthMm`, `heightMm`, `bootVolumeL` and `seats`, in the rows' units. Each row of `versions`:
+
+| Field | Type, unit, precision | Meaning; `null` |
+| --- | --- | --- |
+| `modelId` | UUID | The version's model (the `id` of a `/models` card) |
+| `versionId` | UUID | The version (`/versions/{versionId}`) |
+| `price` | object or `null` | The version's **shown** price -- the same price `/versions/{versionId}` serves as `price` -- or `null` when it shows none |
+| `price.amountEur` | integer, whole euros | Approximate cash purchase price, taxes included, rounded to the euro (half up); never a monthly payment |
+| `price.verifiedAt` | UTC ISO timestamp or `null` | When the price was last confirmed on its source; `null` when no check is recorded |
+| `price.sourceKind` | `official`, `dealer_estimate` or `unclassified` | The kind of source, as a price's `method`: do not present `unclassified` as official |
+| `batteryNominalKwh` | number, kWh, 1 decimal | The **nominal** (gross) battery capacity (`battery_capacity_nominal`). `null` when the nominal capacity is not known -- even when a usable capacity is: the usable figure never stands in for it, and neither is converted from the other |
+| `rangeWltpKm` | integer, km | Combined WLTP range (`range_wltp`) |
+| `drivetrain` | `fwd`, `rwd`, `awd` | Driven wheels: front, rear or all (`drivetrain`) |
+| `lengthMm` | integer, mm | Overall length (`length`) |
+| `heightMm` | integer, mm | Overall height (`height`) |
+| `bootVolumeL` | integer, litres | Boot volume with the rear seats up (`boot_volume`); `0` is a real figure (no boot), `null` is unknown |
+| `seats` | integer, seats | The most seats the version can be ordered with (`seats`, below) |
+
+Every attribute is `null` when it is **unknown, never zero**: not recorded yet, disputed, not published, or published only for the model where the model's figure varies between its versions. A `null` value cannot satisfy an active filter on that attribute, and must not exclude a row when that filter is inactive. A row's values are the active, current, published values the version's own page shows (`version.specs`, `version.price`), so a row and its version agree.
+
+**Body type is deliberately not provided** -- here or anywhere in the contract. If you need one, infer it from `lengthMm`, `heightMm` and `seats`, and present it as your own inference.
+
+**Seats.** `seats` is a version specification (also in `/definitions` and `version.specs`): the maximum number of seats the version can be ordered with, as the manufacturer states it (homologated). A version sold with 5 seats, or 7 with an optional third row, has 7. Catalogued passenger cars have at most 7.
+
+**Caching and `asOf`.** Cached exactly like every other success: `cache-control: public, max-age=60, s-maxage=3600, stale-while-revalidate=86400`, with a `server-timing` header. `asOf` is when the API built the body; a cached copy keeps its `asOf`, so it tells you how old the index you hold is (normally up to an hour, up to about 25 hours after a quiet period). Fetch the index on your server, keep it, and refresh it on a schedule; do not fetch it per visitor. It is one request whatever the size of the catalogue (about 250 bytes per version).
+
+**Request:**
+
+```
+GET /api/public/v2/search-index?market=PT&powertrain=bev
+```
+
+**Response** (sanitized; the IDs are the fixtures' synthetic ones): a full row, a row with nulls (only a usable battery is known, so `batteryNominalKwh` is null, and no price is shown), and the domains:
+
+```json
+{
+  "apiVersion": "1",
+  "asOf": "2026-10-02T12:00:00.000Z",
+  "market": "PT",
+  "powertrain": "bev",
+  "data": {
+    "kind": "search_index",
+    "versions": [
+      {
+        "modelId": "00000000-0000-4000-8000-000000000100",
+        "versionId": "00000000-0000-4000-8000-000000000001",
+        "price": { "amountEur": 24600, "verifiedAt": "2026-10-01T08:00:00.000Z", "sourceKind": "official" },
+        "batteryNominalKwh": 63.2,
+        "rangeWltpKm": 410,
+        "drivetrain": "rwd",
+        "lengthMm": 4310,
+        "heightMm": 1620,
+        "bootVolumeL": 380,
+        "seats": 5
+      },
+      {
+        "modelId": "00000000-0000-4000-8000-000000000100",
+        "versionId": "00000000-0000-4000-8000-000000000003",
+        "price": null,
+        "batteryNominalKwh": null,
+        "rangeWltpKm": null,
+        "drivetrain": null,
+        "lengthMm": 4310,
+        "heightMm": 1620,
+        "bootVolumeL": null,
+        "seats": null
+      }
+    ],
+    "domains": {
+      "priceEur": { "min": 24600, "max": 39000 },
+      "batteryNominalKwh": { "min": 60, "max": 82 },
+      "rangeWltpKm": { "min": 410, "max": 520 },
+      "lengthMm": { "min": 4310, "max": 4400 },
+      "heightMm": { "min": 1550, "max": 1620 },
+      "bootVolumeL": { "min": 380, "max": 410 },
+      "seats": { "min": 5, "max": 7 }
+    },
+    "drivetrains": ["fwd", "rwd", "awd"]
+  }
+}
+```
+
+The domains above are over the fixture's four rows, two of which are shown. The complete example, and an empty index whose every domain is `null`, are in [fixtures/synthetic-v1.json](fixtures/synthetic-v1.json) (the scenarios named "Search index: ..."). Validate a body with `responseSchema`, or a row with `searchIndexVersionSchema`.
+
+**Matching, for example:** a model whose versions are A (EUR 30,000, 320 km, 50 kWh) and B (EUR 45,000, 520 km, 80 kWh) does **not** match "at most EUR 35,000 and at least 450 km" (no single row satisfies both), and does match "EUR 40,000-50,000 and at least 450 km" through B, although A is cheaper. Its "from" price for that search is B's `price.amountEur`, with B's `verifiedAt` and `sourceKind`; the card's `priceSummary` stays the lowest known price of all its versions. Rows with a `null` price sort after priced ones in either direction, and fail an active price filter.
 
 ## Availability
 
@@ -197,7 +312,7 @@ The lists are fixed: the backend records no other key. A ladder lists only what 
 - Published versions have a coherent supported grade/technical identity, exact-market applicability and resolved powertrain; other specifications may remain incomplete.
 - Every spec has `{status, value, unit}`. Status is `resolved`, `unknown`, `disputed` or `not_applicable`. Only resolved values are non-null. Render distinct placeholders for the other states; never coerce null to zero, false or an empty specification. Numeric values are already in definition units.
 - Every feature has `key` (the row key: align comparison rows and write feature preferences with it), `featureKey` (a feature key from the definitions), `label`, `category` (may be null), `attributes`, `evidence`, `fitment` and `numeric`. `fitment` is `standard`, `optional`, `unavailable` (the version lacks it), or `unknown`; `pack_only` remains in the schema. `attributes` carries `level` for a level feature, `note` (the source's own wording, shown and never compared) when there is one, and `fromPercent` and `toPercent` for a charge window. A level feature without `level` is stated by the source without its level: show it, and do not compare it. `numeric` carries the number of a `number` or `number_with_window` feature and may be resolved while fitment is unknown; compare `dc_charging_time` only between equal charge windows.
-- Prices represent exact-version cash purchase estimates, never monthly payments, deposits or conditional financing totals. Prices use integer minor currency units (EUR cents), `taxInclusive: true`, exact `versionId`, tax basis, estimate method, last successful live check, freshness, validity and selected public source. A null price means no supported estimate. Freshness is supplied by the server: `fresh` means a successful check within its configured interval (default 24 hours), `stale` means older, and `unverified` means no usable past check. Do not recompute freshness from source publication dates. A stale/unverified estimate must be labelled with its true age; it is not a confirmed preference match. Expired offers are omitted.
+- Prices represent exact-version cash purchase estimates, never monthly payments, deposits or conditional financing totals. Prices use integer minor currency units (EUR cents) and, since round 74, are always a whole number of euros (`amountMinor` a multiple of 100, rounded half up), `taxInclusive: true`, exact `versionId`, tax basis, estimate method, last successful live check, freshness, validity and selected public source. A null price means no supported estimate. Freshness is supplied by the server: `fresh` means a successful check within its configured interval (default 24 hours), `stale` means older, and `unverified` means no usable past check. Do not recompute freshness from source publication dates. A stale/unverified estimate must be labelled with its true age; it is not a confirmed preference match. Expired offers are omitted.
 - A price's `method` is the kind of source it came from: `official` (the manufacturer's own), `dealer_estimate` (a dealer's) or `unclassified` (the source could not be classified as the manufacturer's own or a dealer's, so the price is reported without that claim). Handle all three; do not present an `unclassified` price as official or as a dealer quote.
 - Model cards say **Lowest known trim price**, explicitly with incomplete coverage. This is not a guaranteed model starting price. Retain the returned version association and freshness when displaying it.
 - Facts are scoped vehicle descriptions with public source links. Render all database-origin labels/text as text, not HTML. No internal annotations, claim/run IDs or admin/provider diagnostics are part of the public contract.

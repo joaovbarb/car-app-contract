@@ -31,6 +31,7 @@ export const specDefinitions = [
   { key: "boot_volume", label: "Boot, seats up", category: "dimensions", description: "Boot volume with the rear seats up.", type: "number", numericUnit: "l" },
   { key: "boot_volume_max", label: "Boot, maximum", category: "dimensions", description: "Boot volume with the rear seats folded.", type: "number", numericUnit: "l" },
   { key: "empty_weight", label: "Empty weight", category: "dimensions", description: "Weight in running order, as the manufacturer states it.", type: "number", numericUnit: "kg" },
+  { key: "seats", label: "Seats", category: "dimensions", description: "The maximum number of seats this version can be ordered with, as the manufacturer states it (homologated).", type: "number", numericUnit: "seats" },
 ] as const;
 
 export const featureDefinitions = [
