@@ -80,6 +80,7 @@ without versions, every error code, and incomplete, disputed and stale data.
   needed, use `version.battery` (`{ capacityKwh, basis }`, nominal when known, otherwise usable).
 - Availability is `current`, `upcoming`, `discontinued` or `unknown`; discontinued models only with
   `includeDiscontinued=true`. A model with zero versions, or an empty gallery, is a valid state.
+- A version may appear later than its model or its first versions: new versions under doubt of being duplicates are held until resolved. Nothing changes shape: a held version is simply not served until then (round 89).
 - Prices are approximate cash prices of an exact version, taxes included, in integer cents and always a whole number
   of euros (`amountMinor` a multiple of 100, rounded half up, since round 74); show their freshness.
 - **To filter models by their versions' properties**, fetch `/search-index` once (one compact row per served version:

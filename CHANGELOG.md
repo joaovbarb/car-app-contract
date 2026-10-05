@@ -1,5 +1,12 @@
 # Contract changelog
 
+## 2026-10-05 — round 89 (documentation)
+
+- A version may appear later than its model or its first versions: new versions under doubt of being duplicates are
+  held until resolved. A new version that may duplicate another is held, not served anywhere, until more data
+  publishes it or merges it into the version it duplicates. Nothing changes shape; `apiVersion` remains `"1"`. The
+  entry is at the top of [integration.md](integration.md), and the rule is in its "Rendering rules".
+
 ## 2026-10-02 — round 76 (documentation)
 
 - The search index's real size limits: it is whole for up to 5,000 models and 10,000 served versions (raised from

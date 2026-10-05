@@ -6,6 +6,14 @@ This is the frontend's read-only boundary. It does not perform discovery, extrac
 
 Newest first. Older entries are in [CHANGELOG.md](CHANGELOG.md).
 
+### 2026-10-05 — round 89
+
+2026-10-05 -- round 89: A version may appear later than its model or its first versions: new versions under doubt of being duplicates are held until resolved.
+
+A documentation change: nothing changes shape and `apiVersion` remains `"1"`. Nothing to regenerate.
+
+- **Held versions.** The backend publishes a new version at once when it is the first of its model or clearly distinct from the model's other versions. A new version that may duplicate another is held, not served, until more data resolves it: it is then published (a distinct version) or merged into the version it duplicates (it never appears). Until then it is absent from everything public, consistently: a model's `versions` and version count, its card's "from" price, `/versions/{versionId}` (404 `NOT_FOUND`, as for an unknown version), `/compare` and the search index. A model whose only versions are held shows zero versions, a valid state. Reason: identity creates a new version rather than mixing two cars' data when it is unsure, and those duplicates used to reach the site.
+
 ### 2026-10-02 — round 76
 
 2026-10-02 -- round 76: the search index states its real size limits: it is whole for up to 5,000 models and 10,000 served versions, and beyond them it answers 503 TEMPORARILY_UNAVAILABLE, never a partial index.
@@ -317,6 +325,7 @@ The lists are fixed: the backend records no other key. A ladder lists only what 
 
 - IDs are opaque stable entity UUIDs. A version ID is an existing trim ID, not an invented aggregate vehicle. Names are labels, not keys. Alias searches return canonical model identities.
 - `model_only` is browsable research coverage, not a published comparison version. Zero versions is a valid result. Do not fill gaps with guessed variants.
+- A version may appear later than its model or its first versions: new versions under doubt of being duplicates are held until resolved. A held version is not served anywhere until it is published (or merged into the version it duplicates, when it never appears); see the round 89 changelog entry.
 - Published versions have a coherent supported grade/technical identity, exact-market applicability and resolved powertrain; other specifications may remain incomplete.
 - Every spec has `{status, value, unit}`. Status is `resolved`, `unknown`, `disputed` or `not_applicable`. Only resolved values are non-null. Render distinct placeholders for the other states; never coerce null to zero, false or an empty specification. Numeric values are already in definition units.
 - Every feature has `key` (the row key: align comparison rows and write feature preferences with it), `featureKey` (a feature key from the definitions), `label`, `category` (may be null), `attributes`, `evidence`, `fitment` and `numeric`. `fitment` is `standard`, `optional`, `unavailable` (the version lacks it), or `unknown`; `pack_only` remains in the schema. `attributes` carries `level` for a level feature, `note` (the source's own wording, shown and never compared) when there is one, and `fromPercent` and `toPercent` for a charge window. A level feature without `level` is stated by the source without its level: show it, and do not compare it. `numeric` carries the number of a `number` or `number_with_window` feature and may be resolved while fitment is unknown; compare `dc_charging_time` only between equal charge windows.
