@@ -34,7 +34,8 @@
                 "sourceUrl": "https://example.test/synthetic-gallery",
                 "representative": true,
                 "scope": "model_wide",
-                "equipmentDisclaimer": "Pictured equipment may differ from this version."
+                "equipmentDisclaimer": "Pictured equipment may differ from this version.",
+                "view": "exterior"
               },
               "priceSummary": {
                 "label": "Lowest known trim price",
@@ -143,7 +144,8 @@
               "sourceUrl": "https://example.test/synthetic-gallery",
               "representative": true,
               "scope": "model_wide",
-              "equipmentDisclaimer": "Pictured equipment may differ from this version."
+              "equipmentDisclaimer": "Pictured equipment may differ from this version.",
+              "view": "exterior"
             },
             "priceSummary": {
               "label": "Lowest known trim price",
@@ -693,7 +695,8 @@
               "sourceUrl": "https://example.test/synthetic-gallery",
               "representative": true,
               "scope": "model_wide",
-              "equipmentDisclaimer": "Pictured equipment may differ from this version."
+              "equipmentDisclaimer": "Pictured equipment may differ from this version.",
+              "view": "exterior"
             }
           ]
         }
@@ -2428,7 +2431,8 @@
               "sourceUrl": "https://example.test/synthetic-gallery",
               "representative": true,
               "scope": "model_wide",
-              "equipmentDisclaimer": "Pictured equipment may differ from this version."
+              "equipmentDisclaimer": "Pictured equipment may differ from this version.",
+              "view": "exterior"
             },
             "priceSummary": {
               "label": "Lowest known trim price",
@@ -2621,7 +2625,8 @@
               "sourceUrl": "https://example.test/synthetic-gallery",
               "representative": true,
               "scope": "model_wide",
-              "equipmentDisclaimer": "Pictured equipment may differ from this version."
+              "equipmentDisclaimer": "Pictured equipment may differ from this version.",
+              "view": "exterior"
             }
           ]
         }
@@ -2998,7 +3003,8 @@
               "sourceUrl": "https://example.test/synthetic-gallery",
               "representative": true,
               "scope": "model_wide",
-              "equipmentDisclaimer": "Pictured equipment may differ from this version."
+              "equipmentDisclaimer": "Pictured equipment may differ from this version.",
+              "view": "exterior"
             },
             "priceSummary": null
           },
@@ -3015,7 +3021,47 @@
               "sourceUrl": "https://example.test/synthetic-gallery",
               "representative": true,
               "scope": "model_wide",
-              "equipmentDisclaimer": "Pictured equipment may differ from this version."
+              "equipmentDisclaimer": "Pictured equipment may differ from this version.",
+              "view": "exterior"
+            },
+            {
+              "url": "https://example.com/photos/model-only-interior.jpg",
+              "width": 1600,
+              "height": 900,
+              "order": 1,
+              "label": "Synthetic model-only interior",
+              "attribution": "example.test",
+              "sourceUrl": "https://example.test/synthetic-gallery",
+              "representative": false,
+              "scope": "model_wide",
+              "equipmentDisclaimer": "Pictured equipment may differ from this version.",
+              "view": "interior"
+            },
+            {
+              "url": "https://example.com/photos/model-only-detail.jpg",
+              "width": 1600,
+              "height": 900,
+              "order": 2,
+              "label": "Synthetic model-only wheel detail",
+              "attribution": "example.test",
+              "sourceUrl": "https://example.test/synthetic-gallery",
+              "representative": false,
+              "scope": "model_wide",
+              "equipmentDisclaimer": "Pictured equipment may differ from this version.",
+              "view": "detail"
+            },
+            {
+              "url": "https://example.com/photos/model-only-unclassified.jpg",
+              "width": 1600,
+              "height": 900,
+              "order": 3,
+              "label": "Synthetic model-only photo",
+              "attribution": "example.test",
+              "sourceUrl": "https://example.test/synthetic-gallery",
+              "representative": false,
+              "scope": "model_wide",
+              "equipmentDisclaimer": "Pictured equipment may differ from this version.",
+              "view": null
             }
           ]
         }

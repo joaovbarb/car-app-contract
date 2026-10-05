@@ -22,15 +22,27 @@ export const batteryBasisSchema = z.enum(["nominal", "usable"]);
  */
 export const batterySchema = z.object({ capacityKwh: z.number().positive(), basis: batteryBasisSchema });
 export const provenanceSchema = z.object({ title: z.string(), url: z.url(), checkedAt: z.iso.datetime().nullable() });
+/** Round 91: the documented meaning of a photo's `view`, carried into the JSON Schema as its description. */
+export const PHOTO_VIEW_DESCRIPTION = "What the photo shows, from the backend's vision check: the outside, the inside, "
+  + "or a close-up of a part (inside or outside). `null` when not classified with confidence; nothing is guessed. The "
+  + "same image has the same value everywhere.";
+/**
+ * Round 91: what a photo shows, from the backend's vision check: `exterior` (the outside), `interior` (the inside) or
+ * `detail` (a close-up of a part, inside or outside). A photo's `view` is null when it was not classified with
+ * confidence; nothing is guessed. The same image has the same value everywhere.
+ */
+export const photoViewSchema = z.enum(["exterior", "interior", "detail"]);
 /**
  * A published photo. `attribution`: the name of the site the photo was found on, e.g. "audi.com"; `sourceUrl`: the
  * page the photo was found on (round 53). Both null when the photo's source page is not known. Showing a credit is
- * the site's choice.
+ * the site's choice. `view` (round 91): what the photo shows (`photoViewSchema`), null when not classified with
+ * confidence.
  */
 export const photoSchema = z.object({ url: z.url(), width: z.number().int().positive().nullable(), height: z.number().int().positive().nullable(),
   order: z.number().int().nonnegative(), label: z.string(), attribution: z.string().nullable(), sourceUrl: z.string().nullable(),
   representative: z.boolean(),
-  scope: z.enum(["model_wide", "generation_wide", "trim_specific"]), equipmentDisclaimer: z.string() });
+  scope: z.enum(["model_wide", "generation_wide", "trim_specific"]), equipmentDisclaimer: z.string(),
+  view: photoViewSchema.nullable().describe(PHOTO_VIEW_DESCRIPTION) });
 /**
  * The kind of source a price came from. `official`: the manufacturer's own. `dealer_estimate`: a
  * dealer's. `unclassified`: the source could not be classified as the manufacturer's own or a
@@ -190,6 +202,7 @@ export type Preference = z.infer<typeof preferenceSchema>;
 export type ResponseData = z.infer<typeof responseSchema>["data"];
 
 export type Photo = z.infer<typeof photoSchema>;
+export type PhotoView = z.infer<typeof photoViewSchema>;
 export type BatteryBasis = z.infer<typeof batteryBasisSchema>;
 export type Battery = z.infer<typeof batterySchema>;
 export type Availability = z.infer<typeof availabilitySchema>;

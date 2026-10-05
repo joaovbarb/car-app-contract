@@ -1,5 +1,14 @@
 # Contract changelog
 
+## 2026-10-05 — round 91 (additive)
+
+- Every photo carries `view`: `"exterior" | "interior" | "detail" | null` -- what it shows, from the backend's vision
+  check: the outside, the inside, or a close-up of a part (inside or outside). `null` when not classified with
+  confidence; nothing is guessed. The same image has the same value everywhere (`model.photo`, `data.photos`,
+  `version.photos`). `detail` and `null` photos belong to "all photos" views only. A client pinned to the previous
+  schema ignores the field; `apiVersion` remains `"1"`. New schema `photoViewSchema`, type `PhotoView`. The entry is at
+  the top of [integration.md](integration.md), and the meaning is beside its gallery paragraph.
+
 ## 2026-10-05 — round 89 (documentation)
 
 - A version may appear later than its model or its first versions: new versions under doubt of being duplicates are

@@ -6,6 +6,16 @@ This is the frontend's read-only boundary. It does not perform discovery, extrac
 
 Newest first. Older entries are in [CHANGELOG.md](CHANGELOG.md).
 
+### 2026-10-05 — round 91
+
+2026-10-05 -- round 91: every photo carries view: "exterior" | "interior" | "detail" | null, what it shows, from the backend's vision check.
+
+An additive change: nothing existing changes shape, and `apiVersion` remains `"1"`. A client pinned to the previous schema ignores the new field. Regenerate your copy of `contracts.ts`, `schema.json` and the fixtures.
+
+- **`view`** (`"exterior" | "interior" | "detail" | null`, new, always present): what the photo shows, from the backend's vision check: the outside (`exterior`), the inside (`interior`), or a close-up of a part, inside or outside (`detail`). `null` when the photo was not classified with confidence; nothing is guessed. The same image has the same value everywhere it appears: `model.photo`, `data.photos` and the deprecated `version.photos`. New schema `photoViewSchema`, new type `PhotoView`.
+- **Gallery views**: an "Exterior" view shows only `exterior` photos and an "Interior" view only `interior` ones; `detail` and `null` photos belong to "all photos" views only. Count from the returned gallery; there is no filtering parameter. Gallery order (`order`) is unchanged.
+- The fixtures' model-only gallery gains an interior, a detail and an unclassified (`null`) photo; every other fixture photo is `exterior`.
+
 ### 2026-10-05 — round 89
 
 2026-10-05 -- round 89: A version may appear later than its model or its first versions: new versions under doubt of being duplicates are held until resolved.
@@ -348,6 +358,8 @@ Where one figure is needed -- a card, a list, a comparison headline -- use `vers
 The canonical gallery is `data.photos` on model detail, independent of versions. Cards carry `model.photo` as the hero. For a version page, use its `modelId` to fetch `/models/{modelId}` and render `data.photos` as **Model photos**, not trim photos. For a comparison, reuse one gallery per distinct model ID. A model with zero published versions may still have a full gallery.
 
 Gallery order comes from each photo's `order`. Version pagination (`limit`, `offset`, `nextOffset`) applies only to `versions`; every page for a model can carry the same gallery. Photos contain final public URLs, dimensions where known, order, labels, `attribution` (the source site's name, e.g. "audi.com") and `sourceUrl` (the page the photo was found on); both are null when the source is not known. Respect `representative` and `equipmentDisclaimer`; a model/generation picture does not establish a trim's equipment. The gallery contains photos applicable to this model/generation (`model_wide` or matching `generation_wide`); keep scope metadata and disclaimers. There is no client-side storage URL construction or signed upload URL.
+
+Each photo carries `view` (round 91): what it shows, from the backend's vision check -- `exterior` (the outside), `interior` (the inside) or `detail` (a close-up of a part, inside or outside) -- or `null` when it was not classified with confidence; nothing is guessed. The same image has the same value everywhere. An "Exterior" or "Interior" view of a gallery shows only the photos with that value; `detail` and `null` photos belong to "all photos" views only. The field is additive: a client pinned to the previous schema ignores it.
 
 `data.photos` is optional in the schema: absence means the response did not supply the gallery; an explicit `[]` means a supported empty gallery. `version.photos` is deprecated and may be `[]` even when the model gallery is populated; never infer that a model has no photos from it.
 

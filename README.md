@@ -76,6 +76,9 @@ without versions, every error code, and incomplete, disputed and stale data.
 
 - The canonical gallery is `data.photos` on `/models/{modelId}`; a card's `model.photo` is its hero. `version.photos`
   is deprecated: never treat it as a trim gallery. For a version page, fetch its model's gallery by `modelId`.
+- Each photo's `view` (round 91) is `exterior`, `interior`, `detail` (a close-up of a part) or `null` (not classified
+  with confidence; nothing is guessed), the same for an image everywhere. Exterior and interior views of a gallery show
+  only photos with that value; `detail` and `null` photos belong to "all photos" views only.
 - A battery is two specifications, `battery_capacity_nominal` and `battery_capacity_usable`. Where one figure is
   needed, use `version.battery` (`{ capacityKwh, basis }`, nominal when known, otherwise usable).
 - Availability is `current`, `upcoming`, `discontinued` or `unknown`; discontinued models only with

@@ -132,7 +132,7 @@
                     "$ref": "#/$defs/__schema13"
                   },
                   "priceSummary": {
-                    "$ref": "#/$defs/__schema15"
+                    "$ref": "#/$defs/__schema16"
                   },
                   "coverageScore": {
                     "type": "number",
@@ -240,7 +240,7 @@
                   "$ref": "#/$defs/__schema13"
                 },
                 "priceSummary": {
-                  "$ref": "#/$defs/__schema15"
+                  "$ref": "#/$defs/__schema16"
                 }
               },
               "required": [
@@ -266,7 +266,7 @@
             "versions": {
               "type": "array",
               "items": {
-                "$ref": "#/$defs/__schema19"
+                "$ref": "#/$defs/__schema20"
               }
             },
             "nextOffset": {
@@ -321,10 +321,10 @@
               "const": "version"
             },
             "version": {
-              "$ref": "#/$defs/__schema19"
+              "$ref": "#/$defs/__schema20"
             },
             "preferenceMatch": {
-              "$ref": "#/$defs/__schema24"
+              "$ref": "#/$defs/__schema25"
             }
           },
           "required": [
@@ -367,7 +367,7 @@
             "versions": {
               "type": "array",
               "items": {
-                "$ref": "#/$defs/__schema19"
+                "$ref": "#/$defs/__schema20"
               }
             },
             "specs": {
@@ -381,7 +381,7 @@
                   "cells": {
                     "type": "array",
                     "items": {
-                      "$ref": "#/$defs/__schema20"
+                      "$ref": "#/$defs/__schema21"
                     }
                   }
                 },
@@ -402,7 +402,7 @@
                   "cells": {
                     "type": "array",
                     "items": {
-                      "$ref": "#/$defs/__schema23"
+                      "$ref": "#/$defs/__schema24"
                     }
                   }
                 },
@@ -423,7 +423,7 @@
                     "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
                   },
                   "match": {
-                    "$ref": "#/$defs/__schema24"
+                    "$ref": "#/$defs/__schema25"
                   }
                 },
                 "required": [
@@ -475,13 +475,13 @@
             "specs": {
               "type": "array",
               "items": {
-                "$ref": "#/$defs/__schema25"
+                "$ref": "#/$defs/__schema26"
               }
             },
             "features": {
               "type": "array",
               "items": {
-                "$ref": "#/$defs/__schema26"
+                "$ref": "#/$defs/__schema27"
               }
             }
           },
@@ -560,7 +560,7 @@
                             ]
                           },
                           "sourceKind": {
-                            "$ref": "#/$defs/__schema17"
+                            "$ref": "#/$defs/__schema18"
                           }
                         },
                         "required": [
@@ -600,7 +600,7 @@
                   "drivetrain": {
                     "anyOf": [
                       {
-                        "$ref": "#/$defs/__schema27"
+                        "$ref": "#/$defs/__schema28"
                       },
                       {
                         "type": "null"
@@ -674,25 +674,25 @@
               "type": "object",
               "properties": {
                 "priceEur": {
-                  "$ref": "#/$defs/__schema28"
+                  "$ref": "#/$defs/__schema29"
                 },
                 "batteryNominalKwh": {
-                  "$ref": "#/$defs/__schema28"
+                  "$ref": "#/$defs/__schema29"
                 },
                 "rangeWltpKm": {
-                  "$ref": "#/$defs/__schema28"
+                  "$ref": "#/$defs/__schema29"
                 },
                 "lengthMm": {
-                  "$ref": "#/$defs/__schema28"
+                  "$ref": "#/$defs/__schema29"
                 },
                 "heightMm": {
-                  "$ref": "#/$defs/__schema28"
+                  "$ref": "#/$defs/__schema29"
                 },
                 "bootVolumeL": {
-                  "$ref": "#/$defs/__schema28"
+                  "$ref": "#/$defs/__schema29"
                 },
                 "seats": {
-                  "$ref": "#/$defs/__schema28"
+                  "$ref": "#/$defs/__schema29"
                 }
               },
               "required": [
@@ -708,7 +708,7 @@
             "drivetrains": {
               "type": "array",
               "items": {
-                "$ref": "#/$defs/__schema27"
+                "$ref": "#/$defs/__schema28"
               }
             }
           },
@@ -767,11 +767,11 @@
                 "type": "string"
               },
               "additionalProperties": {
-                "$ref": "#/$defs/__schema29"
+                "$ref": "#/$defs/__schema30"
               }
             },
             "error": {
-              "$ref": "#/$defs/__schema29"
+              "$ref": "#/$defs/__schema30"
             },
             "$defs": {
               "type": "object",
@@ -779,7 +779,7 @@
                 "type": "string"
               },
               "additionalProperties": {
-                "$ref": "#/$defs/__schema29"
+                "$ref": "#/$defs/__schema30"
               }
             },
             "definitions": {
@@ -788,13 +788,13 @@
                 "specs": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/$defs/__schema25"
+                    "$ref": "#/$defs/__schema26"
                   }
                 },
                 "features": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/$defs/__schema26"
+                    "$ref": "#/$defs/__schema27"
                   }
                 }
               },
@@ -1000,6 +1000,17 @@
         },
         "equipmentDisclaimer": {
           "type": "string"
+        },
+        "view": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/__schema15"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "What the photo shows, from the backend's vision check: the outside, the inside, or a close-up of a part (inside or outside). `null` when not classified with confidence; nothing is guessed. The same image has the same value everywhere."
         }
       },
       "required": [
@@ -1012,10 +1023,19 @@
         "sourceUrl",
         "representative",
         "scope",
-        "equipmentDisclaimer"
+        "equipmentDisclaimer",
+        "view"
       ]
     },
     "__schema15": {
+      "type": "string",
+      "enum": [
+        "exterior",
+        "interior",
+        "detail"
+      ]
+    },
+    "__schema16": {
       "anyOf": [
         {
           "type": "object",
@@ -1029,7 +1049,7 @@
               "const": "incomplete"
             },
             "price": {
-              "$ref": "#/$defs/__schema16"
+              "$ref": "#/$defs/__schema17"
             }
           },
           "required": [
@@ -1043,7 +1063,7 @@
         }
       ]
     },
-    "__schema16": {
+    "__schema17": {
       "type": "object",
       "properties": {
         "versionId": {
@@ -1074,7 +1094,7 @@
           ]
         },
         "method": {
-          "$ref": "#/$defs/__schema17"
+          "$ref": "#/$defs/__schema18"
         },
         "lastSuccessfulCheck": {
           "anyOf": [
@@ -1115,7 +1135,7 @@
         "source": {
           "anyOf": [
             {
-              "$ref": "#/$defs/__schema18"
+              "$ref": "#/$defs/__schema19"
             },
             {
               "type": "null"
@@ -1137,7 +1157,7 @@
         "source"
       ]
     },
-    "__schema17": {
+    "__schema18": {
       "type": "string",
       "enum": [
         "official",
@@ -1145,7 +1165,7 @@
         "unclassified"
       ]
     },
-    "__schema18": {
+    "__schema19": {
       "type": "object",
       "properties": {
         "title": {
@@ -1174,7 +1194,7 @@
         "checkedAt"
       ]
     },
-    "__schema19": {
+    "__schema20": {
       "type": "object",
       "properties": {
         "id": {
@@ -1285,7 +1305,7 @@
             "type": "string"
           },
           "additionalProperties": {
-            "$ref": "#/$defs/__schema20"
+            "$ref": "#/$defs/__schema21"
           }
         },
         "battery": {
@@ -1318,13 +1338,13 @@
         "features": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/__schema23"
+            "$ref": "#/$defs/__schema24"
           }
         },
         "price": {
           "anyOf": [
             {
-              "$ref": "#/$defs/__schema16"
+              "$ref": "#/$defs/__schema17"
             },
             {
               "type": "null"
@@ -1354,7 +1374,7 @@
                 ]
               },
               "source": {
-                "$ref": "#/$defs/__schema18"
+                "$ref": "#/$defs/__schema19"
               }
             },
             "required": [
@@ -1389,16 +1409,16 @@
         "facts"
       ]
     },
-    "__schema20": {
+    "__schema21": {
       "type": "object",
       "properties": {
         "status": {
-          "$ref": "#/$defs/__schema21"
+          "$ref": "#/$defs/__schema22"
         },
         "value": {
           "anyOf": [
             {
-              "$ref": "#/$defs/__schema22"
+              "$ref": "#/$defs/__schema23"
             },
             {
               "type": "null"
@@ -1418,7 +1438,7 @@
         "unit"
       ]
     },
-    "__schema21": {
+    "__schema22": {
       "type": "string",
       "enum": [
         "resolved",
@@ -1427,14 +1447,14 @@
         "not_applicable"
       ]
     },
-    "__schema22": {
+    "__schema23": {
       "type": [
         "string",
         "number",
         "boolean"
       ]
     },
-    "__schema23": {
+    "__schema24": {
       "type": "object",
       "properties": {
         "key": {
@@ -1458,11 +1478,11 @@
             "type": "string"
           },
           "additionalProperties": {
-            "$ref": "#/$defs/__schema22"
+            "$ref": "#/$defs/__schema23"
           }
         },
         "evidence": {
-          "$ref": "#/$defs/__schema21"
+          "$ref": "#/$defs/__schema22"
         },
         "fitment": {
           "type": "string",
@@ -1475,7 +1495,7 @@
           ]
         },
         "numeric": {
-          "$ref": "#/$defs/__schema20"
+          "$ref": "#/$defs/__schema21"
         }
       },
       "required": [
@@ -1489,7 +1509,7 @@
         "numeric"
       ]
     },
-    "__schema24": {
+    "__schema25": {
       "type": "object",
       "properties": {
         "result": {
@@ -1512,7 +1532,7 @@
         "reasons"
       ]
     },
-    "__schema25": {
+    "__schema26": {
       "type": "object",
       "properties": {
         "key": {
@@ -1556,7 +1576,7 @@
         "numericUnit"
       ]
     },
-    "__schema26": {
+    "__schema27": {
       "type": "object",
       "properties": {
         "key": {
@@ -1602,7 +1622,7 @@
         "numericUnit"
       ]
     },
-    "__schema27": {
+    "__schema28": {
       "type": "string",
       "enum": [
         "fwd",
@@ -1610,7 +1630,7 @@
         "awd"
       ]
     },
-    "__schema28": {
+    "__schema29": {
       "anyOf": [
         {
           "type": "object",
@@ -1632,7 +1652,7 @@
         }
       ]
     },
-    "__schema29": {
+    "__schema30": {
       "type": "object",
       "propertyNames": {
         "type": "string"
