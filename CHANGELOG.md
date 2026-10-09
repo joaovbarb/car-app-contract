@@ -1,5 +1,12 @@
 # Contract changelog
 
+## 2026-10-09 — round 108 (documentation)
+
+- `freshness` is a label only: `fresh` means a successful check within 30 days, otherwise `stale`. It never decides whether
+  a price is used: a shown price is a match for a maximum-price preference whatever its freshness, and the search index
+  uses the same shown price. Nothing changes shape; `apiVersion` remains `"1"`. The entry is at the top of
+  [integration.md](integration.md).
+
 ## 2026-10-05 — round 91 (additive)
 
 - Every photo carries `view`: `"exterior" | "interior" | "detail" | null` -- what it shows, from the backend's vision
