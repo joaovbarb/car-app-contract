@@ -191,6 +191,67 @@ export const responseSchema = z.object({ apiVersion: z.literal("1"), asOf: z.iso
     z.object({ kind: z.literal("search_index"), versions: z.array(searchIndexVersionSchema),
       domains: searchIndexDomainsSchema, drivetrains: z.array(drivetrainSchema) }),
   ]) });
+/**
+ * Round 110: `GET /api/public/v2/stats` -- how much the catalogue holds, computed once a day. A count and what it is
+ * out of; show a percentage as `count / of`, and "—" when `of` is 0. Counting rules: integration.md, "Statistics".
+ */
+export const coverageMeasureSchema = z.object({
+  /** How many of the counted items have the property. */
+  count: z.number().int().nonnegative(),
+  /** How many items were considered (the denominator); 0 means there was nothing to measure. */
+  of: z.number().int().nonnegative() });
+/**
+ * Round 110: the catalogue's statistics (`/stats`), counted over what the public catalogue serves: market `PT`, the BEV
+ * powertrain, versions published and not retired, models with at least one counted version or served as a model-only
+ * card, makes with at least one counted model. Counted from the stored served state; no rule is re-evaluated.
+ */
+export const catalogueStatsSchema = z.object({
+  /** The market and powertrain these figures describe. */
+  scope: z.object({ market: z.string(), powertrain: z.literal("BEV") }),
+  /** When the daily maintenance computed these figures (UTC ISO timestamp). */
+  calculatedAt: z.iso.datetime(),
+  /** The "last seven days" window: the 7 whole UTC days before `calculatedAt`'s day, `from` inclusive, `to` exclusive (`to` is that day's 00:00 UTC). */
+  period: z.object({ from: z.iso.datetime(), to: z.iso.datetime() }),
+  /** Raised whenever a counting rule changes; round 110 is 1. Compare figures only across the same value. */
+  definitionsVersion: z.number().int().positive(),
+  totals: z.object({
+    /** Makes with at least one counted model. */
+    makes: z.number().int().nonnegative(),
+    /** Counted models: those with at least one counted version, or served as a model-only card. */
+    models: z.number().int().nonnegative(),
+    /** Counted versions: published, not retired. */
+    versions: z.number().int().nonnegative(),
+    /** Published photos of counted models, one per distinct content hash. */
+    photos: z.number().int().nonnegative(),
+    /** Active published values of kind `specification` on counted models and versions, as stored (inheritance is not expanded). */
+    specificationValues: z.number().int().nonnegative(),
+    /** The same for equipment (kind `feature`). */
+    equipmentEntries: z.number().int().nonnegative(),
+    /** The same for facts (kind `fact`). */
+    facts: z.number().int().nonnegative() }),
+  coverage: z.object({
+    /** Counted versions with a shown price. */
+    versionsWithPrice: coverageMeasureSchema,
+    /** Counted versions with a battery capacity value. */
+    versionsWithBattery: coverageMeasureSchema,
+    /** Counted versions with a power value. */
+    versionsWithPower: coverageMeasureSchema,
+    /** Counted versions with a range value. */
+    versionsWithRange: coverageMeasureSchema,
+    /** Counted models with at least one published photo. */
+    modelsWithPhoto: coverageMeasureSchema,
+    /** Counted models whose gallery is full by the existing rule: 10 good exterior and 10 good interior photos. */
+    modelsWithFullGallery: coverageMeasureSchema }),
+  /**
+   * Approximate: rows created in `period` and counted now. No first-publication date is stored, so a row created
+   * earlier and published later is not counted, and a row created in the period and since removed is not either.
+   */
+  lastSevenDays: z.object({
+    makes: z.number().int().nonnegative(), models: z.number().int().nonnegative(),
+    versions: z.number().int().nonnegative(), photos: z.number().int().nonnegative() }),
+});
+/** Round 110: the success body of `/stats`: the usual envelope around `CatalogueStats` (which has no `kind`). */
+export const statsResponseSchema = responseSchema.extend({ data: catalogueStatsSchema });
 export const errorSchema = z.object({ apiVersion: z.literal("1"), error: z.object({ code: z.enum(["INVALID_REQUEST", "MARKET_UNAVAILABLE", "NOT_FOUND", "METHOD_NOT_ALLOWED", "TEMPORARILY_UNAVAILABLE"]), message: z.string() }) });
 export type Query = z.infer<typeof querySchema>;
 export type Version = z.infer<typeof versionSchema>;
@@ -212,3 +273,5 @@ export type Drivetrain = z.infer<typeof drivetrainSchema>;
 export type SearchIndexVersion = z.infer<typeof searchIndexVersionSchema>;
 export type SearchIndexDomains = z.infer<typeof searchIndexDomainsSchema>;
 export type SearchIndex = Extract<ResponseData, { kind: "search_index" }>;
+export type CoverageMeasure = z.infer<typeof coverageMeasureSchema>;
+export type CatalogueStats = z.infer<typeof catalogueStatsSchema>;

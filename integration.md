@@ -6,6 +6,16 @@ This is the frontend's read-only boundary. It does not perform discovery, extrac
 
 Newest first. Older entries are in [CHANGELOG.md](CHANGELOG.md).
 
+### 2026-10-09 — round 110
+
+2026-10-09 -- round 110: GET /api/public/v2/stats serves the catalogue's statistics (what it holds and how complete it is), computed once a day.
+
+An additive change: nothing existing changes shape, and `apiVersion` remains `"1"`. Regenerate your copy of `contracts.ts`, `schema.json` and the fixtures.
+
+- **`/stats`** (new route; the envelope's `data` is the statistics object itself and has **no `kind`**): totals, coverage as `{ count, of }` pairs and the last seven days' growth, for market `PT` and battery-electric cars. See [Statistics](#statistics) for every field, the counting rules (`definitionsVersion` 1) and the caching. New schemas: `catalogueStatsSchema`, `coverageMeasureSchema`, `statsResponseSchema`; new types `CatalogueStats`, `CoverageMeasure`.
+- Until the first computation, the route answers 503 `TEMPORARILY_UNAVAILABLE` ("Statistics not yet calculated.") with a short `Retry-After`.
+- The fixtures: `fixtures/stats-v1.json` (a computed day, an empty catalogue, and the 503).
+
 ### 2026-10-09 — round 108
 
 2026-10-09 -- round 108: a documentation change to the meaning of `freshness`: it is a label only, and a shown price matches a maximum-price preference whatever its freshness.
@@ -155,6 +165,7 @@ The endpoint version and payload version are deliberately distinct: the URL is v
 | `/compare?ids={id1},{id2}` | Two to four versions, aligned rows and preference assessments |
 | `/definitions` | The fixed specification and feature definitions: exactly `specDefinitions` and `featureDefinitions` from [definitions.ts](definitions.ts) |
 | `/search-index` | One compact row per served version of the market and powertrain, the numeric domains over the whole index and the drivetrain values; see [Search index](#search-index). Takes only `market` and `powertrain` |
+| `/stats` | The catalogue's statistics (totals, coverage, the last seven days), computed once a day; the `data` is the statistics object itself, with no `kind`; see [Statistics](#statistics). Takes only `market` and `powertrain`; 503 before the first computation |
 | `/contract` | The contract itself: `apiVersion`, `status` (`"pre-stable"`), the JSON Schema of every route's success body (`routes`, keyed by path) and of the error body (`error`), and the definitions. The same as [schema.json](schema.json); reads no catalogue data |
 
 Every successful response has `apiVersion: "1"`, `asOf` (UTC ISO timestamp), `market`, `powertrain` and a `data` object discriminated by `kind`. Comparison cells follow the order of the requested IDs. A missing, unpublished or out-of-scope requested version makes the entire detail/comparison request return 404, rather than silently dropping it; a retired version is served, with `retired: true`.
@@ -312,6 +323,77 @@ GET /api/public/v2/search-index?market=PT&powertrain=bev
 The domains above are over the fixture's four rows, two of which are shown. The complete example, and an empty index whose every domain is `null`, are in [fixtures/synthetic-v1.json](fixtures/synthetic-v1.json) (the scenarios named "Search index: ..."). Validate a body with `responseSchema`, or a row with `searchIndexVersionSchema`.
 
 **Matching, for example:** a model whose versions are A (EUR 30,000, 320 km, 50 kWh) and B (EUR 45,000, 520 km, 80 kWh) does **not** match "at most EUR 35,000 and at least 450 km" (no single row satisfies both), and does match "EUR 40,000-50,000 and at least 450 km" through B, although A is cheaper. Its "from" price for that search is B's `price.amountEur`, with B's `verifiedAt` and `sourceKind`; the card's `priceSummary` stays the lowest known price of all its versions. Rows with a `null` price sort after priced ones in either direction, and fail an active price filter.
+
+## Statistics
+
+`GET /api/public/v2/stats?market=PT&powertrain=bev` returns how much the catalogue holds and how complete it is, as one small body. It is meant for a status page or a footer ("392 versions of 118 models"), not for filtering.
+
+**Parameters and errors.** `market` and `powertrain` only, validated exactly as for the search index: `market` an uppercase ISO country, default `PT`, 400 `MARKET_UNAVAILABLE` when not enabled; `powertrain` `bev` (default) or `all`, which the envelope echoes -- the figures are always those of battery-electric cars (`scope.powertrain` is `"BEV"`). Any other or repeated parameter is 400 `INVALID_REQUEST`. Before the first computation (a fresh deployment) the answer is **503 `TEMPORARILY_UNAVAILABLE`** with the message "Statistics not yet calculated." and a `Retry-After` of a few minutes; show a placeholder and try again later. A failed read is also 503. Errors are not cached.
+
+**Caching.** The figures are computed **once a day, at about 00:05 UTC**, by the daily maintenance, and stored; a request only reads the stored row. A success is cached like every other: `cache-control: public, max-age=60, s-maxage=3600, stale-while-revalidate=86400`, so it is fresh at the CDN for up to an hour and then served stale for up to a day while it revalidates; a page can show figures up to about a day old. Use `calculatedAt` to say when they were counted; `asOf` is when the response was produced.
+
+**Body.** The usual envelope (`apiVersion`, `asOf`, `market`, `powertrain`) around `data`, which is the object below. There is no `kind`.
+
+| Field | Meaning |
+| --- | --- |
+| `scope` | `{ market, powertrain }`: the market and `"BEV"` |
+| `calculatedAt` | UTC ISO timestamp: when maintenance computed these figures |
+| `period` | `{ from, to }`: the "last seven days" window, the 7 whole UTC days before `calculatedAt`'s day; `from` inclusive, `to` exclusive and equal to that day's 00:00 UTC |
+| `definitionsVersion` | Integer, raised whenever a counting rule changes; this document describes **1**. Do not compare figures across different values |
+| `totals.makes`, `totals.models`, `totals.versions` | How many makes, models and versions are counted (below) |
+| `totals.photos` | Published photos of counted models, one per distinct content hash |
+| `totals.specificationValues`, `totals.equipmentEntries`, `totals.facts` | Active published values of kind `specification`, `feature` and `fact` on counted models and versions |
+| `coverage.versionsWithPrice`, `versionsWithBattery`, `versionsWithPower`, `versionsWithRange` | `{ count, of }` over counted versions: those with a shown price, a battery capacity, a power and a range |
+| `coverage.modelsWithPhoto` | `{ count, of }` over counted models: those with at least one published photo |
+| `coverage.modelsWithFullGallery` | `{ count, of }` over counted models: those whose gallery is full by the existing rule (10 good exterior and 10 good interior photos) |
+| `lastSevenDays` | `{ makes, models, versions, photos }`: rows created in `period` and counted now |
+
+**Counting rules (definitionsVersion 1).**
+
+- **Counted** is what the public catalogue serves: market `PT`, served powertrain battery-electric, versions published and not retired, models with at least one counted version **or** served as a model-only card today, and makes with at least one counted model. The stored served state is used; no rule is re-evaluated when counting.
+- `totals.makes`, `models`, `versions`: the counted makes, models and versions.
+- `totals.photos`: published photos of counted models, one per distinct content hash (a photo stored twice counts once).
+- `totals.specificationValues`, `equipmentEntries`, `facts`: active published values of finding kind `specification`, `feature` and `fact` on counted models and versions, **as stored**: inherited values are not expanded, so a value a version inherits from its model is counted once, where it is stored, not again on each version.
+- `coverage.*`: `count` of the `of` counted items have the property; `of` is the number of counted versions (price, battery, power, range) or counted models (photo, full gallery).
+- `coverage.modelsWithPhoto`: counted models with at least one published photo. `coverage.modelsWithFullGallery`: counted models whose gallery is full by the existing rule, 10 good exterior and 10 good interior photos.
+- `lastSevenDays` is **approximate**: no first-publication date is stored, so it counts the rows (makes, models, versions, photos) **created** in `period` that are counted **now**. A row created earlier and published later is not in it, and a row created in the period and since withdrawn, retired or merged is not either. Use it as "recently added", not as an exact weekly change.
+
+**Showing a percentage.** Compute it yourself: `count / of`. When `of` is 0 there is nothing to measure: show "—", never 0% and never NaN.
+
+**Request:**
+
+```
+GET /api/public/v2/stats?market=PT&powertrain=bev
+```
+
+**Response** (synthetic figures; the fixtures' `stats-v1.json` holds this, an empty catalogue and the 503):
+
+```json
+{
+  "apiVersion": "1",
+  "asOf": "2026-10-10T09:30:00.000Z",
+  "market": "PT",
+  "powertrain": "bev",
+  "data": {
+    "scope": { "market": "PT", "powertrain": "BEV" },
+    "calculatedAt": "2026-10-10T00:05:41.000Z",
+    "period": { "from": "2026-10-03T00:00:00.000Z", "to": "2026-10-10T00:00:00.000Z" },
+    "definitionsVersion": 1,
+    "totals": { "makes": 41, "models": 118, "versions": 392, "photos": 1604, "specificationValues": 9120, "equipmentEntries": 2377, "facts": 640 },
+    "coverage": {
+      "versionsWithPrice": { "count": 301, "of": 392 },
+      "versionsWithBattery": { "count": 377, "of": 392 },
+      "versionsWithPower": { "count": 369, "of": 392 },
+      "versionsWithRange": { "count": 350, "of": 392 },
+      "modelsWithPhoto": { "count": 109, "of": 118 },
+      "modelsWithFullGallery": { "count": 23, "of": 118 }
+    },
+    "lastSevenDays": { "makes": 2, "models": 6, "versions": 19, "photos": 88 }
+  }
+}
+```
+
+Here `versionsWithPrice` is 301 / 392, shown as 77%.
 
 ## Availability
 

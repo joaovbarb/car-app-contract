@@ -20,6 +20,7 @@ declared, a change may land under the same `apiVersion` (`"1"`).
 | [definitions.ts](definitions.ts) | The fixed specification and feature definitions, exactly as `/definitions` serves them. |
 | [schema.json](schema.json) | The same contract as JSON Schema (draft 2020-12): every route's success body, the error body, the definitions. |
 | [fixtures/synthetic-v1.json](fixtures/synthetic-v1.json) | Synthetic example bodies for every route and error. |
+| [fixtures/stats-v1.json](fixtures/stats-v1.json) | Synthetic example bodies of `/stats` (same wrapper as `synthetic-v1.json`: `scenarios` and `errors`). |
 
 `definitions.ts` and `schema.json` are generated; never edit them by hand.
 

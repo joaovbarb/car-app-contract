@@ -1,5 +1,14 @@
 # Contract changelog
 
+## 2026-10-09 — round 110 (additive)
+
+- `GET /api/public/v2/stats` (new route): the catalogue's statistics -- totals, coverage as `{ count, of }` pairs and the
+  last seven days' growth -- computed once a day (about 00:05 UTC) for market `PT` and battery-electric cars. The
+  envelope's `data` is the statistics object itself, with no `kind`. Before the first computation it answers 503
+  `TEMPORARILY_UNAVAILABLE` with a short `Retry-After`. New schemas `catalogueStatsSchema`, `coverageMeasureSchema`,
+  `statsResponseSchema`; new fixture `fixtures/stats-v1.json`. `apiVersion` remains `"1"`. The full entry is at the top of
+  [integration.md](integration.md), and the route and its counting rules are in its "Statistics" section.
+
 ## 2026-10-09 — round 108 (documentation)
 
 - `freshness` is a label only: `fresh` means a successful check within 30 days, otherwise `stale`. It never decides whether

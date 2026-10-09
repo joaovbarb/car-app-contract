@@ -728,6 +728,200 @@
         "data"
       ]
     },
+    "/stats": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "$ref": "#/$defs/__schema0"
+        },
+        "asOf": {
+          "$ref": "#/$defs/__schema1"
+        },
+        "market": {
+          "$ref": "#/$defs/__schema2"
+        },
+        "powertrain": {
+          "$ref": "#/$defs/__schema3"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "scope": {
+              "type": "object",
+              "properties": {
+                "market": {
+                  "type": "string"
+                },
+                "powertrain": {
+                  "type": "string",
+                  "const": "BEV"
+                }
+              },
+              "required": [
+                "market",
+                "powertrain"
+              ]
+            },
+            "calculatedAt": {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+            },
+            "period": {
+              "type": "object",
+              "properties": {
+                "from": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                },
+                "to": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                }
+              },
+              "required": [
+                "from",
+                "to"
+              ]
+            },
+            "definitionsVersion": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            },
+            "totals": {
+              "type": "object",
+              "properties": {
+                "makes": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "models": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "versions": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "photos": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "specificationValues": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "equipmentEntries": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "facts": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                }
+              },
+              "required": [
+                "makes",
+                "models",
+                "versions",
+                "photos",
+                "specificationValues",
+                "equipmentEntries",
+                "facts"
+              ]
+            },
+            "coverage": {
+              "type": "object",
+              "properties": {
+                "versionsWithPrice": {
+                  "$ref": "#/$defs/__schema30"
+                },
+                "versionsWithBattery": {
+                  "$ref": "#/$defs/__schema30"
+                },
+                "versionsWithPower": {
+                  "$ref": "#/$defs/__schema30"
+                },
+                "versionsWithRange": {
+                  "$ref": "#/$defs/__schema30"
+                },
+                "modelsWithPhoto": {
+                  "$ref": "#/$defs/__schema30"
+                },
+                "modelsWithFullGallery": {
+                  "$ref": "#/$defs/__schema30"
+                }
+              },
+              "required": [
+                "versionsWithPrice",
+                "versionsWithBattery",
+                "versionsWithPower",
+                "versionsWithRange",
+                "modelsWithPhoto",
+                "modelsWithFullGallery"
+              ]
+            },
+            "lastSevenDays": {
+              "type": "object",
+              "properties": {
+                "makes": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "models": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "versions": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "photos": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                }
+              },
+              "required": [
+                "makes",
+                "models",
+                "versions",
+                "photos"
+              ]
+            }
+          },
+          "required": [
+            "scope",
+            "calculatedAt",
+            "period",
+            "definitionsVersion",
+            "totals",
+            "coverage",
+            "lastSevenDays"
+          ]
+        }
+      },
+      "required": [
+        "apiVersion",
+        "asOf",
+        "market",
+        "powertrain",
+        "data"
+      ]
+    },
     "/contract": {
       "type": "object",
       "properties": {
@@ -767,11 +961,11 @@
                 "type": "string"
               },
               "additionalProperties": {
-                "$ref": "#/$defs/__schema30"
+                "$ref": "#/$defs/__schema31"
               }
             },
             "error": {
-              "$ref": "#/$defs/__schema30"
+              "$ref": "#/$defs/__schema31"
             },
             "$defs": {
               "type": "object",
@@ -779,7 +973,7 @@
                 "type": "string"
               },
               "additionalProperties": {
-                "$ref": "#/$defs/__schema30"
+                "$ref": "#/$defs/__schema31"
               }
             },
             "definitions": {
@@ -1653,6 +1847,25 @@
       ]
     },
     "__schema30": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "of": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "count",
+        "of"
+      ]
+    },
+    "__schema31": {
       "type": "object",
       "propertyNames": {
         "type": "string"

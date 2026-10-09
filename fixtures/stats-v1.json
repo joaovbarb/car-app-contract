@@ -1,0 +1,70 @@
+{
+  "synthetic": true,
+  "scenarios": [
+    {
+      "name": "Statistics: a computed day",
+      "response": {
+        "apiVersion": "1",
+        "asOf": "2026-10-10T09:30:00.000Z",
+        "market": "PT",
+        "powertrain": "bev",
+        "data": {
+          "scope": { "market": "PT", "powertrain": "BEV" },
+          "calculatedAt": "2026-10-10T00:05:41.000Z",
+          "period": { "from": "2026-10-03T00:00:00.000Z", "to": "2026-10-10T00:00:00.000Z" },
+          "definitionsVersion": 1,
+          "totals": {
+            "makes": 41,
+            "models": 118,
+            "versions": 392,
+            "photos": 1604,
+            "specificationValues": 9120,
+            "equipmentEntries": 2377,
+            "facts": 640
+          },
+          "coverage": {
+            "versionsWithPrice": { "count": 301, "of": 392 },
+            "versionsWithBattery": { "count": 377, "of": 392 },
+            "versionsWithPower": { "count": 369, "of": 392 },
+            "versionsWithRange": { "count": 350, "of": 392 },
+            "modelsWithPhoto": { "count": 109, "of": 118 },
+            "modelsWithFullGallery": { "count": 23, "of": 118 }
+          },
+          "lastSevenDays": { "makes": 2, "models": 6, "versions": 19, "photos": 88 }
+        }
+      }
+    },
+    {
+      "name": "Statistics: nothing counted yet, so every denominator is 0",
+      "response": {
+        "apiVersion": "1",
+        "asOf": "2026-10-10T09:30:00.000Z",
+        "market": "PT",
+        "powertrain": "bev",
+        "data": {
+          "scope": { "market": "PT", "powertrain": "BEV" },
+          "calculatedAt": "2026-10-10T00:05:41.000Z",
+          "period": { "from": "2026-10-03T00:00:00.000Z", "to": "2026-10-10T00:00:00.000Z" },
+          "definitionsVersion": 1,
+          "totals": { "makes": 0, "models": 0, "versions": 0, "photos": 0, "specificationValues": 0, "equipmentEntries": 0, "facts": 0 },
+          "coverage": {
+            "versionsWithPrice": { "count": 0, "of": 0 },
+            "versionsWithBattery": { "count": 0, "of": 0 },
+            "versionsWithPower": { "count": 0, "of": 0 },
+            "versionsWithRange": { "count": 0, "of": 0 },
+            "modelsWithPhoto": { "count": 0, "of": 0 },
+            "modelsWithFullGallery": { "count": 0, "of": 0 }
+          },
+          "lastSevenDays": { "makes": 0, "models": 0, "versions": 0, "photos": 0 }
+        }
+      }
+    }
+  ],
+  "errors": [
+    {
+      "name": "Statistics not yet calculated (503, with a Retry-After header; never cached)",
+      "httpStatus": 503,
+      "response": { "apiVersion": "1", "error": { "code": "TEMPORARILY_UNAVAILABLE", "message": "Statistics not yet calculated." } }
+    }
+  ]
+}
